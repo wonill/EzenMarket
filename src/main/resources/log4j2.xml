@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+  	
+    <Console name="Console" target="SYSTEM_OUT">	
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+    <Console name="ResultSetTable" target="SYSTEM_OUT">
+      <MarkerFilter marker="LOG4JDBC_RESULTSETTABLE" onMatch="ACCEPT" onMismatch="DENY"/>	
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+    <Console name="Sql" target="SYSTEM_OUT">
+      <MarkerFilter marker="LOG4JDBC_SQL" onMatch="ACCEPT" onMismatch="DENY"/>	
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+     
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+
+    
+  </Appenders>
+  <Loggers>
+  	<Logger name="pracitce" level="debug"/>
+  	<Logger name="dbcp" level="debug"/>
+  	<Logger name="org.springframework.core" level="info"/>
+  	<Logger name="org.springframework.beans" level="info"/>
+  	<Logger name="org.springframework.context" level="info"/>
+  	<Logger name="org.springframework.web" level="info"/>
+  	<Logger name="com.ezen.springdb" level="info"/>
+  	<Logger name="log4jdbc.log4j2" level="info" additivity="false">
+      <MarkerFilter marker="LOG4JDBC_RESULTSET" onMatch="DENY" onMismatch="NEUTRAL"/>
+      <Appender-ref ref="ResultSetTable"/>
+      <Appender-ref ref="Sql"/>
+    </Logger>
+    <Root level="warn">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>
