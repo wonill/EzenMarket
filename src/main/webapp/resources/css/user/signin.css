@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+body {
+    margin-top: 10em;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+
+.logo {
+    text-decoration: none;
+}
+
+.logo h1 {
+    color: black;
+    margin-bottom: 1em;
+    font-weight: 900;    
+}
+
+.form-floating {
+    color: black;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#signin-btn {
+    background-color: black;
+    color: white;
+    margin: 1em 0 1em 0;
+    height: 2.5em;
+}
+
+#signup-btn {
+    background-color: darkgrey;
+    color: white;
+    margin-bottom: 1em;
+    height: 2.5em;
+    border: 0;
+}
+
+#login-search label:first-child {
+    float: left;
+    margin-bottom: 1em;
+}
+
+#login-search label:last-child {
+    float: right;
+}
+
+#login-search a {
+    text-decoration: none;
+    color: darkgrey;
+}
+
+#naver-btn {
+    margin-top: 2em;
+    width: 50px;
+}
+
