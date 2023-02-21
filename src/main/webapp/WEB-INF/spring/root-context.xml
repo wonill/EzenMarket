@@ -21,4 +21,11 @@
 		<property name="dataSource" ref="ds"/>
 		<property name="configLocation" value="classpath:/mybatis-config-base.xml"/>
 	</bean>	
+		
+		
+		<mybatis-spring:scan base-package="com.ezen.ezenmarket.product.mapper"/>
+		<mybatis-spring:scan base-package="com.ezen.ezenmarket.admin.mapper"/>
+		<mybatis-spring:scan base-package="com.ezen.ezenmarket.chat.mapper"/>
+		<mybatis-spring:scan base-package="com.ezen.ezenmarket.mypage.mapper"/>
+		<mybatis-spring:scan base-package="com.ezen.ezenmarket.user.ma-pper"/>
 </beans>

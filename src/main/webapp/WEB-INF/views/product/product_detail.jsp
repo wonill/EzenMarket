@@ -41,15 +41,15 @@
             <div class="container px-lg-5 my-5" style="width: 1050px;">
                 <div class="row gx-4 gx-lg-5 m-auto">
                     <div class="col-md-5">
-                        <img class="card-img-top mb-3 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg"
+                        <img class="card-img-top mb-3 mb-md-0" src="${post.image_url }"
                             alt="..." />
                     </div>
                     &emsp;
                     &emsp;
                     &emsp;
                     <div class="col-md-6" style="margin-left: 15px;">
-                        <div class="fs-5 large mb-1 fw-bolder">맨투맨</div>
-                        <h3 class="display-6 fw-bolder">40,000원</h3>
+                        <div class="fs-5 large mb-1 fw-bolder">${post.title }</div>
+                        <h3 class="display-6 fw-bolder">${post.price }원</h3>
                         <hr style="width: 420px;">
                         <div class="fs-5 mb-4">
                             <i class="bi bi-heart-fill"></i>&nbsp;17&nbsp;

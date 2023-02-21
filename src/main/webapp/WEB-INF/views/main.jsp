@@ -20,6 +20,7 @@
 
       body {
         background-color:white;
+        
       }
       
       .aside {
@@ -357,7 +358,10 @@
 
 
       }
-
+		
+	  #container{
+	  	width:1900px;
+	  }
 
     
       /* display: block; 링크를 글씨가 있는 부분 뿐만아니라 전체 영역을 클릭해도 링크가 걸리게 설정 */
@@ -367,6 +371,8 @@
   </head>
 
   <body>
+  
+  <div id="container">
         <header>
 
           
@@ -379,29 +385,36 @@
           <nav class="topMenu">
             <ul>
               <li><a class="menuLink" href="">신고하기</a></li>
-              <li><a class="menuLink" href="">판매하기</a></li>
-              <li><a class="menuLink" href="">회원가입</a></li>
-              <li><a class="menuLink" href="">로그인</a></li>
+              <li><a class="menuLink" href="register">판매하기</a></li>
+              <c:choose>
+              <c:when test="${sessionScope.login eq 'yes' }">
+              <li><a class="menuLink" href="logout">로그아웃</a></li>
+              </c:when>
+			  <c:otherwise>              
+              <li><a class="menuLink" href="signup">회원가입</a></li>
+              <li><a class="menuLink" href="signin">로그인</a></li>
+               </c:otherwise>
+              </c:choose>
             </ul>
           </nav>
 
           <div class="topLine"></div>
-
+		
           <nav class="head">
             <a id="logo" href="">EzenMarket</a>
             <input id="search" type="text">
             <div id="searchline"></div>
             <i id="readglasses" class="fa-solid fa-magnifying-glass"></i>
             </nav>
-          </nav>
+          
 
        
-          <div class="LastHead">
+          
             <!-- <div><i class="fa-solid fa-door-open icon"></i><a class="lastHead" href="">채팅 </a></div> -->
-            <div><i class="fa-regular fa-user icon"></i><a class="lastHead" href="">  마이페이지 </a></div>
-            <div><i class="fa-regular fa-heart icon Like"></i><a class="lastHead like" href=""> 관심 상품 </a></div>
+            <a class="lastHead" href="mypage/sales_list"><i class="fa-regular fa-user icon"></i>마이페이지</a>
+            <a class="lastHead like" href="mypage/zzim"><i class="fa-regular fa-heart icon Like"></i> 관심 상품 </a>
            
-            </div>
+            
             
             <div class="xLine"></div>
             <div class="xLine2"></div>
@@ -409,7 +422,7 @@
 
               <!-- 사이드 -->
               <div class="aside">
-                <div class="sideBtn"><i class="fa-regular fa-comment sideIcon chaticon"></i></div>
+                <div class="sideBtn"><a href="chat"><i class="fa-regular fa-comment sideIcon chaticon" style="color:white;"></i></a></div>
                 <div class="sideBtn"><i class="fa-regular fa-bell sideIcon"></i></div>
                 <div class="sideBtn topBtn"><i class="fa-solid fa-caret-up sideIcon topicon"></i><span style="margin-left: 8.5px;">TOP</span></div>
                 <!-- <div class="sideBtn">공유</div> -->
@@ -448,9 +461,9 @@
                 </button>
                 <div class="collapse" id="dashboard-collapse">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
-                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Weekly</a></li>
-                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Monthly</a></li>
+                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">스니커즈</a></li>
+                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">남성화</a></li>
+                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">여성화</a></li>
                     <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Annually</a></li>
                   </ul>
                 </div>
@@ -650,240 +663,32 @@
             <div id="recomend"> 오늘의 상품 추천</div>
 
             
+            
+            
             <!-- 상품 사진들 넣기-->
           <div class="item_list">
-
-            <div class="item_card">
+		  <c:forEach items="${posts }" var="post">
+            <div class="item_card">    
               <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214590467_1_1676202440_w292.jpg" alt="상품"> 
+              <a href="product?id=${post.post_id }">
+                <img src="${post.image_url }" alt="상품">
+              </a>
               </div>
               <div class="text">
-                <h5><i class="fa-regular fa-heart" style="float: right;"></i>가방</h5>
-                <p>39000원</p>
+              
+                <h5>
+                <a href="product?id=${post.post_id }">
+                <i class="fa-regular fa-heart" style="float: right;"></i>${post.title }
+                 </a>
+                </h5>
+                <p>${post.price }</p>
                 <!-- <button><i class="fas fa-check"></i>사러가기</button> -->
               </div>
+             
             </div>
+           
+           </c:forEach>
             
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214850743_1_1676381973_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5><i class="fa-regular fa-heart" style="float: right;"></i>신발</h5>
-                <p>20000원</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                
-                <!-- <img src="https://media.bunjang.co.kr/product/214827353_1_1676354984_w292.jpg" alt="상품">  -->
-                <img src="https://media.bunjang.co.kr/product/214815809_1_1676349306_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5><i class="fa-regular fa-heart" style="float: right;"></i>양말말말</h5>
-                <p>djjsjds</p>    
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/213049981_1_1675995085_w292.jpg" alt="상품"> 
-                <!-- <img src="https://media.bunjang.co.kr/product/214837844_1_1676361989_w292.jpg" alt="상품">  -->
-              </div>
-              <div class="text">
-                <h5><i class="fa-regular fa-heart" style="float: right;"></i>가방방방</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214913591_1_1676415563_w292.jpg" alt="상품"> 
-                <!-- <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품">  -->
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214260770_1_1675930659_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/210529181_1_1676210600_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214260770_1_1675930659_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/208961485_1_1676379921_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
-            <div class="item_card">
-              <div class="item_img">
-                <img src="https://media.bunjang.co.kr/product/214503121_1_1676177680_w292.jpg" alt="상품"> 
-              </div>
-              <div class="text">
-                <h5>장갑</h5>
-                <p>djjsjds</p>
-              </div>
-            </div>
           </div>
 
           
@@ -940,12 +745,12 @@
   </footer>
 </div>
           
-          
-          <!-- 부트스트랩, swiper 자바스크립트-->
+</div>
+          <!-- 부트스트랩, swiper 자바스크립트 <script src="sidebars.js"></script>-->
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
-          <script src="sidebars.js"></script>
+         
 
           <!-- 자바 스크립트 -->
           <script>
@@ -991,10 +796,38 @@
           } 
 
          
+		/*
+            
+            // 웹소켓
+            let websocket;
+        
+            //입장 버튼을 눌렀을 때 호출되는 함수
+            function connect() {
+                // 웹소켓 주소
+                var wsUri = "ws://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/chat";
+                // 소켓 객체 생성
+                websocket = new WebSocket(wsUri, "protocolOne");
+                
+                //웹 소켓에 이벤트가 발생했을 때 호출될 함수 등록
+                websocket.onopen = onOpen;
+                websocket.onmessage = onMessage;
+            }
+            
+            //웹 소켓에 연결되었을 때 호출될 함수
+            function onOpen() {
+            }
+            
+           // * 1 메시지 전송
+           function sendMessage(message){
+           }
+           
+            // * 2 메세지 수신
+            function onMessage(evt) {
+           }
 
            
 
-            
+            */
           </script>
 
         </body>

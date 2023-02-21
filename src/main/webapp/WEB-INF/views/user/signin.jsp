@@ -33,20 +33,23 @@
     <body class="text-center">
     
     <main class="form-signin">
-    <form>
+    
         
         <div class="container text-center">
             <div class="row">       
               <div class="col-lg-4 col-md-6"></div>         
               <div class="col-lg-4 col-md-6">
-                <a href="#"  class="logo"><h1>Ezen Market</h1></a>                
+                <a href="<%=request.getContextPath() %>"  class="logo"><h1>Ezen Market</h1></a>                
                 <h3 class="h3 mb-3 fw-normal">회원 로그인</h3>
+                
+                <form action="signin" method="POST">
+                
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="user_id">
                     <label for="floatingInput">이메일</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="user_pw">
                     <label for="floatingPassword">비밀번호</label>
                 </div>
                 <div id="login-search" class="checkbox mb-3">
@@ -60,7 +63,10 @@
                     </label>
                 </div>
                 <button id="signin-btn" class="w-100 btn btn-lg btn-primary" type="submit" id="signin">로그인</button>
-                <button id="signup-btn" class="w-100 btn btn-lg btn-primary" type="submit" id="signup">회원가입</button>
+               
+                 </form>
+                
+                <button id="signup-btn" class="w-100 btn btn-lg btn-primary" id="signup">회원가입</button>
                 <a href="#"><img id="naver-btn" src="./images/btnW_아이콘원형.png" alt=""></a>
                 <p class="mt-5 mb-3 text-muted">&copy; 2022-2023</p>
               </div>

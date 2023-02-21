@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.ezenmarket.product.mapper.ProductMapper">
+	<select id="selectAllProducts" resultType="com.ezen.ezenmarket.product.dto.Post">
+		<!-- SELECT * FROM 
+		(SELECT * FROM post INNER JOIN postImage USING (post_id) ORDER BY post_id DESC) 
+		WHERE <![CDATA[rownum<=15]]>--> 
+		SELECT * FROM post INNER JOIN postImage USING (post_id) ORDER BY post_id DESC
+
+	</select>
+	
+	<select id="selectProduct" resultType="com.ezen.ezenmarket.product.dto.Post">
+		SELECT * FROM post INNER JOIN postImage USING (post_id) WHERE post_id=#{id}
+	</select>
+	
+</mapper>

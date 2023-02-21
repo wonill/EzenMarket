@@ -133,8 +133,8 @@
    
    <nav class="topMenu">
      <ul>
-      <li><i class="fa-solid fa-door-open"></i><a class="menuLink" href=""> 로그인</a></li>
-      <li><i class="fa-solid fa-user"></i><a class="menuLink" href="">  마이페이지</a></li>
+      <li><i class="fa-solid fa-door-open"></i><a class="menuLink" href="signin"> 로그인</a></li>
+      <li><i class="fa-solid fa-user"></i><a class="menuLink" href="mypage/">  마이페이지</a></li>
       <li><i class="fa-solid fa-heart"></i><a class="menuLink" href=""> 관심 상품</a></li>
       <!-- <li>SHOPPING BAG</li> -->
      </ul>

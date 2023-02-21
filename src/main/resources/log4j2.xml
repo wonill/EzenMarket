@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration status="Warn">
   <Appenders>
   	
     <Console name="Console" target="SYSTEM_OUT">	
@@ -28,7 +28,7 @@
   	<Logger name="org.springframework.context" level="info"/>
   	<Logger name="org.springframework.web" level="info"/>
   	<Logger name="com.ezen.springdb" level="info"/>
-  	<Logger name="log4jdbc.log4j2" level="info" additivity="false">
+  	<Logger name="log4jdbc.log4j2" level="trace" additivity="false">
       <MarkerFilter marker="LOG4JDBC_RESULTSET" onMatch="DENY" onMismatch="NEUTRAL"/>
       <Appender-ref ref="ResultSetTable"/>
       <Appender-ref ref="Sql"/>
