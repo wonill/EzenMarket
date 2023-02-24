@@ -15,4 +15,8 @@
 		SELECT * FROM post INNER JOIN postImage USING (post_id) WHERE post_id=#{id}
 	</select>
 	
+	<insert id="insertProduct" parameterType="com.ezen.ezenmarket.product.dto.Post">
+		
+	</insert>
+	
 </mapper>

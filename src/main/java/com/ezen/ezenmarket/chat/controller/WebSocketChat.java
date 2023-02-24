@@ -31,7 +31,7 @@ public class WebSocketChat{
 		log.info("onOpen: " + session);
 		
 		try {
-			session.getBasicRemote().sendText("대화방에 연결되었습니다.");
+			session.getBasicRemote().sendText("채팅에 연결되었습니다.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -66,10 +66,10 @@ public class WebSocketChat{
 		sessionList.remove(session);
 	}
 	
-	public void sendAll(Session ss, String message) {
+	public void sendAll(Session mySession, String message) {
 		try {
-			for(Session session :WebSocketChat.sessionList) {
-				if(!ss.getId().equals(session.getId())) {
+			for(Session session : WebSocketChat.sessionList) {
+				if(!mySession.getId().equals(session.getId())) {
 					session.getBasicRemote().sendText("<전체응답> : " + message);
 				}
 			}

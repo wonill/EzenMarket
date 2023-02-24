@@ -34,7 +34,7 @@ public class ProductController {
 	@GetMapping(value="/register")
 	public String registerProduct() {
 		
-		return "product/product_register";
+		return "product/product_register2";
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class Post {
+public class Post extends PostImage {
 	
 	private Integer post_id;
 	private Integer user_number;
@@ -17,7 +17,5 @@ public class Post {
 	private Date updated;
 	private Integer post_view;
 	
-	private PostImage postImage;
-	private Integer post_image_id;
-	private String image_url;
+	
 }

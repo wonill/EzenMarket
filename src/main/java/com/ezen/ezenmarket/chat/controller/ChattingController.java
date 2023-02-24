@@ -15,7 +15,7 @@ public class ChattingController {
 	
 	@GetMapping(value="/chat")
 	public String chattingRoomEntry() {
-		
+		log.info("test test");
 		
 		return "chat/chat";
 	}

@@ -58,12 +58,17 @@
             margin:0; opacity: 1;
         }
 
-        .aa{
+        [type='text']{
             border:0; width:100%;background:#ddd; border-radius:5px; height:30px; padding-left:5px; box-sizing:border-box; margin-top:5px
         }
-        .aa::placeholder{
+        [type='text']::placeholder{
             color:#999
         }
+        
+        .test{
+        	width:100px;
+        }
+        
     </style>
     
     
@@ -97,7 +102,7 @@
 	 
 
 	  <p><textarea cols="50" rows="10" id="messageTextArea"></textarea></p>
-        <input type="text" id="textMessage"/>
+        <input type="text" id="textMessage" class="test"/>
         <button onclick="sendMessage()">전송</button>
    
 
@@ -134,9 +139,9 @@
             return ct;
         }
 		
+      
        
-		
-     // 「WebSocketEx」는 프로젝트 명
+     	// 「WebSocketEx」는 프로젝트 명
         // 「websocket」는 호스트 명
         // WebSocket 오브젝트 생성 (자동으로 접속 시작한다. - onopen 함수 호출)
         var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo");
@@ -168,12 +173,14 @@
         webSocket.onmessage = function(message) {
           // 콘솔 텍스트에 메시지를 출력한다.
           messageTextArea.value += "Recieve From Server => "+message.data+"\n";
+          var _tar = $(".chat_wrap .inner").append('<div class="item '+_class+'"><div class="box"><p class="msg">'+ message.data+'</p><span class="time">'+currentTime()+'</span></div></div>');
         };
        // Send 버튼을 누르면 호출되는 함수
       function sendMessage() {                      
         // 송신 메시지를 작성하는 텍스트 박스 오브젝트를 취득한다.
         var message = document.getElementById("textMessage");
         // 콘솔 텍스트에 메시지를 출력한다.
+        console.log(message.value);
         messageTextArea.value += "Send to Server => "+message.value+"\n";
         // WebSocket 서버에 메시지를 송신한다.
         webSocket.send(message.value);
@@ -187,6 +194,8 @@
 
         
       }	
+      
+     
     </script>
     
 </body>
