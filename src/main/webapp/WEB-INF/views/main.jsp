@@ -423,7 +423,7 @@
               <!-- 사이드 -->
               <div class="aside">
                 <div class="sideBtn"><a href="chat"><i class="fa-regular fa-comment sideIcon chaticon" style="color:white;"></i></a></div>
-                <div class="sideBtn"><i class="fa-regular fa-bell sideIcon"></i></div>
+                <div class="sideBtn"><a href="chat2"><i class="fa-regular fa-bell sideIcon"></i></a></div>
                 <div class="sideBtn topBtn"><i class="fa-solid fa-caret-up sideIcon topicon"></i><span style="margin-left: 8.5px;">TOP</span></div>
                 <!-- <div class="sideBtn">공유</div> -->
               </div>

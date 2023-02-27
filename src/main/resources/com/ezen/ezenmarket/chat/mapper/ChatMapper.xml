@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.ezenmarket.chat.mapper.ChatMapper">
+	<select id="selectChattingRoom" resultType="com.ezen.ezenmarket.chat.dto.ChattingRoom">
+		SELECT * FROM chattingroom INNER JOIN chattingcontent USING (chattingroom_id) WHERE chattingRoom_id = #{chattingRoom_id}
+
+	</select>
+	
+	<select id="selectMyChattingRooms" resultType="com.ezen.ezenmarket.chat.dto.ChattingRoom">
+		SELECT chattingRoom_id FROM chattingRoom WHERE buyer_user_number = #{user_number} or seller_user = #{user_number}
+	</select>
+
+<!--  	
+	<insert id="insertChattingContent" parameterType="com.ezen.ezenmarket.chat.dto.Chat">
+		INSERT INTO chattingcontent VALUES (chatting_content_id_seq.nextval, #{chattingroon_id}, #{user_number}, #{contents}, <![CDATA[sysdate]]>)
+	</insert>
+-->	
+</mapper>

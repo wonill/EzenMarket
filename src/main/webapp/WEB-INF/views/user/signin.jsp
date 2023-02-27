@@ -45,8 +45,8 @@
                 <form action="signin" method="POST">
                 
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="user_id">
-                    <label for="floatingInput">이메일</label>
+                    <input type="text" class="form-control" id="floatingInput" placeholder="ID" name="user_id">
+                    <label for="floatingInput">아이디</label>
                 </div>
                 <div class="form-floating">
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="user_pw">

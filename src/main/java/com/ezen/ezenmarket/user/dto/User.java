@@ -10,13 +10,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class User {
-	private Integer user_Number;
-	private String user_Name;
-	private String user_ID;
-	private String user_PW;
+	private Integer user_number;
+	private String user_name;
+	private String user_id;
+	private String user_pw;
 	private String nickname;
 	private String phoneNumber;
 	private String email;
+	private String user_address;
 	private String user_image;
-	private Date bannedDate;
+	private Integer banned;
+	private String user_intro;
 }
