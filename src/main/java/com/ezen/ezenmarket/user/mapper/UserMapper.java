@@ -10,4 +10,6 @@ public interface UserMapper {
 	
 	public User selectUser(String user_id);
 	
+	
+	
 }

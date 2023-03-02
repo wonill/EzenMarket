@@ -105,7 +105,7 @@
         .chatroom_list .box .chat_box .last_chat_time{
             color:#999; 
             position:absolute; 
-            right: -73px; 
+            right: -80px; 
             bottom: 13px;
             font-size: 14px;
         }
@@ -160,8 +160,8 @@
             font-size:13px; 
             color:#999; 
             position:absolute; 
-            right: -75px; 
-            bottom:5px; 
+            right: -80px; 
+            bottom:17px; 
             width:70px
         }
         .chat_wrap .item.mymsg{
@@ -178,7 +178,8 @@
         }
         .chat_wrap .item.mymsg .box .time{
             right:auto; 
-            left:-75px
+            left:-78px;
+            
         }
         .chat_wrap .item .box{
             transition:all .3s ease-out; 
@@ -285,7 +286,17 @@
                 전체 대화
             </div>
         </div>
-
+		<c:forEach items="${lastChatInfo}" var="lastChat">
+			
+			<div class="box" onclick="location.href='chat?room_id=${lastChat.chattingRoom_id}'">
+	            <div class="profile" style="background-image: url('${lastChat.user_image}')"></div>
+	            <div class="nickname">${lastChat.nickname }</div>
+	            <div class="chat_box">
+	            <p class="last_chat" id="${lastChat.chattingRoom_id }">${lastChat.last_chat }</p>
+	            <span class="last_chat_time" id='${lastChat.chattingRoom_id + 10000}'>${lastChat.creationDateTime }</span>
+	            </div>
+	        </div>
+        </c:forEach>
         
         <div class="box">
             <div class="profile"></div>
@@ -327,70 +338,8 @@
             <span class="last_chat_time">오후 10:05</span>
             </div>
         </div>
-        <div class="box">
-            <div class="profile"></div>
-            <div class="nickname">구매자</div>
-            <div class="chat_box">
-            <p class="last_chat">물건 살게요</p>
-            <span class="last_chat_time">오후 10:05</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="profile"></div>
-            <div class="nickname">구매자</div>
-            <div class="chat_box">
-            <p class="last_chat">물건 살게요</p>
-            <span class="last_chat_time">오후 10:05</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="profile"></div>
-            <div class="nickname">구매자</div>
-            <div class="chat_box">
-            <p class="last_chat">물건 살게요</p>
-            <span class="last_chat_time">오후 10:05</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="profile"></div>
-            <div class="nickname">구매자</div>
-            <div class="chat_box">
-            <p class="last_chat">물건 살게요</p>
-            <span class="last_chat_time">오후 10:05</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="profile"></div>
-            <div class="nickname">구매자</div>
-            <div class="chat_box">
-            <p class="last_chat">물건 살게요</p>
-            <span class="last_chat_time">오후 10:05</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="profile"></div>
-            <div class="nickname">구매자</div>
-            <div class="chat_box">
-            <p class="last_chat">물건 살게요</p>
-            <span class="last_chat_time">오후 10:05</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="profile"></div>
-            <div class="nickname">구매자</div>
-            <div class="chat_box">
-            <p class="last_chat">물건 살게요</p>
-            <span class="last_chat_time">오후 10:05</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="profile"></div>
-            <div class="nickname">구매자</div>
-            <div class="chat_box">
-            <p class="last_chat">물건 살게요</p>
-            <span class="last_chat_time">오후 10:05</span>
-            </div>
-        </div>
+       
+        
         
        
         
@@ -400,20 +349,31 @@
 
     <div class="chat_wrap">
         <div class="info">
-            <div class="nickname">구매자</div>
-            <div class="post_img"></div>
-            <div class="price">15,000,000원</div>
-            <div class="post_title">중고오토바이 당일최고가현금매입 PCX/NMAX/XMAX/포르자/커브/R3</div>
+            <div class="nickname">${myCurrentChatPartnerInfo.nickname }</div>
+            <div class="post_img" style="background-image: url('${postInfo.image_url}')"></div>
+            <div class="price">${postInfo.price}</div>
+            <div class="post_title">${postInfo.title}</div>
         </div>
         <div class="inner">
-            
-          <div class="item yourmsg on">
+        
+        <c:forEach items="${chattingContents }" var="chattingContent">    
+          <div class="item 
+          <c:choose>
+          <c:when test="${user.user_number eq chattingContent.user_number}">
+          		mymsg
+          </c:when>
+          <c:otherwise>
+          		yourmsg
+          </c:otherwise>
+          </c:choose> 
+          on">
                 <div class="box">
-                    <p class="msg">안녕하세요</p>      
-                    <span class="time">오전 10:05</span>
+                    <p class="msg">${chattingContent.contents }</p>      
+                    <span class="time">${chattingContent.creationDateTime }</span>
                 </div>
             </div>
-
+		</c:forEach>
+	<!-- 	
             <div class="item mymsg on">
                 <div class="box">
                     <p class="msg">안녕하세요</p>
@@ -426,9 +386,11 @@
                     <span class="time">오전 10:05</span>
                 </div>
             </div>
+	-->
+
 
         </div>
-
+	 
         <input type="text" class="mymsg" placeholder="내용 입력" id="input">
        <!-- <input type="text" class="yourmsg" placeholder="내용 입력">-->
     </div>
@@ -475,7 +437,7 @@
     
     var currentTime = function(){
         var date = new Date();
-        var hh = date.getHours();
+        var hh = date.getHours() == 0? 12 : date.getHours();
         var mm = date.getMinutes().toString().length == 1? ("0" + date.getMinutes()) : date.getMinutes();
         var apm = hh > 12 ? "오후":"오전";
         var ct = apm + " "+ (hh > 12? hh - 12 : hh) +":"+mm+" ";
@@ -487,8 +449,8 @@
      // 「WebSocketEx」는 프로젝트 명
     // 「websocket」는 호스트 명
     // WebSocket 오브젝트 생성 (자동으로 접속 시작한다. - onopen 함수 호출)
-    const chattingRoom_id = ${chattingRoom_id}
-    var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/" + chattingRoom_id);
+    const chattingRoom_id = ${current_room_id}
+    var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/${user.user_number}");
     // 콘솔 텍스트 에리어 오브젝트
     //var messageTextArea = document.getElementById("messageTextArea");
     //console.log(messageTextArea.value);
@@ -496,32 +458,34 @@
     //console.log(messageTextArea.value);
     // WebSocket 서버와 접속이 되면 호출되는 함수
     webSocket.onopen = function(message) {
-      // 콘솔 텍스트에 메시지를 출력한다.
-      //messageTextArea.value += "Server connect...\n";
+      
       console.log('오픈');
       console.log('오픈');
       console.log('오픈');
       console.log('오픈');
     };
-    // WebSocket 서버와 접속이 끊기면 호출되는 함수
+    
     webSocket.onclose = function(message) {
-      // 콘솔 텍스트에 메시지를 출력한다.
+     
       console.log("Server Disconnect...\n");
     };
-    // WebSocket 서버와 통신 중에 에러가 발생하면 요청되는 함수
+   
     webSocket.onerror = function(message) {
-      // 콘솔 텍스트에 메시지를 출력한다.
+     
       console.log("error...\n");
     };
-    // WebSocket 서버로 부터 메시지가 오면 호출되는 함수
+   
     webSocket.onmessage = function(message) {
-      // 콘솔 텍스트에 메시지를 출력한다.
+      
       
       const info = JSON.parse(message.data);
       
       console.log('서버에서 온채팅방 번호', info.chattingRoom_id);
       console.log("Recieve From Server => "+info.contents+"\n");
       console.log('여기 방 번호', chattingRoom_id);
+      
+      document.getElementById(info.chattingRoom_id).innerText = info.contents;
+      document.getElementById(info.chattingRoom_id + 10000).innerText = currentTime();
       
       if(info.chattingRoom_id == chattingRoom_id){
     	  
@@ -536,18 +500,23 @@
       console.log(position);
 
       $(".chat_wrap .inner").stop().animate({scrollTop:position},500);
-      }
+      } 
+    	  
+    	  
+      
+      
       
     };
-   // Send 버튼을 누르면 호출되는 함수
+  
   function sendMessage(message) {                      
-    // 송신 메시지를 작성하는 텍스트 박스 오브젝트를 취득한다.
-   // var message = document.getElementById("input");
-    // 콘솔 텍스트에 메시지를 출력한다.
- 	
+   
+	  
+ 	document.getElementById(chattingRoom_id).innerText = message.value;
+ 	document.getElementById(chattingRoom_id + 10000).innerText = currentTime();
     const info = {
        chattingRoom_id:chattingRoom_id,
-       contents:message.value
+       user_number:${user.user_number},
+       contents:message.value,
     }
     
     const json = JSON.stringify(info);

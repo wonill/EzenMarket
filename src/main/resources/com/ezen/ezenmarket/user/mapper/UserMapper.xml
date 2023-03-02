@@ -8,9 +8,11 @@
 
 	</select>
 
-	<select id="selectUser" resultType="com.ezen.ezenmarket.user.dto.User">
+	<select id="selectUser" resultType="com.ezen.ezenmarket.user.dto.User" parameterType="String">
 		SELECT * FROM userlist WHERE user_id = #{user_id}
 	</select>
+	
+	
 
 <!--  	
 	<insert id="insertChattingContent" parameterType="com.ezen.ezenmarket.chat.dto.Chat">

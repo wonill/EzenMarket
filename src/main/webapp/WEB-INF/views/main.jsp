@@ -794,7 +794,32 @@
             $moveTopBtn.onclick = () => {
             window.scrollTo({ top: 0, behavior: "smooth" });  
           } 
-
+			
+            
+            var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/20");
+            		webSocket.onopen = function(message) {
+            		      
+            		      
+            		      console.log('오픈');
+            		      console.log('오픈');
+            		      console.log('오픈');
+            		      console.log('오픈');
+            		};
+            		    
+            		webSocket.onmessage = function(message) {
+            			
+            			alert('메세지 알림이 왔습니다!')
+            		};
+            		    
+            	    webSocket.onerror = function(message) {
+            		        
+            		      console.log("error...\n");
+            	    };	    
+            		    
+            		webSocket.onclose = function(message) {
+            		       
+            		      console.log("Server Disconnect...\n");
+            		};
           </script>
 
         </body>

@@ -3,15 +3,75 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ezen.ezenmarket.chat.mapper.ChatMapper">
-	<select id="selectChattingRoom" resultType="com.ezen.ezenmarket.chat.dto.ChattingRoom">
-		SELECT * FROM chattingroom INNER JOIN chattingcontent USING (chattingroom_id) WHERE chattingRoom_id = #{chattingRoom_id}
-
+	
+	
+	<select id="selectMyChattingRooms" resultType="com.ezen.ezenmarket.chat.dto.MyChattingRoom">
+		SELECT * FROM chattingRoom WHERE #{user_number} IN (buyer_user_number, seller_user_number)
 	</select>
 	
-	<select id="selectMyChattingRooms" resultType="com.ezen.ezenmarket.chat.dto.ChattingRoom">
-		SELECT chattingRoom_id FROM chattingRoom WHERE buyer_user_number = #{user_number} or seller_user = #{user_number}
+	
+	<select id="getMyChattingRoomsInfo" resultType="com.ezen.ezenmarket.chat.dto.ChattingRoom">
+		SELECT * FROM chattingRoom INNER JOIN post USING (post_id) WHERE chattingRoom_id = #{chattingRoom_id}
 	</select>
-
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="selectUser" resultType="com.ezen.ezenmarket.chat.dto.User" parameterType="String">
+		SELECT * FROM userlist WHERE user_id = #{user_id}
+	</select>
+	
+	<select id="selectUserUsingUserNumber" resultType="com.ezen.ezenmarket.chat.dto.User" parameterType="Integer">
+		SELECT * FROM userlist WHERE user_number = #{user_number}
+	</select>
+	
+	
+	<select id="getMyChattingRoomInfoUsingLastChat" resultType="com.ezen.ezenmarket.chat.dto.MyChattingRoomInfo">
+		SELECT * FROM chattingcontent INNER JOIN userlist USING (user_number) WHERE chatting_content_id = (SELECT max(chatting_content_id) FROM chattingcontent  WHERE chattingroom_id = #{chattingroom_id})
+	</select>
+	
+	
+	<select id="getMyCurrentChatPartner" resultType="Integer">
+		SELECT 
+		    CASE 
+		        WHEN seller_user_number = #{user_number} THEN buyer_user_number 
+		        ELSE seller_user_number 
+		    END AS user_number
+		FROM 
+		    chattingroom
+		WHERE 
+		    seller_user_number = #{user_number} OR buyer_user_number = #{user_number} and chattingroom_id = #{chattingroom_id}
+	</select>
+	
+	<select id="getPostUsingChatRoomId" resultType="com.ezen.ezenmarket.chat.dto.ChattingRoom">
+		SELECT * FROM chattingroom INNER JOIN post USING (post_id) 
+								   INNER JOIN postImage USING (post_id) 
+										WHERE chattingroom_id = #{chattingroom_id}
+	</select>
+	
+	<select id="getChattingContents" resultType="com.ezen.ezenmarket.chat.dto.ChattingContent">
+		SELECT * FROM chattingContent WHERE chattingRoom_id = #{chattingRoom_id} ORDER BY chatting_content_id
+	</select>
+	
+	<select id="selectLastChat" resultType="String">
+		SELECT contents FROM chattingcontent WHERE chatting_content_id = (SELECT max(chatting_content_id) FROM chattingcontent WHERE chattingroom_id = #{chattingRoom_id})
+	</select>
+	
+	<select id="selectLastChatDate" resultType="java.sql.Date">
+		SELECT chatting_date FROM chattingcontent WHERE chatting_content_id = (SELECT max(chatting_content_id) FROM chattingcontent WHERE chattingroom_id = #{chattingRoom_id})
+	</select>
+	
+	<select id="getLastChatInfo" resultType="com.ezen.ezenmarket.chat.dto.LastChatInfo">
+		SELECT chattingroom_id,max(chatting_content_id),user_number, user_image, nickname FROM chattingcontent INNER JOIN userlist USING (user_number) WHERE chattingroom_id = #{chattingRoom_id} and not user_number = #{user_number} group by chattingroom_id, user_number, user_image, nickname
+	</select>
+	
+	<insert id="insertChattingContent" parameterType="com.ezen.ezenmarket.chat.dto.ChattingContent">
+		INSERT INTO chattingContent VALUES (chatting_content_id_seq.nextval, #{chattingRoom_id}, #{user_number}, #{contents}, sysdate)
+	</insert>
 <!--  	
 	<insert id="insertChattingContent" parameterType="com.ezen.ezenmarket.chat.dto.Chat">
 		INSERT INTO chattingcontent VALUES (chatting_content_id_seq.nextval, #{chattingroon_id}, #{user_number}, #{contents}, <![CDATA[sysdate]]>)

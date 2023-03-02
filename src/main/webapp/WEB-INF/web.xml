@@ -33,5 +33,11 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+<!-- 
+	<servlet>
+        <servlet-name>websocket</servlet-name>
+        <servlet-class>org.apache.tomcat.websocket.server.WsSci</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+ -->
 </web-app>

@@ -16,7 +16,7 @@
 	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
 		<constructor-arg ref="config"/>
 	</bean>
-	
+	 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"/>
 		<property name="configLocation" value="classpath:/mybatis-config-base.xml"/>
@@ -28,4 +28,6 @@
 		<mybatis-spring:scan base-package="com.ezen.ezenmarket.chat.mapper"/>
 		<mybatis-spring:scan base-package="com.ezen.ezenmarket.mypage.mapper"/>
 		<mybatis-spring:scan base-package="com.ezen.ezenmarket.user.mapper"/>
+		
+		
 </beans>

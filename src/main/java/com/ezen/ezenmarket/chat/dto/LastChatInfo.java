@@ -12,13 +12,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ChattingContent {
-	
-	private Integer chatting_content_id;
-	private Integer chattingRoom_id;
-	private Integer user_number;
-	private String contents;
-	private Date chatting_date;
+public class LastChatInfo{
+	Integer chattingRoom_id;
+	Integer chattingContent_id;
+	Integer user_number;
+	String user_image;
+	String nickname;
+	String last_chat;
+	Date chatting_date;
 	
 	private static SimpleDateFormat timeFormat = new SimpleDateFormat("a hh:mm", Locale.KOREA);
 	

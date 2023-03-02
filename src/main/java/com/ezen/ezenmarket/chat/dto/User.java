@@ -1,4 +1,4 @@
-package com.ezen.ezenmarket.user.dto;
+package com.ezen.ezenmarket.chat.dto;
 
 import java.sql.Date;
 

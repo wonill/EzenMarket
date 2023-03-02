@@ -1,19 +1,19 @@
 package com.ezen.ezenmarket.chat.dto;
 
-import com.ezen.ezenmarket.product.dto.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ChattingRoom extends Post{
+public class MyChattingRoom {
 	
 	private Integer chattingRoom_id;
-	private Integer seller_user_number;
+	private Integer seller_user_number;	
 	private Integer buyer_user_number;
-	private Integer post_id;
 	
 }
