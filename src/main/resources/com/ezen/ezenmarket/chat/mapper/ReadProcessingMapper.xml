@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.ezenmarket.chat.mapper.ReadProcessingMapper">
+	
+	<update id="readProcessing" parameterType="Integer">
+		UPDATE chattingcontent SET unread = null WHERE chattingroom_id = #{chattingRoom_id} AND NOT user_number = #{user_number}	
+	</update>
+	
+	<select id="countUnreadMessages" resultType="Integer">
+		SELECT count(unread) FROM chattingcontent WHERE chattingroom_id = #{chattingRoom_id} AND NOT user_number = #{user_number}
+	</select>
+	
+
+</mapper>

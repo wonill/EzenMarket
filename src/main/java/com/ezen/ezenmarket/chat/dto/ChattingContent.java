@@ -19,14 +19,14 @@ public class ChattingContent {
 	private Integer user_number;
 	private String contents;
 	private Date chatting_date;
+	private Integer unread;
+	
 	
 	private static SimpleDateFormat timeFormat = new SimpleDateFormat("a hh:mm", Locale.KOREA);
 	
 	public String getCreationDateTime() {
 		
 		LocalDate today = LocalDate.now();
-		
-		
 		
 		return chatting_date.toLocalDate().isEqual(today) ? timeFormat.format(chatting_date) : chatting_date.toString();
 				

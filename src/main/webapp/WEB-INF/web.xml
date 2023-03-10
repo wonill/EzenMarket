@@ -33,6 +33,18 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>filter.CharacterEncodingFilter</filter-class>					
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<!-- <url-pattern>/</url-pattern> -->
+		<servlet-name>appServlet</servlet-name>
+	</filter-mapping>
+	
 <!-- 
 	<servlet>
         <servlet-name>websocket</servlet-name>

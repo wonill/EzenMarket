@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.ezenmarket.user.mapper.UserXmlMapper">
+
+  <insert id="userSignUp" parameterType="com.ezen.ezenmarket.user.dto.User">
+    INSERT INTO userlist VALUES (
+    	7,
+    	#{user_Name},
+    	#{user_ID},
+    	#{user_PW},
+    	#{nickname},
+    	#{phoneNumber},
+    	#{email},
+    	null,
+    	sysdate
+    )
+  </insert>
+  
+    <select id="idCheck" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(user_id) 
+		FROM 
+			userlist 
+		WHERE 
+			user_id=#{id}
+	</select>
+	
+	<select id="nickCheck" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(nickname) 
+		FROM 
+			userlist 
+		WHERE 
+			nickname=#{nickName}
+	</select>
+</mapper>

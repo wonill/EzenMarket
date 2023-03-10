@@ -36,10 +36,6 @@ public class MainController {
 		return "main";
 	}
 	
-	@GetMapping(value="/test")
-	public String test() {
-		return "top";
-	}
 	
 	
 	

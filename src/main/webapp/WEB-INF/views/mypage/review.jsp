@@ -10,75 +10,78 @@
     <title>마이페이지</title>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypage/review.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+    .intro {
+      width: 260px;
+      height: 70px;
+      box-sizing: border-box;
+      border: solid 2px #1E90FF;
+      border-radius: 5px;
+      font-size: 16px;
+      resize: both;
+      }
+      #modify-btn{
+        margin-top: 5px;
+        margin-left: 5px;
+        padding: 0 5px 0 5px;
+        float: right;
+        border: 1px black solid;
+        border-radius: 3px;
+        color: white;
+        background-color: black;
+      }
+      .container{
+        margin-top: 50px;
+      }
+    </style>
 </head>
 <body>
 
-    <header>
-
-      <div class="Top">
-          <a class="top1" href="">EzenMarket 신규 가입시 <span style="color: orangered;">10%</span> 할인 쿠폰 | </a>
-          <a class="top2" href="">[삼성카드]<span style="color: orangered">12만원</span> 캐시백 프로모션</a>
-          <a class="top" href=""></a>
-      </div>
-      
-      <nav class="topMenu">
-        <ul>
-          <li><i class="fa-solid fa-door-open"></i><a class="menuLink" href=""> 로그인</a></li>
-          <li><i class="fa-solid fa-user"></i><a class="menuLink" href="">  마이페이지</a></li>
-          <li><i class="fa-solid fa-heart"></i><a class="menuLink" href=""> 관심 상품</a></li>
-          <!-- <li>SHOPPING BAG</li> -->
-        </ul>
-      </nav>
-
-      <nav class="head">
-        <a id="logo" href="">EzenMarket</a>
-        <input id="search" type="search">
-      </nav>
-
-      
-    </header>
-
-
-
-    <div class="container">
-      <div id="header" class="row">header</div>
-    </div>
-
+  <jsp:include page="../include/header.jsp"/>
+ 
      <!--본문(해당회원 마이페이지)-->
+  <hr>
   <div class="container"> <!--container start-->
     <div class="row"> <!--row start-->
       <div id="profile-section" class="col-3"> <!--profile-section start-->
-        <div class="profile-img">
-          <img class="profile-img-img" src="https://pbs.twimg.com/profile_images/1536535827257630720/VUZLhP8M_400x400.jpg" alt="프로필이미지"/>
+        <div class="profile-img" id="imgContainer" >
+          <img id="img" class="profile-img-img" src="https://pbs.twimg.com/profile_images/1536535827257630720/VUZLhP8M_400x400.jpg" alt="프로필이미지"/>
         </div>
+        <div class="profile-img" id="modifyimgContainer" onclick="fileUploadAction();" style="display: none;">
+        	<img id="modifyImg" class="profile-img-img" src="https://pbs.twimg.com/profile_images/1536535827257630720/VUZLhP8M_400x400.jpg" alt="">
+    	  </div>
+    	  <input type="file" id="input_imgs" style="display: none;"/>
         <div class="profile-txt">
-          <div>춘식이</div>
-          <div>
-            <span>팔로워 0</span>
-            <span class="vr"></span>
-            <span>팔로잉 0</span>
+          <div class="row">
+            <div id="nick">${profile.nickname }</div>
+            <input id="modifyNick" type="text" style="display: none;">
           </div>
+
+          <div>
+            <span></span>
+            <span></span>
+          </div>
+
           <div class="product">
             <span id="left">상품</span>
-            <span id="right">2</span>
+            <span id="right">${profile.postCount }</span>
           </div>
           <div class="review">
             <span id="left2">거래후기</span>
-            <span id="right2">★★★★★ 3</span>
+            <span id="right2">★★★★★ ${profile.reviewCount }</span>
           </div>
-          <div>
-            네고 안받아요<br>
-            택배 얘기 안할시 착불로 보내요<br>
-            여러개 사시면 무료배송<br>
-            환불x 사이즈문의 찔러보기 차단<br>
-          </div>
-        </div>
-        <div>
-          <button id="follow-btn" type="button" class="btn btn-outline-secondary" onclick = "location.href = '' ">
-            <i class="fa-solid fa-user-plus"></i>
-            팔로우
+          
+          <div id="intro" class="intro" style="margin-left: 10px; border: 0px;">${profile.user_intro }</div>
+          <textarea id="modifyIntro"class="intro" style="display: none;"></textarea>
+
+          <c:choose>
+		  <c:when test="${verified eq 'yes' }">
+		  <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
+            <i class="fa-solid fa-user-plus"></i>프로필수정
           </button>
-          <button id="setting-btn" type="button" class="btn btn-outline-secondary" onclick = "location.href = '' ">상점관리</button>        
+		  </c:when>
+		  </c:choose>
+          <button id="modify-done-btn" onclick="modifyProfileDone()" style="display: none;">완료</button>
         </div>
       </div> <!--profile-section end-->
 
@@ -90,7 +93,7 @@
                 <div class="tabmenu out-tabmenu">
                   <ul>
                     <li id="tab1" class="btnCon"> 
-                      <input type="radio" name="tabmenu" id="tabmenu1" onclick="location.href='mypage-상품.html'">
+                      <input type="radio" name="tabmenu" id="tabmenu1" onclick="location.href='./?user_number=${user_number}'">
                       <label for="tabmenu1">상품</label>
                       <div class="tabCon" >
               
@@ -98,7 +101,7 @@
                       
                     </li>
                     <li id="tab2" class="btnCon">
-                      <input type="radio" name="tabmenu" id="tabmenu2" checked onclick="location.href='mypage-후기.html'">
+                      <input type="radio" name="tabmenu" id="tabmenu2" checked>
                       <label for="tabmenu2">후기</label>
                       <div class="tabCon" >
                         <div class="review-section">
@@ -110,37 +113,40 @@
                           <div class="review-list">
                             <ul>
                               <li>
-                                <div class="member-image">
-                                  <div class="member-image-box">
-                                    <a href="#">
-                                      <img src="https://ditoday.com/wp-content/uploads/2018/11/%ED%8F%AC%EC%8A%A4%ED%84%B0-e1543393143722-425x353.jpg" alt="프로필이미지">
-                                    </a>
-                                  </div>
-                                  <a href="#">
-                                    <div class="title">닉네임</div> <!--리뷰 작성자 닉네임-->
-                                  </a>
-                                  <div class="time-ago">22.9.27</div> <!--리뷰 작성 날짜-->
-                                </div>
-                                <div class="member-box">
-                                  <div class="item-review-title">나이키 빅스우시 바람막이 2xl</div> <!--구매한 상품 이름-->
-                                  <span class="description" width="0">
-                                    <span>
-                                      <span class="d-inline-block text-truncate" style="max-width: 300px;">친절한 응대에 감사드립니다. 잘 받았어여^^~</span>
-                                      <span></span>    
-                                      <span></span>                                    
-                                    </span>
-                                  </span>
-                                </div>
+                              	<c:forEach items="${review }" var="review">
+	                                <div class="member-image">
+	                                  <div class="member-image-box">
+	                                      <img src="${review.user_image }" >
+	                                    
+	                                  </div>
+	                                  <a href="./sales_list?user_number=${review.user_number }">
+	                                    <div class="title">${review.nickname }</div> <!--리뷰 작성자 닉네임-->
+	                                  </a>
+	                                </div>
+	                                <div class="member-box">
+	                                  <div class="item-review-title">${review.title }</div> <!--구매한 상품 이름-->
+	                                  <span class="description" width="0">
+	                                    <span> 
+	                                      <span class="d-inline-block text-truncate" style="max-width: 300px;">${review.review_content }</span>
+	                                      <span></span>
+	                                      <span></span>                                    
+	                                    </span>
+	                                  </span>
+	                                </div>
+	                             </c:forEach>
+	                             <c:forEach begin="${pagination_start }" end="${pagination_end }" var="i">
+			                      <a href="./review?user_number=${user_number }&page=${i }">${i }</a>
+			                    </c:forEach>
                               </li>
                               <li></li>
                               <li></li>
                             </ul>
                           </div>
-                        </div>                   
+                        </div>                  
                       </div>
-                      
-                    </li>    
-                    <li id="tab3" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu3" onclick="location.href='mypage-찜.html'">
+                    </li> 
+                        
+                    <li id="tab3" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu3" onclick="location.href='./zzim?user_number=${user_number}'">
                       <label for="tabmenu3">찜</label>
                       <div class="tabCon" >
                       
@@ -151,63 +157,8 @@
                 </div>
               </div>
             </div>
-            </div>
-            </div>
-
-
-<hr>
-
-<!--본문(마이페이지 타인이 볼때 내정보수정 버튼 안보이게)-->
-<div class="container"> <!--container start-->
-  <div class="row"> <!--row start-->
-  <!--본문(해당회원 마이페이지)-->
-  <div class="container"> <!--container start-->
-    <div class="row"> <!--row start-->
-      <div id="profile-section" class="col-3"> <!--profile-section start-->
-        <div class="profile-img">
-          <img class="profile-img-img" src="https://pbs.twimg.com/profile_images/1536535827257630720/VUZLhP8M_400x400.jpg" alt="프로필이미지"/>
-        </div>
-        <div class="profile-txt">
-          <div>춘식이</div>
-          <div>
-            <span>팔로워 0</span>
-            <span class="vr"></span>
-            <span>팔로잉 0</span>
-          </div>
-          <div class="product">
-            <span id="left">상품</span>
-            <span id="right">2</span>
-          </div>
-          <div class="review">
-            <span id="left2">거래후기</span>
-            <span id="right2">★★★★★ 3</span>
-          </div>
-          <div>
-            네고 안받아요<br>
-            택배 얘기 안할시 착불로 보내요<br>
-            여러개 사시면 무료배송<br>
-            환불x 사이즈문의 찔러보기 차단<br>
-          </div>
-        </div>
-        <div>
-          <button id="follow-btn" type="button" class="btn btn-outline-secondary" onclick = "location.href = '' " style="margin-left: 75px;">
-            <i class="fa-solid fa-user-plus"></i>
-            팔로우
-          </button>
-                 
-        </div>
-      </div> <!--profile-section end-->
-
-
-
-    <div class="container">
-      <div id="footer" class="row">footer</div>
+       </div>
     </div>
-
-
-
-
-
 
 
     <script src="https://kit.fontawesome.com/d04567b543.js" crossorigin="anonymous"></script>

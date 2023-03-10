@@ -44,13 +44,20 @@
 		FROM 
 		    chattingroom
 		WHERE 
-		    seller_user_number = #{user_number} OR buyer_user_number = #{user_number} and chattingroom_id = #{chattingroom_id}
+		    (seller_user_number = #{user_number} OR buyer_user_number = #{user_number}) and chattingroom_id = #{chattingroom_id}
 	</select>
 	
 	<select id="getPostUsingChatRoomId" resultType="com.ezen.ezenmarket.chat.dto.ChattingRoom">
-		SELECT * FROM chattingroom INNER JOIN post USING (post_id) 
-								   INNER JOIN postImage USING (post_id) 
-										WHERE chattingroom_id = #{chattingroom_id}
+		 SELECT *
+			FROM (
+			    SELECT *
+			    FROM chattingroom
+			    INNER JOIN post USING (post_id)
+			    INNER JOIN postImage USING (post_id)
+			    WHERE chattingroom_id = #{chattingRoom_id}
+			    ORDER BY post_image_id
+			)
+			WHERE ROWNUM = 1
 	</select>
 	
 	<select id="getChattingContents" resultType="com.ezen.ezenmarket.chat.dto.ChattingContent">
@@ -65,16 +72,40 @@
 		SELECT chatting_date FROM chattingcontent WHERE chatting_content_id = (SELECT max(chatting_content_id) FROM chattingcontent WHERE chattingroom_id = #{chattingRoom_id})
 	</select>
 	
-	<select id="getLastChatInfo" resultType="com.ezen.ezenmarket.chat.dto.LastChatInfo">
+	<select id="getLastChatInfo" resultType="com.ezen.ezenmarket.chat.dto.LastChat">
 		SELECT chattingroom_id,max(chatting_content_id),user_number, user_image, nickname FROM chattingcontent INNER JOIN userlist USING (user_number) WHERE chattingroom_id = #{chattingRoom_id} and not user_number = #{user_number} group by chattingroom_id, user_number, user_image, nickname
 	</select>
 	
+	<select id="getLastChatInfoIfAbsent" resultType="com.ezen.ezenmarket.chat.dto.LastChat">
+		SELECT user_number, user_image, nickname FROM userlist WHERE user_number = (SELECT 
+		    CASE 
+		        WHEN seller_user_number = #{user_number} THEN buyer_user_number 
+		        ELSE seller_user_number 
+		    END AS user_number
+		FROM 
+		    chattingroom
+		WHERE 
+		    (seller_user_number = #{user_number} OR buyer_user_number = #{user_number}) and chattingroom_id = #{chattingRoom_id})
+	</select>
+	
 	<insert id="insertChattingContent" parameterType="com.ezen.ezenmarket.chat.dto.ChattingContent">
-		INSERT INTO chattingContent VALUES (chatting_content_id_seq.nextval, #{chattingRoom_id}, #{user_number}, #{contents}, sysdate)
+		INSERT INTO chattingContent VALUES (chatting_content_id_seq.nextval, #{chattingRoom_id}, #{user_number}, #{contents}, sysdate, 1)
 	</insert>
 <!--  	
 	<insert id="insertChattingContent" parameterType="com.ezen.ezenmarket.chat.dto.Chat">
 		INSERT INTO chattingcontent VALUES (chatting_content_id_seq.nextval, #{chattingroon_id}, #{user_number}, #{contents}, <![CDATA[sysdate]]>)
 	</insert>
 -->	
+
+	<select id="searchChatRoomForThisPost" resultType="com.ezen.ezenmarket.chat.dto.ChattingRoom">
+		SELECT * FROM chattingRoom WHERE #{buyer_user_number} IN (buyer_user_number) AND post_id = #{post_id}
+	</select>
+	
+	<insert id="createNewChatRoom" parameterType="Integer">
+		INSERT INTO chattingRoom VALUES (chattingRoom_id_seq.nextval, #{seller_user_number}, #{buyer_user_number}, #{post_id})
+	</insert>
+	
+	<select id="searchLastChatRoom" resultType="Integer">
+		SELECT max(chattingRoom_id) FROM chattingRoom WHERE buyer_user_number = #{buyer_user_number}
+	</select>
 </mapper>

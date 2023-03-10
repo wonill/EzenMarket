@@ -23,6 +23,20 @@
 	</bean>	
 		
 		
+		<!-- Gmail -->
+	  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="baesunghoon81@gmail.com" />
+	    <property name="password" value="we080608@" />
+	    <property name="javaMailProperties">
+	    <props>
+	      <prop key="mail.smtp.auth">true</prop>
+	      <prop key="mail.smtp.starttls.enable">true</prop>
+	    </props>
+	    </property>
+	  </bean>
+		
 		<mybatis-spring:scan base-package="com.ezen.ezenmarket.product.mapper"/>
 		<mybatis-spring:scan base-package="com.ezen.ezenmarket.admin.mapper"/>
 		<mybatis-spring:scan base-package="com.ezen.ezenmarket.chat.mapper"/>

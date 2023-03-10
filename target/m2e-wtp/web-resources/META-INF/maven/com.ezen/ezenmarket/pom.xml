@@ -34,6 +34,12 @@
 		</dependency>
 		
 		
+		<!-- 카카오 로그인 API관련 의존성 -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.5</version>
+		</dependency>
 		
 				
 		<!-- AspectJ -->
@@ -175,6 +181,42 @@
 		    <version>1.1</version>
 		</dependency>
 		
+		
+		    <!-- security  -->
+		<dependency>
+		   <groupId>org.springframework.security</groupId>
+		   <artifactId>spring-security-core</artifactId>
+		   <version>5.2.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+		   <groupId>org.springframework.security</groupId>
+		   <artifactId>spring-security-web</artifactId>
+		   <version>5.2.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+		   <groupId>org.springframework.security</groupId>
+		   <artifactId>spring-security-config</artifactId>
+		   <version>5.2.1.RELEASE</version>
+		</dependency>
+
+
+
+		    <!-- 이메일 인증 -->
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
 	
 		<!-- Test -->
 		<dependency>

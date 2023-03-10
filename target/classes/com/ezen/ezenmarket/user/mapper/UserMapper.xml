@@ -12,7 +12,13 @@
 		SELECT * FROM userlist WHERE user_id = #{user_id}
 	</select>
 	
+	<select id="getUserInfo" resultType="com.ezen.ezenmarket.user.dto.User">
+		SELECT * FROM userlist WHERE user_id=#{user_id}
+	</select>
 	
+	<select id="getUserList" resultType="com.ezen.ezenmarket.user.dto.User">
+		SELECT * FROM userlist
+	</select>
 
 <!--  	
 	<insert id="insertChattingContent" parameterType="com.ezen.ezenmarket.chat.dto.Chat">

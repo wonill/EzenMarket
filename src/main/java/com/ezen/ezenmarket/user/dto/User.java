@@ -20,6 +20,5 @@ public class User {
 	private String user_address;
 	private String user_image;
 	private String user_intro;
-	private String kakao_id;
 	private Integer banned;
 }

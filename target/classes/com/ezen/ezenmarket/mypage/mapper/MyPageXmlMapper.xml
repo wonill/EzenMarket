@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.ezenmarket.mypage.mapper.MyPageXmlMapper">
+    
+	<select id="getPost" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.Post">
+	    SELECT
+	        post.post_id, post.title, post.price, postImage.image_URL
+	    FROM
+	        post, postImage
+	    WHERE 
+	        post.post_id = postImage.post_id
+	    AND
+	        user_number =#{user_num}
+	    ORDER BY
+	        updated DESC
+	</select>
+	
+	<select id="getZzim" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.Post">
+		SELECT
+			p.post_id, p.title, p.price, pi.image_url
+		FROM
+			post p
+		INNER JOIN
+			wishlist w ON p.post_id = w.post_id
+		INNER JOIN
+			postimage pi ON p.post_id = pi.post_id
+		WHERE
+			(p.post_id, pi.post_image_id) IN (SELECT post_id, min(post_image_id) FROM postImage GROUP BY post_id) AND w.user_number = #{user_number}
+	</select>
+	
+	<select id="getReviewList" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.Review">
+		SELECT 
+			u.user_number, u.nickname, p.title AS title, u.user_image, r.review_Content AS review_content
+		FROM 
+			endDeal e
+		INNER JOIN 
+			userlist u ON e.buyer_user_number = u.user_number
+		INNER JOIN 
+			post p ON e.post_Id = p.post_id
+		INNER JOIN 
+			review r ON e.endDeal_Id = r.endDeal_Id
+		WHERE 
+			e.seller_user_number = #{user_num}
+		ORDER BY 
+			review_id DESC
+	</select>
+	
+	<select id="getReviewCount" resultType="Integer">
+		SELECT 
+			count(*)
+		FROM 
+			endDeal e
+		INNER JOIN 
+			userlist u ON e.buyer_user_number = u.user_number
+		INNER JOIN 
+			post p ON e.post_Id = p.post_id
+		INNER JOIN 
+			review r ON e.endDeal_Id = r.endDeal_Id
+		WHERE 
+			e.seller_user_number = #{user_num}
+	</select>
+	
+	<select id="getUserProfile" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.Profile">
+		SELECT 
+			nickname, user_intro
+		FROM 
+			userlist
+		WHERE 
+			user_number = #{user_number}
+	</select>
+	
+	<select id="getPostCount" parameterType="Integer" resultType="Integer">
+		SELECT 
+			count(*)
+		FROM 
+			post
+		WHERE 
+			user_number = #{user_number}
+	</select>
+	
+	<update id="updatePost" parameterType="Integer">
+		UPDATE
+			post
+		SET
+			updated = sysdate
+		WHERE
+			post_id=#{post_Id}
+	</update>
+	
+	<delete id="deletePost" parameterType="Integer">
+		DELETE FROM
+			post
+		WHERE
+			post_id=#{post_Id}
+	</delete>
+	
+	<select id="nickCheck" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(nickname) 
+		FROM 
+			userlist 
+		WHERE 
+			nickname=#{nickName}
+	</select>
+	
+	<update id="modifyNick" parameterType="String">
+		UPDATE
+			userlist
+		SET
+			nickname = #{nickName}
+		WHERE
+			user_number=2
+	</update>
+	
+	<update id="modifyIntro" parameterType="String">
+		UPDATE
+			userlist
+		SET
+			user_intro = #{userintro}
+		WHERE
+			user_number=2
+	</update>
+</mapper>

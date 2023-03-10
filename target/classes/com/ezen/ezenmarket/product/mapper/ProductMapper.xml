@@ -4,19 +4,106 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ezen.ezenmarket.product.mapper.ProductMapper">
 	<select id="selectAllProducts" resultType="com.ezen.ezenmarket.product.dto.Post">
-		<!-- SELECT * FROM 
-		(SELECT * FROM post INNER JOIN postImage USING (post_id) ORDER BY post_id DESC) 
-		WHERE <![CDATA[rownum<=15]]>--> 
-		SELECT * FROM post INNER JOIN postImage USING (post_id) ORDER BY post_id DESC
-
+		SELECT * FROM post INNER JOIN postImage USING (post_id)
+		WHERE (post_id, post_image_id) in 
+		(select post_id, min(post_image_id) FROM postImage GROUP BY post_id)
+		ORDER BY updated DESC
 	</select>
 	
 	<select id="selectProduct" resultType="com.ezen.ezenmarket.product.dto.Post">
-		SELECT * FROM post INNER JOIN postImage USING (post_id) WHERE post_id=#{id}
+		SELECT * FROM post INNER JOIN postImage USING (post_id) WHERE post_image_id = (SELECT min(post_image_id) FROM postimage WHERE post_id = #{id})
 	</select>
 	
-	<insert id="insertProduct" parameterType="com.ezen.ezenmarket.product.dto.Post">
-		
-	</insert>
+	<select id="insertProduct" parameterType="com.ezen.ezenmarket.product.dto.Post">
+		INSERT INTO post VALUES (post_id_seq.NEXTVAL, #{user_number}, #{post_address}, #{title}, #{post_content}, #{category_id}, #{price}, 
+			sysdate, sysdate, 0)
+	</select>
+	
+	
+	
+	<select id="deduplicatedProd" resultType="com.ezen.ezenmarket.product.dto.Post">
+		SELECT * FROM post INNER JOIN postImage USING (post_id)
+		WHERE (post_id, post_image_id) in 
+		( select post_id, min(post_image_id) FROM postImage GROUP BY post_id)
+		ORDER BY updated DESC	
+	</select>
+	
+	
+	
+	<!-- ※※※※※ 여기부터 내가 한 것 (위에 것 건들지 말기!!) ※※※※※ -->	
+	
+	
+	<!-- 카테고리별로 출력하기 -->
+	<select id="getCateList" resultType="com.ezen.ezenmarket.product.dto.Post">
+		SELECT     
+		    p.*,	
+		    i.image_url
+		FROM post p
+		INNER JOIN postimage i
+		ON  p.post_id = i.post_id
+		WHERE category_id=#{category_id}   	
+		ORDER BY p.updated DESC
+	</select>  
+	
+	<!-- 상품 상세페이지(상품정보 + 상품이미지정보 + 판매자정보) -->
+	<select id="getDetails" resultType="com.ezen.ezenmarket.product.dto.Post">
+		SELECT * FROM post INNER JOIN postImage USING (post_id) INNER JOIN userList USING (user_number) WHERE post_image_id = (SELECT min(post_image_id) FROM postimage WHERE post_id = #{post_id})
+	</select>	
+	
+	<!-- 판매자가 등록한 상품 개수 가져오기 -->
+	<select id="cntProdBySeller" resultType="int">
+		SELECT count(post_id) FROM post WHERE user_number=#{user_number}	
+	</select>
+	
+	
+	<!-- 판매자가 등록한 연관상품 가져오기 -->
+	<select id="getRelatedProd" resultType="com.ezen.ezenmarket.product.dto.Post">				
+		SELECT 
+		    p.*,
+		    i.image_url,
+		    u.nickname, u.user_image
+		FROM post p
+		INNER JOIN postimage i
+		ON  p.post_id = i.post_id   
+		INNER JOIN userlist u
+		ON  p.user_number= u.user_number 
+		WHERE p.user_number=#{user_number} AND p.post_id NOT IN (#{post_id})
+		ORDER BY p.updated DESC
+	</select>
+	
+	<!-- 찜 개수 가져오기 -->
+	<select id="cntWishlist" resultType="int">
+		SELECT 
+		    count(*) 
+		FROM wishlist 
+		INNER JOIN post 
+		USING (post_id)
+		WHERE post_id=#{post_id}
+	</select>
+	
+	<!-- 조회수 가져오기 -->
+	<update id="plusView">
+		UPDATE post SET post_view=post_view+1 WHERE post_id=#{post_id}	
+	</update>
+	
+	<!-- 특정 포스트에 포함된 이미지 목록 가져오기 -->
+	<select id="getPostImages" resultType="com.ezen.ezenmarket.product.dto.PostImage">
+		SELECT * FROM postImage WHERE post_id = #{post_id} 
+	</select>
+
+
+    <!-- 찜 여부 확인하기 -->
+    <select id="countNumOfZzim" resultType="Integer">
+    	SELECT count(*) FROM wishlist WHERE user_number = #{user_number} AND post_id = #{post_id}
+    </select>
+    
+    <insert id="insertZzim" parameterType="Integer">
+    	INSERT INTO wishlist VALUES (wishlist_id_seq.nextval, #{user_number}, #{post_id})
+    
+    </insert>
+    
+    <delete id="deleteZzim" parameterType="Integer">
+    	DELETE FROM wishlist WHERE user_number = #{user_number} AND post_id = #{post_id}
+    </delete>
 	
 </mapper>

@@ -12,4 +12,8 @@ public interface UserMapper {
 	
 	
 	
+    public User getUserInfo(String user_id);
+	
+	public List<User> getUserList();
+	
 }

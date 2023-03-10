@@ -17,16 +17,24 @@ body {
       font-size: 3.5rem;
     }
   }
-
+  
 .logo {
+     	text-decoration: none;
+        font-size: 50px;
+        font-weight: bold;
+        color: black; 
+        position: relative; 
+       	top: -20px;
+ }
+
+/*  .logo {
     text-decoration: none;
 }
-
 .logo h1 {
     color: black;
     margin-bottom: 1em;
     font-weight: 900;    
-}
+}  */
 
 .form-floating {
     color: black;
@@ -42,7 +50,8 @@ body {
 }
 
 #signup-btn {
-    background-color: darkgrey;
+	background-color: darkgray;
+  /*   background-color: rgba(217, 209, 209, 0.83); */
     color: white;
     margin-bottom: 1em;
     height: 2.5em;
@@ -67,4 +76,3 @@ body {
     margin-top: 2em;
     width: 50px;
 }
-

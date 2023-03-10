@@ -4,10 +4,11 @@ package com.ezen.ezenmarket.chat.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.ezenmarket.chat.service.ChatService;
 
@@ -22,31 +23,29 @@ public class ChattingController {
 	
 	
 	@GetMapping(value="/chat")
-	public String chattingRoomEntry(HttpServletRequest req, @Param("room_id")Integer current_room_id) {
+	public String chattingRoomEntry(HttpServletRequest req, @RequestParam(required = false, defaultValue = "0")String room_id) {
+		
+		Integer current_room_id = Integer.parseInt(room_id);
 		
 		HttpSession session = req.getSession();
 		
 		if(session.getAttribute("login") == null || !session.getAttribute("login").equals("yes")) {
+			req.setAttribute("requestUri", "/chat");
 			return "user/signin";
 		}
 		
-		chatService.retrieveChatRoomInfo(req, current_room_id == null ? 1 : current_room_id);
+		chatService.retrieveChatRoomInfo(req, current_room_id == null ? 0 : current_room_id);
 		return "chat/chat";
 	}
 	
-	@GetMapping(value="/chat2")
-	public String chattingRoomEntry2(HttpServletRequest req) {
+	
+	@GetMapping(value="/chat_from_post")
+	public String enterChatRoomFromPost(Integer buyer_user_number, Integer seller_user_number, Integer post_id) {
 		
-		HttpSession session = req.getSession();
-		
-		if(session.getAttribute("login") == null || !session.getAttribute("login").equals("yes")) {
-			return "user/signin";
-		}
-		
-		req.setAttribute("chattingRoom_id", 2);
-		
-		return "chat/chat";
+		return "redirect:/chat?room_id=" + chatService.searchChatRoomNumberToEnter(buyer_user_number, seller_user_number, post_id);
 	}
+	
+	
 	
 	
 	

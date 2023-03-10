@@ -1,0 +1,127 @@
+ a:link {
+        text-decoration: none;
+      }
+
+      a {
+        color: black;
+      }
+       
+     .selling {
+      /* border: solid 1px white; */
+      border-radius: 10px;
+      /* padding: 20px; */
+      }
+
+
+      .item_list {
+        border: 1px solid rgb(255, 255, 255);
+        width: 63%;
+        height: 90%;
+        margin-top: 14px;
+        margin-left: 19.4%;
+        /* margin-right: 12%; */
+        display: flex;
+        flex-wrap: wrap;
+        /* justify-content: space-between; */
+      }
+
+      .item_list .item_card {
+        border: solid 0.2px #00000025;        
+        height: 340px;
+        width: 200px;
+        padding: 0;
+        margin: 0 10px 10px 0;        
+      }
+
+      .item_list .item_card img { 
+        height: 220px;
+        width: 198px;
+        border-color: #00000025;  
+        border-style: solid;  
+        border-width: 0 0 1px 0;  
+        object-fit: cover; 
+      }
+      
+      
+      .item_list .item_card .text {
+        margin-top: 10px;
+        padding: 0 5px 0 5px;
+        color: black;        
+      }
+
+      .item_list .item_card .text #title {
+        font-size: 15px;
+        opacity: .8;
+        color: black;  
+        font-weight: 400;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;          
+      }
+
+      .item_list .item_card .text #price {     
+        font-weight: 900;
+        font-size: 17px;
+        opacity: .8;
+        color: black;        
+      }
+
+      
+      .item_list .item_card .text #created {
+        float: right;
+        margin: 7px 5px 0 0;
+        font-weight: 400;
+        font-size: 12px;
+        opacity: .8;
+        color: rgb(123, 123, 123);        
+      }
+
+
+      .item_list .item_card .text2 {
+        border-color: #00000025;  
+        border-style: solid;  
+        border-width: 1px 0 0 0;  
+        padding: 10px 0 0 5px; 
+      }
+
+      .item_list .item_card .text2 #address {
+        font-weight: 400;
+        font-size: 12px;
+        color: black;   
+        max-width: 120px;
+        overflow: hidden;        
+        text-overflow: ellipsis;     
+        white-space: nowrap;       
+        word-break:break-all;
+      }
+
+      .item_list .item_card .text2 i {
+        color: rgb(207, 207, 207);     
+      }
+
+
+      
+      #recomend {        
+        margin-top: 200px;
+        font-size: 30px;
+        margin-left:380px;
+        /* margin-bottom: 40px; */
+      
+      }
+
+
+
+  .pagination {
+    justify-content: center;
+    margin: 30px 0 50px 0;
+  }
+
+  
+  .pagination > li > a {
+    margin-right: 5px;
+    color: black;
+  }
+  
+
+

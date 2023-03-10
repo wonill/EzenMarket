@@ -13,4 +13,6 @@ public interface ChatService {
 	boolean retrieveChatRoomInfo(HttpServletRequest req, Integer room_id);
 	
 	void insert(Integer chattingRoom_id, Integer user_number, String contents);
+	
+	Integer searchChatRoomNumberToEnter(Integer buyer_user_number, Integer seller_user_number, Integer post_id);
 }
