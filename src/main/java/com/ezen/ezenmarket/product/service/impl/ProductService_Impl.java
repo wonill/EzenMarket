@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ezen.ezenmarket.product.dto.PagingVO;
 import com.ezen.ezenmarket.product.dto.Post;
 import com.ezen.ezenmarket.product.dto.PostImage;
 import com.ezen.ezenmarket.product.mapper.ProductMapper;
@@ -119,7 +120,23 @@ public class ProductService_Impl implements ProductService {
 		
 		return productMapper.getPostImages(post_id);
 	}
-
+	
+	
+	
+	
+	@Override
+	public int countProduct(String title) {
+		System.out.println("countProduct...............");
+		
+		return productMapper.countProduct(title);
+	}
+	
+	@Override
+	public List<Post> getProductWithPaging(String title, PagingVO vo) {
+		System.out.println("getProductWithPaging............");
+		
+		return productMapper.getProductWithPaging(title, vo);
+	}
 
 
 }

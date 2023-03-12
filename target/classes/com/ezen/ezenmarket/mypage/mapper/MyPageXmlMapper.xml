@@ -4,18 +4,20 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ezen.ezenmarket.mypage.mapper.MyPageXmlMapper">
     
-	<select id="getPost" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.Post">
-	    SELECT
-	        post.post_id, post.title, post.price, postImage.image_URL
-	    FROM
-	        post, postImage
-	    WHERE 
-	        post.post_id = postImage.post_id
-	    AND
-	        user_number =#{user_num}
-	    ORDER BY
-	        updated DESC
-	</select>
+   <select id="getPost" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.Post">
+       SELECT
+           post.post_id, post.title, post.price, postImage.image_url
+       FROM
+           post, postImage
+       WHERE 
+          (postImage.post_id, postImage.post_image_id) in 
+         (select postImage.post_id, min(postImage.post_image_id) FROM postImage GROUP BY postImage.post_id)
+        AND
+           post.post_id = postImage.post_id
+        AND
+           post.user_number =#{user_number}
+       ORDER BY updated DESC
+   </select>
 	
 	<select id="getZzim" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.Post">
 		SELECT
@@ -122,4 +124,18 @@
 		WHERE
 			user_number=2
 	</update>
+	
+	<!--  내 상점관리 클릭 시 나오는 판매상품들 리스트 -->
+   <select id="getmanagement"  resultType="com.ezen.ezenmarket.mypage.dto.Post">
+   	  SELECT
+           postImage.image_url, post.title, post.price,  post.updated
+       FROM
+           post, postImage
+       WHERE 
+           post.post_id = postImage.post_id
+       AND
+           user_number =#{user_number}
+       ORDER BY
+           updated DESC
+   </select>
 </mapper>

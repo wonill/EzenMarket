@@ -2,10 +2,14 @@ package com.ezen.ezenmarket.product.dto;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 
 import org.springframework.stereotype.Component;
 
@@ -59,6 +63,7 @@ public class Post extends PostImage {
 	
 	DecimalFormat dc = new DecimalFormat("###,###,###");
 
+	private static SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
 	
 	public String getCreatedTimeAgo() {		
 		
@@ -75,4 +80,12 @@ public class Post extends PostImage {
 		
 		return dc.format(price);
 	}
+	
+		   
+			   public String getUpdateDateTime() {
+				 
+		 	 
+			       return dayFormat.format(updated);
+			   }
+		
 }

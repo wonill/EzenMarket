@@ -29,4 +29,6 @@ public interface MyPageXmlMapper {
 	public void modifyNick(String nickName);
 	
 	public void modifyIntro(String userintro);
+	
+	public List<Post> getmanagement(Integer user_number);
 }

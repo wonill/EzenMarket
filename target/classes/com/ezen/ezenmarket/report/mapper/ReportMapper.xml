@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.ezenmarket.report.mapper.ReportMapper">
+	
+	<insert id="insertReport" >
+		INSERT INTO REPORT
+			(REPORT_ID, REPORT_TYPE, REPORT_DETAIL, USER_NUMBER, REPORT_CONTENT, REPORT_STATUS)
+		VALUES
+			(report_id_seq.nextval, #{currentPage}, #{post_id}, 2, #{cause},  default)	
+	</insert>
+
+</mapper>

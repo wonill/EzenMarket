@@ -341,6 +341,14 @@
             font-weight: bold;
         }
         
+        .info .report{
+        	position: absolute;
+        	top: 15px;
+        	right: 20px;
+        	
+        	
+        }
+        
         #bar{
         	width:100%;
         	height:50px;
@@ -447,6 +455,7 @@
             <div class="post_img" style="background-image: url('${postInfo.image_url}')" onclick="location.href='product?id=${postInfo.post_id }'"></div>
             <div class="price">${postInfo.formattedPrice}원</div>
             <div class="post_title">${postInfo.title}</div>
+            <div class="report"><jsp:include page="../report.jsp" /></div>
         </div>
         <div class="inner">
         
@@ -499,7 +508,8 @@
 </div>
     <jsp:include page="../include/footer.jsp"/>
 
-
+   <input name="currentPage"  value="2"  type="hidden"/>
+	</form> 
 
 
 
@@ -767,7 +777,15 @@
         
     }
   
-  
+//신고팝업
+	function show() {
+		document.querySelector(".background").className = "background show";
+	}
+	function close() {
+		document.querySelector(".background").className = "background";
+	}
+	document.querySelector("#show").addEventListener("click", show);
+	document.querySelector("#close").addEventListener("click", close);
  
 </script>
 

@@ -1,4 +1,4 @@
-package com.ezen.ezenmarket.user.controller;
+ package com.ezen.ezenmarket.user.controller;
 
 import java.util.Random;
 

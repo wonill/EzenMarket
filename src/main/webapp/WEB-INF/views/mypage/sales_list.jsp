@@ -86,6 +86,7 @@
           <textarea id="modifyIntro"class="intro" style="display: none;"></textarea>
 		  <c:choose>
 		  <c:when test="${verified eq 'yes' }">
+		   <button id="setting-btn" type="button" class="btn btn-outline-secondary" onclick="location.href='./management?user_number=${sessionScope.user_number}'">상점관리</button>
 		  <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
             <i class="fa-solid fa-user-plus"></i>프로필수정
           </button>
@@ -125,7 +126,7 @@
 	                        <div class="col-4"> <!-- 1 of 3 start -->
 	                          <a class="product">
 	                            <div class="card" style="width: 18rem;">
-	                              <img src=${post.image_URL } class="card-img-top" alt="..." style="width: 100%; height: 400px;">
+	                              <img src=${post.image_url } class="card-img-top" alt="..." style="width: 100%; height: 400px;">
 	                              <div class="card-body">
 	                                <span class="d-inline-block text-truncate card-text" style="max-width: 150px;">${post.title }</span><br>
 	                                <b>${post.price }</b>

@@ -234,10 +234,12 @@
 
           <nav class="head">
             <a class="logo a-tag" href="<%=request.getContextPath()%>">Ezen<i class="fa-brands fa-monero logoIcon"></i>arket</a>
+           <form id="searchForm" action="./searchPagenation" method="GET">
            <div class="searchbox">
-            <input id="search" type="search" placeholder=" 검색어 입력">
-            <button id="searchBtn">검색</button>
-           </div>
+            <input class="search" id="search" type="search" name="title" autocomplete="off" placeholder=" 검색어 입력" onclick="keydown();">
+            <button type="submit" id="searchBtn">검색</button>
+           </div>     
+      </form>
            <!--  <i id="readglasses" class="fa-solid fa-magnifying-glass"></i> -->
           </nav>
 

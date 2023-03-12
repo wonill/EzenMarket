@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ezen.ezenmarket.product.dto.PagingVO;
 import com.ezen.ezenmarket.product.dto.Post;
-import com.ezen.ezenmarket.product.dto.PostImage;
 import com.ezen.ezenmarket.product.mapper.ProductMapper;
 import com.ezen.ezenmarket.product.service.ProductService;
 import com.ezen.ezenmarket.user.dto.User;
@@ -50,11 +51,7 @@ public class ProductController {
 //		return "product/product_detail";
 //	}
 	
-	@GetMapping(value="/search")
-	public String searchProduct() {
-		
-		return "product/product_search";
-	}
+	
 	
 	@GetMapping(value="/register")
 	public String registerProduct(HttpServletRequest req) {
@@ -183,9 +180,75 @@ public class ProductController {
 	    		model.addAttribute("zzim", "yes");
 	    	}	    	
 	    }
+	    
+	    model.addAttribute("profileImg", productMapper.getProfileImg(p.getUser_number(), p.getPost_id()));
 		
 		return "product/product_detail";
 		
 	}
+	
+	
+	// 검색기능 구현
+		@GetMapping(value="/search")
+		public String searchProduct(HttpServletRequest req, HttpServletResponse resp) {
+			
+			 String title = req.getParameter("search");
+			 req.setAttribute("products", productMapper.searchProduct(title));
+			
+			 return "product/product_search"; 
+		}
+		
+		// 검색기능 + 페이지네이션 구현
+		@GetMapping("/searchPagenation")
+		public String searchProductList(@Param("vo")PagingVO vo, @Param("title") String title, Post post, Model model,
+				@RequestParam(value = "nowPage", required = false) String nowPage,
+				@RequestParam(value = "cntPerPage", required = false) String cntPerPage, String type) {
+
+			int total = productMapper.countProduct(title);
+					
+			// 이게 이해가 잘 안됨
+			if (nowPage == null && cntPerPage == null) {
+				nowPage = "1";
+				cntPerPage = "15";
+			} else if (nowPage == null) {
+				nowPage = "1";
+			} else if (cntPerPage == null) {
+				cntPerPage = "15";
+			}
+			
+			vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			model.addAttribute("paging", vo); // 페이지네이션
+			model.addAttribute("keyword", title); // 검색한 키워드 
+			
+			// 검색어가 없을 때 없다고 화면에 나오게 하려고 이렇게 만듬
+					List<Post> list = productMapper.getProductWithPaging(title, vo);
+					
+					if(!list.isEmpty()) {
+						model.addAttribute("title", list);
+						System.out.println("검색어가 있는 경우 출력");
+					} else {
+						model.addAttribute("searchKeyword", "empty");
+						System.out.println("검색어가 없는 경우 출력 제발!!!");
+					}
+					
+					
+			if (type == null) {
+				model.addAttribute("title", list);
+							
+			} else if (type.equals("low")) {
+				
+				model.addAttribute("title", productMapper.getProductLowPrice(title, vo)); 
+		
+			} else if (type.equals("high")) {
+				model.addAttribute("title", productMapper.getProductHighPrice(title, vo)); 
+				
+			} else if (type.equals("latest")){
+				model.addAttribute("title", list);
+			}
+			
+//			model.addAttribute("title", productMapper.getProductWithPaging(title, vo)); 
+					
+			return "product/product_search";
+		}
 	
 }
