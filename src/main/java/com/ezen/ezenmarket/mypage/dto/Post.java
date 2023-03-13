@@ -1,7 +1,5 @@
 package com.ezen.ezenmarket.mypage.dto;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,11 +8,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Post {
-	private Integer post_Id;
-	private String title;
-	private Integer price;
-	private String image_url;
-	
-	private Date updated;
-	private Integer user_number;
+   private Integer post_Id;
+   private String title;
+   private Integer price;
+   private String image_url;
+   private Integer user_number;
+   
+   private String updated;
+   
+   
+   public Post(Integer post_Id, Integer user_number) {
+      this.post_Id = post_Id;
+      this.user_number = user_number;
+      
+   }
+   
+   
+   
 }

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
@@ -17,190 +17,204 @@
 <!-- Swiper-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/> 
 <style>
-	
-	
-      body {
-        background-color:white;
-      }
+   @font-face {
+     font-family: 'Tenada';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
+     font-weight: normal;
+     font-style: normal;
+   }
+   @font-face {
+       font-family: 'SUIT-Regular';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+       font-weight: normal;
+       font-style: normal;
+   }
+   
+   body {
+     background-color:white;
+   }
+   
+   * {
+     font-family: 'SUIT-Regular';
+   }
+      
+   .head {
     
-      .head {
-       
-        /* position: fixed; */
-        position: relative;
-        left: 11.5%;
-        top: 30px;
+     /* position: fixed; */
+     position: relative;
+     left: 11.5%;
+     top: 30px;        
+     margin-left: 25px;
+   }
+   .logo {
+     position: relative;
+     top: 49px;
+     font-size: 45px;
+     font-weight: bold;  
+   }
         
-        margin-left: 25px;
-      }
-      .logo {
-      	position: relative;
-      	top: 49px;
-        font-size: 45px;
-        font-weight: bold;  
-      }
-      
-      .logo:hover{
-      	color: black;
-      }
-      
-      .LastHead  {
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: 87%;
-       
-      }
-      .lastHead {
-        display: block;
-        font-size: 13px;
-      
-        margin-top: 13px;
-         
-      }
-      
-      .lastHead:hover{
-      	color:black;
-      }
-      
-      .like {
-        margin-left: 40px;
-        
-        
-      }
-       
-      .icon {
-        font-size: 34px;
-        position:relative;
-      	top: -25px;
-      	left: 46px;
-        
-      }
-      
-      .Mypage {
-      	margin-right: -42px;
-      }
-      .a-tag:link {
-        text-decoration: none;
-      }
-      .a-tag {
+     .logo:hover{
         color: black;
-      }
-      .Top {
-    
-        border: 7px solid black;
-        background-color: black;
-        width: 1900px;
- 
-      }
-      .top1 {
-        margin-left: 35%;
-        color: white;
-        font-size: 15px;
-        font-weight: bold;
-        text-decoration: none;   
-      }
+     }
+     
+     .LastHead  {
+       display: flex;
+       flex-wrap: wrap;
+       margin-left: 87%;
       
-      .top2 {
-        font-weight: bold;   
-        color: white;
-        font-size: 15px;   
-        text-decoration: none; 
-      }
-      /* topMenu의 ID를 가진 태그 안에 <ul> 태그 안에 <li> 태그의 스타일을 지정 */
-      .topMenu ul li {   
-        list-style: none;
-        color: hsl(0, 1%, 27%);
-        float: right;
-        margin-right: 20px;
-        font-size: 14px;
-        margin-top: -10px;
-      }
-      
-      .topMenu {
-      	position: relative;
-      	left: 40px;
-        margin-left: 50px;
-      }
-      
-      #searchline {
-        border: 1px solid black;
-        width: 400px;
-        height: 1px;
-        margin-left: 13%;
-        margin-top: -10px;
-        /* margin-top: -10px; */
-      }
-      
-      
-      .topLine {
+     }
+     .lastHead {
+       display: block;
+       font-size: 13px;      
+       margin-top: 13px;
+        
+     }
+        
+     .lastHead:hover{
+        color:black;
+     }
+     
+     .like {
+       margin-left: 40px;       
+     }
+         
+     .icon {
+       font-size: 34px;
+       position:relative;
+        top: -25px;
+        left: 46px;       
+     }
+     
+     .Mypage {
+        margin-right: -42px;
+     }
+     .a-tag:link {
+       text-decoration: none;
+     }
+     .a-tag {
+       color: black;
+     }
+     .Top {
+   
+       border: 7px solid black;
+       background-color: black;
+       width: 1900px;
+
+     }
+     .top1 {
+       margin-left: 35%;
+       color: white;
+       font-size: 15px;
+       font-weight: bold;
+       text-decoration: none;   
+     }
+        
+     .top2 {
+       font-weight: bold;   
+       color: white;
+       font-size: 15px;   
+       text-decoration: none; 
+     }
+     /* topMenu의 ID를 가진 태그 안에 <ul> 태그 안에 <li> 태그의 스타일을 지정 */
+     .topMenu ul li {   
+       list-style: none;
+       color: hsl(0, 1%, 27%);
+       float: right;
+       margin-right: 20px;
+       font-size: 14px;
+       margin-top: -10px;
+     }
+        
+     .topMenu {
         position: relative;
-        top: 10px;
-        /* border: 0.1px solid rgb(240, 239, 239); */
-        width: 100%;
-      }
+        left: 40px;
+       margin-left: 50px;
+     }
+     
+     #searchline {
+       border: 1px solid black;
+       width: 400px;
+       height: 1px;
+       margin-left: 13%;
+       margin-top: -10px;
+       /* margin-top: -10px; */
+     }
+        
+        
+     .topLine {
+       position: relative;
+       top: 10px;
+       /* border: 0.1px solid rgb(240, 239, 239); */
+       width: 100%;
+     }
+     
+     input:-ms-input-placeholder {
+        color:black;
+     
+     }
+     
+      input::-webkit-input-placeholder {
+        color:gray;
+     
+     }
+     
+      input::-moz-placeholder {
+        color:black;
+     
+     }
+        
+     .searchbox {
+        height: 43px;
+        width: 450px;
+        border: 2px solid black;
+        position: relative;
+        left : 490px;
+     }
+     
+     #search {
+        margin-top: 5px;
+        width : 350px;
+        border : 0px;
+        outline : none;
+        
+     }
+        
+     #searchBtn {
+     position: relative;
+        width : 50px;
+        height: 40px;
+        border: 0px;
+        background : black;
+        outline: none;
+        color: white;
+        float: right;
+     }
+     
+      #box {
+        width: 1700px;
+        height: auto;
+     }
+     
+     .menuLink:hover{
+          color:black;
+       }
       
-      input:-ms-input-placeholder {
-      	color:black;
-      
-      }
-      
-       input::-webkit-input-placeholder {
-      	color:gray;
-      
-      }
-      
-       input::-moz-placeholder {
-      	color:black;
-      
-      }
-      
-      .searchbox {
-      	height: 43px;
-      	width: 450px;
-      	border: 2px solid black;
-      	position: relative;
-      	left : 490px;
-      }
-      
-      #search {
-      	margin-top: 5px;
-      	width : 350px;
-      	border : 0px;
-      	outline : none;
-      	
-      }
-      
-      #searchBtn {
-      position: relative;
-      	width : 50px;
-      	height: 40px;
-      	border: 0px;
-      	background : black;
-      	outline: none;
-      	color: white;
-      	float: right;
-      }
-      
-       #box {
-      	width: 1700px;
-      	height: auto;
-      }
-      
-      .menuLink:hover{
-	   	 color:black;
-	   }
-	   
-	  #user_nickname{
-	  	font-weight: bold;
-	  }
-	  
-      
-      
+     #user_nickname{
+        font-weight: bold;
+     }
+          
+     
+     #logo {
+        font-family: 'Tenada';
+     }
+        
+        
       
 </style>
 </head>
 <body>
-	  <div id="box">
-		 <header>
+     <div id="box">
+       <header>
 
           <div class="Top">
               <a class="top1" style="color:white" href="">EzenMarket 신규 가입시 <span style="color: orangered;">10%</span> 할인 쿠폰 | </a>
@@ -221,7 +235,7 @@
               <li><span id="user_nickname">${sessionScope.nickname}</span>님</li>
               </c:when>
 
-			  <c:otherwise>              
+           <c:otherwise>              
               <li><a class="menuLink a-tag" href="<%=request.getContextPath() %>/signup">회원가입</a></li>
               <li><a class="menuLink a-tag" href="<%=request.getContextPath() %>/signin">로그인</a></li>
                </c:otherwise>
@@ -233,13 +247,13 @@
           <div class="topLine"></div>
 
           <nav class="head">
-            <a class="logo a-tag" href="<%=request.getContextPath()%>">Ezen<i class="fa-brands fa-monero logoIcon"></i>arket</a>
-           <form id="searchForm" action="./searchPagenation" method="GET">
-           <div class="searchbox">
-            <input class="search" id="search" type="search" name="title" autocomplete="off" placeholder=" 검색어 입력" onclick="keydown();">
-            <button type="submit" id="searchBtn">검색</button>
-           </div>     
-      </form>
+            <a id="logo" class="logo a-tag" href="<%=request.getContextPath()%>">Ezen<i class="fa-brands fa-monero logoIcon"></i>arket</a>
+		      <form id="searchForm" action="./searchPagenation" method="GET">
+		           <div class="searchbox">
+		            <input class="search" id="search" type="search" name="title" autocomplete="off" placeholder=" 검색어 입력" onclick="keydown();">
+		            <button type="submit" id="searchBtn">검색</button>
+		           </div>     
+		      </form>
            <!--  <i id="readglasses" class="fa-solid fa-magnifying-glass"></i> -->
           </nav>
 

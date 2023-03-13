@@ -17,6 +17,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
+  @font-face {
+       font-family: 'SUIT-Regular';
+       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+       font-weight: normal;
+       font-style: normal;
+   }
+   
+   * {
+     font-family: 'SUIT-Regular';
+     
+   }
+.title{
+	font-weight: bold;
+}
 .background {
 	position: fixed;
 	top: 0;
@@ -37,6 +51,29 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
+}
+.reportBtns {
+  text-align: center;
+}
+#reportbtn {
+  	display: inline-block;
+  	width: 120px;
+	background: black;
+	border: gray;
+	color: white;
+}
+#reportbtn2 {
+  	display: inline-block;
+  	width: 120px;
+	background: gray;
+	border: gray;
+	color: white;
+}
+.btn {
+  width: 120px;
+}
+#confirmBtn {
+	background: gray;
 }
 .popup {
 	position: relative;
@@ -70,6 +107,13 @@
 	border-color: gray;
 	margin-left: 20px;
 }
+.modal-title {
+  font-size: 25px;
+  font-weight: bolder;
+}
+.modal-body {
+	font-size: 17px;
+}
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
@@ -85,9 +129,9 @@
 	<div class="background">
 		<div class="window">
 			<div class="popup">
-				<h3 class="title">신고 사유를 선택해 주세요.</h3>
+				<h3 class="title" >신고 사유를 선택해 주세요.</h3>
 				<hr>
-				<form method="get" action="./report">
+				<form method="get" action="./report" id="myForm">
 					<input id="cause" type="radio" name="cause" value="안전결제 거부" checked/> 안전결제 거부<br> 
 					<input id="cause" type="radio" name="cause" value="주류, 담배" /> 주류, 담배<br> 
 					<input id="cause" type="radio" name="cause" value="전문의약품" /> 전문의약품, 의료기기<br> 
@@ -100,12 +144,19 @@
 						<input id="cause-etc" type="radio" name="cause" value="기타" /> 기타<br>
 						<textarea id="when_other" name="etc" style="display: none;"></textarea>
 					</div>
+					
 
 					<!-- 주소에 있는 post_id(상품번호)를 숨겨서 가져오기 위해  -->
 					<input name="post_id" value="${post.post_id}" type="hidden" /> <br>
-					<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">신고하기</button>
-					&nbsp;
-					<button type="button" class="btn btn-dark" onClick='window.close()'>닫기</button>
+					
+					<!-- 세션에서 로그인 정보(유저넘버) 가져오기 위해 -->
+					<input name="user_number" value="${sessionScope.user_number}" type="hidden" /> 
+					
+					<div class="reportBtns">
+					<button type="button" id=reportbtn data-toggle="modal" data-target="#exampleModal" >신고하기</button>
+					&emsp;
+					<button type="button"  id=reportbtn2 onClick='window.close()' >닫기</button>
+					</div>
 					
 			</div>
 		</div>
@@ -123,10 +174,10 @@
         </button>
       </div>
       <div class="modal-body">
-        게시물을 신고하시겠습니까?
+      			게시물을 신고하시겠습니까?
       </div>
       <div class="modal-footer">
-      	<button type="submit" class="btn btn-primary" >신고</button>
+      	<button type="submit" class="btn btn-warning" >신고</button>
        	<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
       </div>
     </div>
@@ -137,6 +188,7 @@
 	<script>
   const causeEtc = document.getElementById("cause-etc");
   const whenOther = document.getElementById("when_other");
+ 
   	causeEtc.addEventListener("click", () => {
     	whenOther.style.display = "block";
   });
@@ -148,37 +200,9 @@
   		});
   	}	
   });
+  
 </script>
 
-<script>
-$(document).ready(function() {
-  $("#submit-report").click(function() {
-    // Get the value of the selected cause
-    var cause = $("input[name='cause']:checked").val();
-    
-    // Get the value of the "기타" cause textarea if selected
-    var etc = "";
-    if ($("#cause-etc").is(":checked")) {
-      etc = $("#when_other").val();
-    });
-    
- 
-    <!--
-    function submitForm() {
-    	  var form = document.forms[0];
-    	  var xhr = new XMLHttpRequest();
-    	  xhr.open(form.method, form.action);
-    	  xhr.onload = function() {
-    		  if (xhr.status === 200) {
-    		      window.location.href = '/main';
-    		    } else {
-    		      alert('Error submitting form. Please try again.');
-    		    }
-    	  };
-    	  xhr.send(new FormData(form));
-    	}
-    -->
-</script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

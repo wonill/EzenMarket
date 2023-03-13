@@ -126,7 +126,7 @@
 	                        <div class="col-4"> <!-- 1 of 3 start -->
 	                          <a class="product">
 	                            <div class="card" style="width: 18rem;">
-	                              <img src=${post.image_url } class="card-img-top" alt="..." style="width: 100%; height: 400px;">
+	                              <img src=${post.image_url } class="card-img-top" alt="..." style="width: 100%; height: 250px;">
 	                              <div class="card-body">
 	                                <span class="d-inline-block text-truncate card-text" style="max-width: 150px;">${post.title }</span><br>
 	                                <b>${post.price }</b>

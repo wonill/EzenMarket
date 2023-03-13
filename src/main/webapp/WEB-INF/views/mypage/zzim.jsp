@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
       .intro {
-      	  width: 260px;
+           width: 260px;
           height: 70px;
           box-sizing: border-box;
           border: solid 2px #1E90FF;
@@ -51,9 +51,9 @@
           <img id="img" class="profile-img-img" src="https://pbs.twimg.com/profile_images/1536535827257630720/VUZLhP8M_400x400.jpg" alt="프로필이미지"/>
         </div>
         <div class="profile-img" id="modifyimgContainer" onclick="fileUploadAction();" style="display: none;">
-        	<img id="modifyImg" class="profile-img-img" src="https://pbs.twimg.com/profile_images/1536535827257630720/VUZLhP8M_400x400.jpg" alt="">
-    	  </div>
-    	  <input type="file" id="input_imgs" style="display: none;"/>
+           <img id="modifyImg" class="profile-img-img" src="https://pbs.twimg.com/profile_images/1536535827257630720/VUZLhP8M_400x400.jpg" alt="">
+         </div>
+         <input type="file" id="input_imgs" style="display: none;"/>
         <div class="profile-txt">
           <div class="row">
             <div id="nick">${profile.nickname }</div>
@@ -78,13 +78,13 @@
           <textarea id="modifyIntro"class="intro" style="display: none;"></textarea>
 
           <c:choose>
-		  <c:when test="${verified eq 'yes' }">
-		  <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
+        <c:when test="${verified eq 'yes' }">
+        <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
             <i class="fa-solid fa-user-plus"></i>프로필수정
           </button>
-		  </c:when>
-		  </c:choose>
-		  
+        </c:when>
+        </c:choose>
+        
           <button id="modify-done-btn" onclick="modifyProfileDone()" style="display: none;">완료</button>
         </div>
       </div> <!--profile-section end-->
@@ -118,24 +118,24 @@
                         <br> 
                       <div class="container">
                         <div class="row">
-                        	<c:forEach items="${zzim }" var="zzim">
-	                          <div class="col-4">
-	                            <a class="product" href="../product?id=${zzim.post_Id }">
-	                              <div class="card" style="width: 18rem;">
-	                                <img src="${zzim.image_URL }" class="card-img-top" alt="...">
-	                                <a href="./deleteZzim" onclick="deleteZzim()"><i id="zzim" class="fa-solid fa-heart"></i></a> <!--찜 목록 해제시 색상변경되어야 함-->                                                                                                
-	                                <div class="card-body">
-	                                  <span class="d-inline-block text-truncate card-text" style="max-width: 150px;">${zzim.title }</span>
-	                                  <h3>${zzim.price }</h3>
-	                                </div>
-	                              </div>
-	                            </a>
+                           <c:forEach items="${zzim }" var="zzim">
+                             <div class="col-4">
+                               <a class="product" href="../product?post_id=${zzim.post_Id }">
+                        <div class="card" style="width: 18rem;">
+                                   <img src="${zzim.image_url }" class="card-img-top" alt="...">
+                                   <a href="./deleteZzim?post_Id=${zzim.post_Id }&user_number=${user_number}" onclick="deleteZzim()"><i id="zzim" class="fa-solid fa-heart"></i></a> <!--찜 목록 해제시 색상변경되어야 함-->                                                                                                
+                                   <div class="card-body">
+                                     <span class="d-inline-block text-truncate card-text" style="max-width: 150px;">${zzim.title }</span>
+                                     <h3>${zzim.price }</h3>
+                                   </div>
+                                 </div>
+                               </a>
                               <br>
-                          	  </div>
-                          	</c:forEach>
-                          	<c:forEach begin="${pagination_start }" end="${pagination_end }" var="i">
-	                          <a id="page" href="./zzim?user_number=${user_number }&page=${i }">${i }</a>
-	                        </c:forEach>
+                               </div>
+                             </c:forEach>
+                             <c:forEach begin="${pagination_start }" end="${pagination_end }" var="i">
+                             <a id="page" href="./zzim?user_number=${user_number }&page=${i }">${i }</a>
+                           </c:forEach>
                         </div>
                       </div>                      
                     </div>

@@ -14,15 +14,15 @@ import lombok.NoArgsConstructor;
 @Data
 public class ReportDto {
 	
+	private Post post;
+	
 	private int reportType;
 	private int reportDetail;
-	private int userNumber;
+	private int user_number;
 	private String reportContent;
-	
-	private Post post;
 	private Integer post_id;
-	private String cause;
 	
+	private String cause;
 	private String currentPage;
 	
 }

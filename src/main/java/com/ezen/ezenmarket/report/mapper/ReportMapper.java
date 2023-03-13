@@ -15,7 +15,8 @@ public interface ReportMapper {
 	
 	public Integer insertReport(@Param("currentPage") String currentPage, 
 													@Param("cause") String cause, 
-													@Param("post_id") Integer post_id); 
+													@Param("post_id") Integer post_id,
+													@Param("user_number") Integer user_number); 
 	
 	public Integer insertEtc(String etc);
 	

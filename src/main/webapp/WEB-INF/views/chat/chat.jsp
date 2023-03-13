@@ -94,8 +94,10 @@
             background-color: red;
             color: white;
             font-weight: bold;
+            padding-top: 3px;
+            padding-left: 1px;
             text-align: center;
-            padding-top: 2px;
+            
         }
         
         
@@ -455,7 +457,7 @@
             <div class="post_img" style="background-image: url('${postInfo.image_url}')" onclick="location.href='product?id=${postInfo.post_id }'"></div>
             <div class="price">${postInfo.formattedPrice}원</div>
             <div class="post_title">${postInfo.title}</div>
-            <div class="report"><jsp:include page="../report.jsp" /></div>
+          <!--    <div class="report"><jsp:include page="" /></div> -->
         </div>
         <div class="inner">
         
@@ -507,10 +509,10 @@
     </div>
 </div>
     <jsp:include page="../include/footer.jsp"/>
-
+<!-- 
    <input name="currentPage"  value="2"  type="hidden"/>
 	</form> 
-
+ -->
 
 
 <script>

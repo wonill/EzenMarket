@@ -54,8 +54,6 @@
          box-shadow:0 0 5px #555;
       }
       
-
-      
       .py-5 {
          margin: 50px 0 0 0;
            border-color: #00000025;  
@@ -70,25 +68,38 @@
            border-width: 1px 0 0 0;  
       }
       
-      .icons {
-         color: rgb(209, 209, 209);  
+      .fs-5 {
+         width: 500px;
+      
+      }
+
+      #icon-text {
+         color: black;
       }
       
+      #cntWishlist {
+         color : black;      
+      }
+
       .icons > i:first-child {
-         margin: 10px 0 10px 10px;
-         
+         color: #FF8E99; 
+         margin: 10px 0 10px 10px;         
       }
       
       .icons > i:nth-child(2) {
+         color: #50C785; 
          border-left: 1px solid rgb(209, 209, 209); 
          padding-left: 10px;
+
       }
       
       .icons > i:nth-child(3) {
+         color: #dda0dd;
          border-left: 1px solid rgb(209, 209, 209);  
          padding-left: 10px;
       }
       
+
       
       .explain {
          color: rgb(147, 147, 147);     
@@ -99,25 +110,44 @@
       }
       
       #settingBtn {
-         width: 500px; 
+         width: 400px; 
          height: 55px; 
          background:black; 
          color:white;
-         margin: 0 0 0 150px;
+         margin: 0 0 0 130px;
       }
       
       #zzimBtn {
-         width: 240px; 
+         background:#a0a0a0; 
+         color: black;
+         width: 200px; 
          height: 55px;
-         margin: 0 0 0 150px;
+         margin: 0 15px 0 30px;
+         border: solid black 0px;
+         border-radius: 5px;
       }
       
-      #chatBtn {
-         width: 240px; 
-         height: 55px;
-         background: black;
+      #zzimIcon {
          color: white;
-         margin: 0 0 0 15px;
+      }
+      
+      #zzimText {
+         color: white;
+      }
+      
+      
+      #chatBtn {
+         background: #FFA500;
+         color: black;
+         width: 200px; 
+         height: 55px;
+         margin: 0 0 0 0;
+         border: solid black 0px;
+         border-radius: 5px;
+      }
+      
+      #location {
+         color: #FF3232;
       }
       
       
@@ -125,27 +155,37 @@
          float: left;
          border-color: #00000025;  
            border-style: solid;  
-           border-width: 0 1px 0 0;  
+           border-width: 0 1px 0 0; 
+           margin: -52px 0 -78px 0;
       }
+      
+      #prodInfo2 {
+         margin: 50px 30px 50px 0;      
+      }
+      
+      #prodInfo3 {
+         margin: 20px 30px 50px 0;      
+      }
+      
       
       #sellerInfo {
          float: right;
       }
-      
-      
-      
-      
-      #profile {
-      
-      
+         
+      #nickname {
+         font-size: 1.2em;
+         font-weight: 600;
+         margin-left: 20px;
       }
       
-      
-      
+      #cntProd {
+        color: rgb(147, 147, 147); 
+        font-size: 1.1em;
+        margin-left: 20px;
+      }      
       
       #relatedProd {
-        border: solid red 0px;  
-      
+        border: solid red 0px;        
       }
       
       #relatedTitle {     
@@ -207,9 +247,9 @@
                         <hr style="width: 580px; color: rgb(209, 209, 209); margin">
        
                         <div class="fs-5 mb-4 icons">
-                            <i class="fa-solid fa-heart" id="cntWishlist" style="font-style: normal">&nbsp;${cntWishlist}&nbsp;</i>    
-                            <i class="fa-regular fa-eye">&nbsp;${post.post_view}&nbsp;</i>
-                            <i class="fa-solid fa-clock">&nbsp;${post.createdTimeAgo }</i>
+                            <i class="fa-solid fa-heart" style="font-style: normal">&nbsp;<span id="cntWishlist" >${cntWishlist}</span>&nbsp;</i>    
+                            <i class="fa-solid fa-eye">&nbsp;<span id="icon-text">${post.post_view}</span>&nbsp;</i>
+                            <i class="fa-solid fa-clock">&nbsp;<span id="icon-text">${post.createdTimeAgo }</span></i>
                         </div>
                         <ul class="explain">
                             <li>상품상태&emsp;&emsp;<span>중고</span></li>
@@ -218,22 +258,24 @@
                             <br>
                             <li>배송비&emsp;&emsp;&emsp;<span>배송비 포함</span></li>
                             <br>
-                            <li>거래지역&emsp;&emsp;<span><i class="fa-solid fa-location-dot"></i> ${post.post_address}</span></li>
+                            <li>거래지역&emsp;&emsp;<span><i id="location" class="fa-solid fa-location-dot"></i> ${post.post_address}</span></li>
                         </ul>
                         <div class="d-flex justify-content-around" style="margin-right: 50px; margin-top: 50px;">
                            <c:choose>
                               <c:when test="${sessionScope.user_number eq post.user_number }">
-                               <button id="settingBtn" class="btn flex-shrink-0 opacity-75" type="button" >
+                               <button id="settingBtn" class="btn flex-shrink-0 opacity-75" type="button" 
+                           onclick="location.href='<%=request.getContextPath()%>/mypage/management?user_number=${sessionScope.user_number}'"">
                                    내 상점 관리
                                </button>
                                </c:when>
                                <c:otherwise>
-                               <button id="zzimBtn" class="btn btn-secondary flex-shrink-0 opacity-50" type="button">
-                                   <i class="bi bi-heart-fill"></i> 찜
+                               <button id="zzimBtn" type="button">
+                                   <i id="zzimIcon"class="bi bi-heart-fill"></i> <span id="zzimText">찜</span> 
                                </button>                        
-                               <button id="chatBtn" class="btn flex-shrink-0 opacity-75" type="button">
+                               <button id="chatBtn" type="button">
                                    <i class="bi bi-messenger"></i> 채팅
                                </button>
+                               <jsp:include page="../report.jsp"/>
                                </c:otherwise>
                             </c:choose> 
                             
@@ -243,16 +285,16 @@
             </div>
         </section>
      
-         <jsp:include page="../report.jsp" />
+        
        
         <!-- Related items section-->
 
         <section class="py-1 ">
             <div class="container px-4 px-lg-5 mt-5 d-flex">
                 <div id="prodInfo" style="width: 60%;">
-                    <h4 class="fw-bolder mb-4">상품정보</h4>
+                    <h4 id="prodInfo2" class="fw-bolder mb-4">상품정보</h4>
                    <!-- <hr style="opacity: 25%;"> --> 
-                    <p>${post.post_content}</p>
+                    <p id="prodInfo3">${post.post_content}</p>
                 </div>
                 &emsp;
                 <!-- <div>
@@ -270,8 +312,8 @@
                         </div>
                         &emsp;
                         <div>
-                        <h5><a style="color:black; text-decoration:none;" href="mypage/?user_number=${post.user_number}">${post.nickname }</a></h5>
-                        <h5>상품 ${cntProd}</h5>
+                        <p id="nickname"><a style="color:black; text-decoration:none;" href="mypage/?user_number=${post.user_number}">${post.nickname }</a></p>
+                        <p id="cntProd">상품 ${cntProd}</p>
                         </div>
                     </div>
                 </div>
@@ -315,8 +357,8 @@
      </div>
 
    
-   	<input type="hidden" name="currentPage" value="1"/>
-   	</form>
+    <input name="currentPage"  value="0"  type="hidden"/>
+	</form> 
    
     
 
@@ -364,7 +406,9 @@
       const zzimBtn = document.getElementById('zzimBtn');
       
       if(${zzim eq 'yes'}){
-         zzimBtn.style.backgroundColor = 'red';
+         zzimBtn.style.backgroundColor = 'black';
+         zzimIcon.style.color = 'red';
+         zzimText.style.color = 'white';
       }
       
       zzimBtn.addEventListener('click', (e) => {
@@ -398,19 +442,19 @@
              if(xhttp.readyState == 4 && xhttp.status == 200){
                   // RestController에서 응답한 데이터(body)가 responseText에 들어있다
                   console.log('요청 성공!', xhttp.responseText);
-                  if(xhttp.responseText == "0"){
-                     
-                     zzimBtn.style.backgroundColor = 'red';
+                  if(xhttp.responseText == "0"){                     
+                   zzimBtn.style.backgroundColor = 'black';
+                   zzimIcon.style.color = 'red';
+                   zzimText.style.color = 'white';
                      cntWishlist.innerText = ' ' + (parseInt(cntWishlist.innerText) + 1)+ ' ';
                      console.log('찜이 등록되었습니다.');
                   } else if(xhttp.responseText == "1"){
-                     zzimBtn.style.backgroundColor = 'gray';
+                     zzimBtn.style.backgroundColor = '#a0a0a0';   
+                   zzimIcon.style.color = 'white';
+                   zzimText.style.color = 'white';
                      cntWishlist.innerText = ' ' + (parseInt(cntWishlist.innerText) - 1)+ ' ';
-                     console.log('찜이 해제되었습니다.');
-                     
-                     
-                  }
-                  
+                     console.log('찜이 해제되었습니다.');                     
+                  }                  
              }
         
           });
@@ -433,17 +477,17 @@
          
          location.href = 'chat_from_post?buyer_user_number=' + ${sessionScope.user_number} +  '&seller_user_number=' +${post.user_number} +'&post_id=' + ${post.post_id}
       });
+      
+      
+		  	function show() {
+				document.querySelector(".background").className = "background show";
+			}
+			function close() {
+				document.querySelector(".background").className = "background";
+			}
+			document.querySelector("#show").addEventListener("click", show);
+			document.querySelector("#close").addEventListener("click", close);
    
-      
-      function show() {
-			document.querySelector(".background").className = "background show";
-		}
-		function close() {
-			document.querySelector(".background").className = "background";
-		}
-		document.querySelector("#show").addEventListener("click", show);
-		document.querySelector("#close").addEventListener("click", close);
-      
    </script>
 </body>
 
