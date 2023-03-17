@@ -30,8 +30,8 @@ public class MainController {
 	public String home(Model model) {
 		
 		List<Post> posts = productMapper.selectAllProducts();
-		if(posts != null && posts.size() >= 15) {
-			model.addAttribute("posts", posts.subList(0, 15));			
+		if(posts != null && posts.size() >= 60) {
+			model.addAttribute("posts", posts.subList(0, 60));			
 		}
 		return "main";
 	}

@@ -34,4 +34,8 @@ public interface MyPageXmlMapper {
 
    public List<Post> getmanagement(Integer user_number);
    
+   public Integer zzimCountPerPost(Integer post_id);
+   
+   public Integer countEndDeal(Integer post_id);
+   
 }

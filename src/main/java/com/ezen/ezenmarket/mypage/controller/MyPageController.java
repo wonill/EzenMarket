@@ -86,13 +86,10 @@ public class MyPageController {
 	@GetMapping(value="/management")
 	public String getmanagement(HttpServletRequest req) {
 			
-		Post p = new Post();
-	
-		String posts = service.getmanagement(req);
 		
-		//	model.addAttribute("posts", posts);
-
-		//model.addAttribute("Post", mypageMapper.getmanagement(user_number));
+	
+		service.getmanagement(req);
+		
 	
 		System.out.println("사용자번호: " + req);
 		// 서비스 없이 매퍼랑만 하는것, number와 num

@@ -3,18 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <style>
-	 
+    
       .aside {
         position: fixed;
         top: 50%;
         left: 97%;
+        z-index: 999;
       }
       .sideBtn {
         /* position: fixed;
@@ -51,11 +52,11 @@
       }
       
       .chaticon{
-      	color:white;
+         color:white;
       }
       
       .topBtn{
-      	cursor: pointer;
+         cursor: pointer;
       }
       
 </style>
@@ -63,7 +64,7 @@
 </head>
 <body>
 
-	 <!-- 사이드 -->
+    <!-- 사이드 -->
       <div class="aside">
         <div class="sideBtn"><a href="chat"><i class="fa-regular fa-comment sideIcon chaticon"></i></a></div>
           <div class="sideBtn"><i class="fa-regular fa-bell sideIcon"></i></div>

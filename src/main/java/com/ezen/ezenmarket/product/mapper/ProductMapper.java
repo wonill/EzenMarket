@@ -72,5 +72,8 @@ public interface ProductMapper {
 	
 	// 가격 낮은순으로 정렬
 	public List<Post> getProductLowPrice(@Param("title") String title, @Param("vo")PagingVO vo);
+	
+	/* 전체 상품 개수 */
+	public int countAllProduct();
     
 }

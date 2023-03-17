@@ -231,7 +231,7 @@ public class MyPageServiceImpl implements MyPageService{
    }
    
    @Override
-   public String getmanagement(HttpServletRequest req) {
+   public void getmanagement(HttpServletRequest req) {
       Cookie[] cookies = req.getCookies();
       int user_num = 0;
       
@@ -252,6 +252,13 @@ public class MyPageServiceImpl implements MyPageService{
       }
 
       List<Post> mngs = mapper.getmanagement(user_number);
+      
+      for(Post mng : mngs) {
+    	  Integer post_id = mng.getPost_Id();
+    	  mng.setZzimCount(mapper.zzimCountPerPost(post_id));
+    	  mng.setSales_status(mapper.countEndDeal(post_id));
+      }
+      
       
       String pageStr = req.getParameter("page");
       
@@ -287,6 +294,6 @@ public class MyPageServiceImpl implements MyPageService{
       req.setAttribute("pagination_start", pagination_start);
       req.setAttribute("pagination_end", pagination_end);
       
-      return null;
+    
    }
 }

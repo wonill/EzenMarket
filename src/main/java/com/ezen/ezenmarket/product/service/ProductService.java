@@ -43,4 +43,7 @@ public interface ProductService {
 	 public List<Post> getProductWithPaging(String title, PagingVO vo);
 		
 	 
+	   /* 페이징 처리 상품 조회 */
+	 public String pagingAllProd(HttpServletRequest req);
+	 
 }

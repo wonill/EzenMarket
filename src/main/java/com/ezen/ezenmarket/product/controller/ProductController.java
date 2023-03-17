@@ -205,7 +205,8 @@ public class ProductController {
 				@RequestParam(value = "cntPerPage", required = false) String cntPerPage, String type) {
 
 			int total = productMapper.countProduct(title);
-					
+			model.addAttribute("countProduct", total);
+			
 			// 이게 이해가 잘 안됨
 			if (nowPage == null && cntPerPage == null) {
 				nowPage = "1";
@@ -250,5 +251,20 @@ public class ProductController {
 					
 			return "product/product_search";
 		}
+		
+		 /* 전체 상품 보기(페이징) */
+		   // http://localhost:8888/ezenmarket/viewAll?page=2
+		   @GetMapping("/viewAll")
+		   public String getAll(@RequestParam(required = false, defaultValue = "1") Integer page,
+		            HttpServletRequest req, Model model) {
+		      
+		      productService.pagingAllProd(req);
+		      model.addAttribute("prodList", req.getAttribute("boards"));      
+		      model.addAttribute("page",  req.getParameter("page"));
+		      model.addAttribute("pagination_start", req.getAttribute("pagination_start"));
+		      model.addAttribute("pagination_end", req.getAttribute("pagination_end"));
+		            
+		      return "product/product_viewAll";
+		   }		
 	
 }

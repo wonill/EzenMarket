@@ -11,11 +11,11 @@
     <style>
     
       
-	 .footer_item {
+    .footer_item {
         position : relative;
-  		transform : translateY(-100%);
-  		bottom: -243px;
-    	display: flex;
+        transform : translateY(50%);
+        bottom: 0px;
+       display: flex;
         flex-direction: column;
         padding-bottom: 20px;
         padding-top: 20px;
@@ -23,7 +23,7 @@
         color: white; 
         background-color:  darkgray;
         text-align: center;
-    	font-size: 13px;
+       font-size: 13px;
     }
     
   
@@ -31,42 +31,42 @@
       
         list-style: none;
     }
-	
+   
     .section2 {
-		
+      
         padding-bottom: 20px;
     }
     
-	
-	.sns-icon {
-		font-size: 20px;
-	}
-	
-	.a-tag-section2:link {
-		text-decoration: none;
-		
-	}
-	
-	.a-tag-section2 {
-		color:white;
-		
-	}
-	
-	.a-tag-section2:hover {
-		color:white;
-	}
-	
-	.section3 {
-		color: gray;
-	}
-	
+   
+   .sns-icon {
+      font-size: 20px;
+   }
+   
+   .a-tag-section2:link {
+      text-decoration: none;
+      
+   }
+   
+   .a-tag-section2 {
+      color:white;
+      
+   }
+   
+   .a-tag-section2:hover {
+      color:white;
+   }
+   
+   .section3 {
+      color: gray;
+   }
+   
         
 </style>
     
 </head>
 <body>
      <footer class="footer_item">
-	
+   
         <ul class="section1">
             <li class="text">
                 (주)EzenMarket
@@ -86,19 +86,19 @@
         </ul>
         
         <div class="sns-icon">
-    	    <i class="fa-brands fa-instagram"></i>
-			<i class="fa-brands fa-facebook"></i>
-			<i class="fa-brands fa-twitter"></i>
+           <i class="fa-brands fa-instagram"></i>
+         <i class="fa-brands fa-facebook"></i>
+         <i class="fa-brands fa-twitter"></i>
         </div>
-		
- 	   	<nav class="section2">
-       	     <a class="a-tag-section2" href="">이용약관</a>
-       	     <a class="a-tag-section2" href="">개인정보처리방침</a>
-  	    </nav>
+      
+          <nav class="section2">
+               <a class="a-tag-section2" href="">이용약관</a>
+               <a class="a-tag-section2" href="">개인정보처리방침</a>
+         </nav>
     
-    	<div class="section3">“Ezenmarket” 상점의 판매상품을 제외한 모든 상품들에 대하여 (주)Ezenmarket는 통신판매중개자로서 거래 당사자가 아니며 판매 회원과 
+       <div class="section3">“Ezenmarket” 상점의 판매상품을 제외한 모든 상품들에 대하여 (주)Ezenmarket는 통신판매중개자로서 거래 당사자가 아니며 판매 회원과 
           구매 회원 간의 상품거래 정보 및 거래에 관여하지 않고 어떠한 의무와 책임도 부담하지 않습니다.
-   	    </div>
+          </div>
 
     </footer>
           

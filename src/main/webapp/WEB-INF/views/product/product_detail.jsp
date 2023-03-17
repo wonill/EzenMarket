@@ -21,6 +21,11 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
+
+       a {
+        text-decoration: none;
+      }
+    
         .box {
             width: 70px;
             height: 70px; 
@@ -31,163 +36,139 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-     
+        }     
        .swiper-container {
-          width:450px;
-          height:450px;
+          width:500px;
+          height:500px;
           border:1px solid silver;
           border-radius:7px;
-          margin-left: -100px;
-      }
-      
-      .swiper-slide {
-        
+          margin-left: -150px;
+      }      
+      .swiper-slide {        
           display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
           align-items:center; /* 위아래 기준 중앙정렬 */
           justify-content:center; /* 좌우 기준 중앙정렬 */
-      }
-      
+      }      
       .swiper-slide img {
-         width:450px;
-          height:450px;
+         width:500px;
+         height:500px;
          box-shadow:0 0 5px #555;
-      }
-      
+      }      
       .py-5 {
-         margin: 50px 0 0 0;
+         margin: 15% 0 0 0;
            border-color: #00000025;  
            border-style: solid;  
            border-width: 1px 0 1px 0;  
-      }
-      
+      }      
       .py-3 {
          margin: 50px 0 0 0;
            border-color: #00000025;  
            border-style: solid;  
            border-width: 1px 0 0 0;  
-      }
-      
+      }      
       .fs-5 {
-         width: 500px;
-      
+         width: 600px;      
       }
-
+      #prodTitle {
+         font-size: 1.3em !important;
+      }
+      #prodPrice {
+         font-size: 2em;
+      }   
       #icon-text {
          color: black;
-      }
-      
+      }      
       #cntWishlist {
          color : black;      
       }
-
       .icons > i:first-child {
          color: #FF8E99; 
          margin: 10px 0 10px 10px;         
-      }
-      
+      }      
       .icons > i:nth-child(2) {
          color: #50C785; 
          border-left: 1px solid rgb(209, 209, 209); 
          padding-left: 10px;
-
-      }
-      
+      }      
       .icons > i:nth-child(3) {
          color: #dda0dd;
          border-left: 1px solid rgb(209, 209, 209);  
          padding-left: 10px;
-      }
-      
-
-      
+      }   
       .explain {
+         position: relative;
          color: rgb(147, 147, 147);     
-      }
-      
+         font-size: 15px;
+         margin-top: 30px;
+      }      
       .explain span {
-         color: black;      
-      }
-      
+         color: black;
+   
+      }      
       #settingBtn {
-         width: 400px; 
-         height: 55px; 
+         width: 500px; 
+         height: 50px; 
          background:black; 
          color:white;
-         margin: 0 0 0 130px;
-      }
-      
+         margin: 10px 0 0 250px;
+      }      
       #zzimBtn {
+         position: relative;
          background:#a0a0a0; 
          color: black;
-         width: 200px; 
-         height: 55px;
-         margin: 0 15px 0 30px;
+         width: 280px; 
+         height: 50px;
+         margin: 20px 0 0 150px;         
          border: solid black 0px;
          border-radius: 5px;
-      }
-      
+      }      
       #zzimIcon {
          color: white;
-      }
-      
+      }      
       #zzimText {
          color: white;
-      }
-      
-      
+      }      
       #chatBtn {
          background: #FFA500;
          color: black;
-         width: 200px; 
-         height: 55px;
-         margin: 0 0 0 0;
+         width: 280px; 
+         height: 50px;   
+         margin: 20px;      
          border: solid black 0px;
          border-radius: 5px;
-      }
-      
+      }      
       #location {
          color: #FF3232;
-      }
-      
-      
+      }      
       #prodInfo {
          float: left;
          border-color: #00000025;  
            border-style: solid;  
            border-width: 0 1px 0 0; 
-           margin: -52px 0 -78px 0;
-      }
-      
+           margin: -30px 0 -78px 0;
+      }      
       #prodInfo2 {
          margin: 50px 30px 50px 0;      
-      }
-      
+      }      
       #prodInfo3 {
          margin: 20px 30px 50px 0;      
-      }
-      
-      
+      }      
       #sellerInfo {
          float: right;
-      }
-         
+      }         
       #nickname {
          font-size: 1.2em;
          font-weight: 600;
          margin-left: 20px;
-      }
-      
+      }      
       #cntProd {
         color: rgb(147, 147, 147); 
-        font-size: 1.1em;
-        margin-left: 20px;
-      }      
-      
+        font-size: 1em;
+        margin: -15px 0 0 20px;
+      }         
       #relatedProd {
         border: solid red 0px;        
-      }
-      
+      }      
       #relatedTitle {     
         font-size: 16px;  
         overflow: hidden;        
@@ -195,14 +176,111 @@
         white-space: nowrap;       
         word-break:break-all;  
       }
-      
       #relatedPrice {
          font-size: 20px; 
          font-weight: 900;
+      }  
+      
+      .btns {
+         position:relative;
+         left: 100px;
+      }  
+      
+      .btns2 {
+         margin-left: 100px;
+      }
+
+      #tooltip {
+         position: relative;
+         padding: 10px 10px 10px 10px;
+         background: #FFFFFF;
+         border-radius: 5px;
+         border: #7F7F7F solid 1px;
+         position: absolute;
+         font-size: 16px;
+         text-align: center;
+         width: 200px;
+         height: 45px;
+         top: 90px; 
+         margin-left:180px;         
+      }
+   
+      #tooltip:after    {
+         content: '';
+         position: absolute;
+         border-style: solid;
+         border-width: 0 16px 20px 17.5px;
+         border-color: #FFFFFF transparent;
+         display: block;
+         width: 0;
+         z-index: 1;
+         top: -18.5px; 
+         left: 85px; 
       }
       
+      #tooltip:before {
+         content: '';
+         position: absolute;
+         border-style: solid;
+         border-width: 0 16px 20px 17.5px;
+         border-color: #7F7F7F transparent;
+         display: block;
+         width: 0;
+         z-index: 0;
+         top: -20px;
+         left: 85px;
+      }
+   
+      #tooltip2 {
+         position: relative;
+         padding: 10px 10px 10px 10px;
+         background: #FFFFFF;
+         border-radius: 5px;
+         border: #7F7F7F solid 1px;
+         position: absolute;
+         font-size: 16px;
+         text-align: center;
+         width: 200px;
+         height: 45px;
+         top: 90px;    
+         margin-left:180px;      
+      }
       
-        
+      #tooltip2:after {
+         content: '';
+         position: absolute;
+         border-style: solid;
+         border-width: 0 16px 20px 17.5px;
+         border-color: #FFFFFF transparent;
+         display: block;
+         width: 0;
+         z-index: 1;
+         top: -18.5px; 
+         left: 85px; 
+      }
+      
+      #tooltip2:before {
+         content: '';
+         position: absolute;
+         border-style: solid;
+         border-width: 0 16px 20px 17.5px;
+         border-color: #7F7F7F transparent;
+         display: block;
+         width: 0;
+         z-index: 0;
+         top: -20px;
+         left: 85px;
+      }
+      #show {
+         border: 0;
+         background-color: white;   
+         float: right;
+         margin: 10px 10px 0 0;
+
+      }
+
+
+      
     </style>
     <script src="https://kit.fontawesome.com/d04567b543.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
@@ -211,17 +289,16 @@
 <body>
 
    <jsp:include page="../include/header.jsp"/>
-   
-    <jsp:include page="./product_category.jsp" />          
-   
 
 
+    
+   
           
    <!-- Product section-->               
        
-    <div style="width: 1200px; clear: right; margin-left: 500px;">
+    <div style="width: 1280px; clear: both; margin:0 20% 0 20%;">
         <section class="py-5">  
-            <div class="container px-lg-5 my-5" style="width: 1050px;">
+            <div class="container px-lg-5 my-5" style="width: 1000px;">
                 <div class="row gx-4 gx-lg-5 m-auto">
                     <div class="col-md-5">
                         <div class="swiper-container swiper1">
@@ -239,17 +316,17 @@
                         </div>
                     </div>
                     &emsp;
-                    &emsp;
-                    &emsp;
-                    <div class="col-md-6" style="margin-left: 15px;">
-                        <div class="fs-5 large mb-1 fw-bolder">${post.title}</div>
-                        <h3 class="display-6 fw-bolder"><fmt:formatNumber value="${post.price}" pattern="#,###" />원</h3>               
-                        <hr style="width: 580px; color: rgb(209, 209, 209); margin">
+  
+                    <div class="col-md-6" style="margin-left: 50px; ">
+                        <div id="prodTitle" class="fs-5 large mb-1 fw-bolder">${post.title}</div>
+                        <div id="prodPrice" class="display-6 fw-bolder"><fmt:formatNumber value="${post.price}" pattern="#,###" />원</div>               
+                        <hr style="width: 650px; color: rgb(209, 209, 209); margin">
        
                         <div class="fs-5 mb-4 icons">
                             <i class="fa-solid fa-heart" style="font-style: normal">&nbsp;<span id="cntWishlist" >${cntWishlist}</span>&nbsp;</i>    
                             <i class="fa-solid fa-eye">&nbsp;<span id="icon-text">${post.post_view}</span>&nbsp;</i>
                             <i class="fa-solid fa-clock">&nbsp;<span id="icon-text">${post.createdTimeAgo }</span></i>
+                                  
                         </div>
                         <ul class="explain">
                             <li>상품상태&emsp;&emsp;<span>중고</span></li>
@@ -263,35 +340,38 @@
                         <div class="d-flex justify-content-around" style="margin-right: 50px; margin-top: 50px;">
                            <c:choose>
                               <c:when test="${sessionScope.user_number eq post.user_number }">
-                               <button id="settingBtn" class="btn flex-shrink-0 opacity-75" type="button" 
-                           onclick="location.href='<%=request.getContextPath()%>/mypage/management?user_number=${sessionScope.user_number}'"">
-                                   내 상점 관리
-                               </button>
+                                  <button id="settingBtn" class="btn flex-shrink-0 opacity-75" type="button" 
+                              onclick="location.href='<%=request.getContextPath()%>/mypage/management?user_number=${sessionScope.user_number}'"">
+                                      내 상점 관리
+                                  </button>
                                </c:when>
-                               <c:otherwise>
-                               <button id="zzimBtn" type="button">
-                                   <i id="zzimIcon"class="bi bi-heart-fill"></i> <span id="zzimText">찜</span> 
-                               </button>                        
-                               <button id="chatBtn" type="button">
-                                   <i class="bi bi-messenger"></i> 채팅
-                               </button>
-                               <jsp:include page="../report.jsp"/>
+                               <c:otherwise>   
+                     
+                               <div class="btns">
+                           <button id="zzimBtn" type="button" ><i id="zzimIcon" class="bi bi-heart-fill"></i><span id="zzimText"> 찜</span></button>                       
+                           <tooltip id='tooltip' style='display:none'>상품을 찜했습니다!</tooltip>
+                           <tooltip id='tooltip2' style='display:none'>찜이 해제되었습니다!</tooltip>                        
+                        </div>   
+                        <div class="btns2">                                                                              
+                                  <button id="chatBtn" type="button"><i class="bi bi-messenger"></i> 채팅</button>  
+                               </div>                                           
+                        <jsp:include page="../report.jsp"/>
                                </c:otherwise>
-                            </c:choose> 
-                            
+                            </c:choose>                                
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-     
+        
+
         
        
         <!-- Related items section-->
 
         <section class="py-1 ">
             <div class="container px-4 px-lg-5 mt-5 d-flex">
-                <div id="prodInfo" style="width: 60%;">
+                <div id="prodInfo" style="width: 72%;">
                     <h4 id="prodInfo2" class="fw-bolder mb-4">상품정보</h4>
                    <!-- <hr style="opacity: 25%;"> --> 
                     <p id="prodInfo3">${post.post_content}</p>
@@ -301,14 +381,12 @@
                     <hr style="width: 1px; height: 80%;"> 
                 </div>-->
                 &emsp;
-                <div id="sellerInfo" style="width: 40%;">
+                <div id="sellerInfo" style="width: 28%;">
                     <h4 class="fw-bolder mb-4">판매자정보</h4>
                    <!-- <hr style="opacity: 25%;"> --> 
                     <div class="d-flex">
-                        <div class="box" style="background: #BDBDBD;">
-                        
-                            <img class="profile" src="${profileImg.user_image}">
-         
+                        <div class="box" style="background: #BDBDBD;">                        
+                            <img class="profile" src="${profileImg.user_image}">         
                         </div>
                         &emsp;
                         <div>
@@ -319,6 +397,9 @@
                 </div>
             </div>
         </section>
+
+     
+     
      
         <br>
 
@@ -353,12 +434,13 @@
             </div>
          </div>
       </section>
-          
+                 
      </div>
 
    
+      
     <input name="currentPage"  value="0"  type="hidden"/>
-	</form> 
+   </form> 
    
     
 
@@ -404,6 +486,7 @@
          });
    
       const zzimBtn = document.getElementById('zzimBtn');
+      tooltip = document.getElementById('tooltip');
       
       if(${zzim eq 'yes'}){
          zzimBtn.style.backgroundColor = 'black';
@@ -411,14 +494,15 @@
          zzimText.style.color = 'white';
       }
       
+
+      
       zzimBtn.addEventListener('click', (e) => {
          
          if(${sessionScope.login ne 'yes'}){
             alert('찜은 로그인 후 가능합니다.')
             return;
          }
-         
-          
+                   
           // AJAX 요청 인스턴스 생성
           const xhttp = new XMLHttpRequest();
           
@@ -445,20 +529,27 @@
                   if(xhttp.responseText == "0"){                     
                    zzimBtn.style.backgroundColor = 'black';
                    zzimIcon.style.color = 'red';
-                   zzimText.style.color = 'white';
+                   zzimText.style.color = 'white';                      
+                   tooltip.style.display = "block";
+                   tooltip2.style.display  = "none";
                      cntWishlist.innerText = ' ' + (parseInt(cntWishlist.innerText) + 1)+ ' ';
                      console.log('찜이 등록되었습니다.');
                   } else if(xhttp.responseText == "1"){
                      zzimBtn.style.backgroundColor = '#a0a0a0';   
                    zzimIcon.style.color = 'white';
-                   zzimText.style.color = 'white';
+                   zzimText.style.color = 'white';   
+                   tooltip.style.display  = "none";
+                   tooltip2.style.display = "block";
                      cntWishlist.innerText = ' ' + (parseInt(cntWishlist.innerText) - 1)+ ' ';
                      console.log('찜이 해제되었습니다.');                     
                   }                  
-             }
-        
+             }        
           });
-
+      
+          setTimeout(() => {tooltip.style.display = "none";}, 2000);         
+         
+          setTimeout(() => {tooltip2.style.display = "none";}, 2000);
+          
 
           // 요청을 어떤 방식(method), 어디로 보낼지(url) 설정
           xhttp.open('GET', '<%=request.getContextPath()%>/product/zzim?user_number='+ ${sessionScope.user_number} + '&post_id=' + ${post.post_id});
@@ -479,16 +570,19 @@
       });
       
       
-		  	function show() {
-				document.querySelector(".background").className = "background show";
-			}
-			function close() {
-				document.querySelector(".background").className = "background";
-			}
-			document.querySelector("#show").addEventListener("click", show);
-			document.querySelector("#close").addEventListener("click", close);
+        function show() {
+         document.querySelector(".background").className = "background show";
+      }
+      function close() {
+         document.querySelector(".background").className = "background";
+      }
+      document.querySelector("#show").addEventListener("click", show);
+      document.querySelector("#close").addEventListener("click", close);
+      
    
    </script>
+
+   
 </body>
 
 </html>

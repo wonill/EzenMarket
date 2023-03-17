@@ -26,6 +26,7 @@
             display: flex;
             justify-content: center;
             background-color: #f9f8f8;
+            margin-bottom: -120px;
         }
         
         .chatroom_list{

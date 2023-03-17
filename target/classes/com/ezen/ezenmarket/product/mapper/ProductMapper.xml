@@ -150,5 +150,15 @@
       WHERE rownum <![CDATA[<=]]> #{vo.end})WHERE RN <![CDATA[>=]]> #{vo.start}     
 	</select>
 	
+	
+	<!-- 전체 상품 총 개수 출력 -->
+   <select id="countAllProduct" resultType="int">
+      SELECT count(*) FROM post
+        INNER JOIN postimage
+        USING (post_id)
+        WHERE (post_id, post_image_id) IN (select post_id, MIN(post_image_id) FROM postImage GROUP BY post_id)
+   </select>
+      
+	
    
 </mapper>

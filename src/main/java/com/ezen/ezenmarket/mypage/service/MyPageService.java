@@ -26,6 +26,6 @@ public interface MyPageService {
    
    public void modifyIntro(String userintro);
    
-   public String getmanagement(HttpServletRequest req);
+   public void getmanagement(HttpServletRequest req);
 
 }

@@ -137,16 +137,21 @@
    
    <!--  내 상점관리 클릭 시 나오는 판매상품들 리스트 -->
    <select id="getmanagement"  resultType="com.ezen.ezenmarket.mypage.dto.Post">
-        SELECT
-           postImage.image_url, post.title, post.price,  post.updated
-       FROM
-           post, postImage
-       WHERE 
-           post.post_id = postImage.post_id
-       AND
-           user_number =#{user_number}
-       ORDER BY
-           updated DESC
+       SELECT post_id, image_url, title, price, updated FROM post 
+       INNER JOIN postImage USING (post_id) 
+       WHERE (post_id, post_image_id) 
+       IN (SELECT post_id, min(post_image_id) FROM postImage 
+       GROUP BY post_id) 
+       AND user_number = #{user_number} 
+       ORDER BY post_id DESC
+   </select>
+   
+   <select id="zzimCountPerPost" resultType="Integer">
+   		SELECT count(wishlist_id) FROM wishlist WHERE post_id = #{post_id}
+   </select>
+   
+   <select id="countEndDeal" resultType="Integer">
+   		SELECT count(*) FROM enddeal WHERE post_id = #{post_id}
    </select>
    
 </mapper>
