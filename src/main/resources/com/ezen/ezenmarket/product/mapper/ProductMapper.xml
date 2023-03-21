@@ -35,15 +35,14 @@
    
    <!-- 카테고리별로 출력하기 -->
    <select id="getCateList" resultType="com.ezen.ezenmarket.product.dto.Post">
-      SELECT     
-          p.*,   
-          i.image_url
-      FROM post p
-      INNER JOIN postimage i
-      ON  p.post_id = i.post_id
-      WHERE category_id=#{category_id}      
-      ORDER BY p.updated DESC
-   </select>  
+        SELECT * FROM post 
+      INNER JOIN postimage
+      USING (post_id)   
+        INNER JOIN category
+        USING (category_id)
+        WHERE (post_id, post_image_id) in (select post_id, min(post_image_id) FROM postImage GROUP BY post_id) AND category_id=#{category_id}
+        ORDER BY updated DESC
+   </select>
    
    <!-- 상품 상세페이지(상품정보 + 상품이미지정보 + 판매자정보) -->
    <select id="getDetails" resultType="com.ezen.ezenmarket.product.dto.Post">
@@ -133,6 +132,14 @@
 	<select id="countProduct" resultType="int">
 		 SELECT COUNT(*) FROM post INNER JOIN postImage USING (post_id) WHERE (title LIKE '%'||#{title}||'%' OR post_content LIKE '%'||#{title}||'%')
 	</select>
+	
+	<!-- 검색된 결과의 개수 --> 
+	<select id="getSearchCnt" resultType="Integer">
+      SELECT COUNT(*) FROM post 
+      INNER JOIN postImage USING (post_id) 
+      WHERE (post_id, post_image_id) in (select post_id, min(post_image_id) FROM postImage GROUP BY post_id) 
+      AND (title LIKE '%'||#{title}||'%' OR post_content LIKE '%'||#{title}||'%')   
+   </select>
 	
 		<!-- 가격 높은순 -->
 	<select id="getProductHighPrice" resultType="com.ezen.ezenmarket.product.dto.Post">  

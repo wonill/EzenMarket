@@ -12,9 +12,10 @@
     <script src="https://code.jquery.com/jquery-1.8.3.min.js" integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"> <!-- 부트스트랩-->
     <style>
-
+    	
         *{
             box-sizing: border-box;
+            font-family: 'SUIT-Regular'!important;
         }
         
         body{
@@ -173,7 +174,7 @@
         }
         
         .chat_wrap .inner{
-            background-color:rgb(39, 39, 39);
+            background-color:rgb(225, 145, 136);
             border-radius:5px; 
             padding:10px; 
             padding-left: 20px;
@@ -220,8 +221,8 @@
         }
         
         .chat_wrap .item .box .time{
-            font-size:13px; 
-            color:#999; 
+            font-size:11px; 
+            color:white; 
             position:absolute; 
             right: -80px; 
             bottom:17px; 
@@ -233,11 +234,11 @@
         .chat_wrap .item.mymsg .box::before{
             left:auto; 
             right:-8px; 
-            border-left:8px solid #ffffff; 
+            border-left:8px solid rgb(184, 210, 227); 
             border-right:0;
         }
         .chat_wrap .item.mymsg .box .msg{
-            background:#ffffff
+            background-color: rgb(184, 210, 227);
         }
         
         .chat_wrap .item.mymsg .box .unread{
@@ -265,6 +266,23 @@
             transition:all .3s ease-out; 
             margin:0 20px 0 0;
         }
+        
+        
+        
+        .chat_wrap .item.yourmsg .box .chat_profile_img{
+            width: 60px; 
+            height: 60px; 
+            border-radius: 30px; 
+            position: absolute; 
+            top: -30px; 
+            left: -75px;
+            
+            background-image: url('${myCurrentChatPartnerInfo.user_image }');
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+        }
+        
         .chat_wrap .item.on .box{
             margin:0; opacity: 1;
         }
@@ -368,6 +386,26 @@
         	margin-left: 40px;
         	margin-top: 10px;
         }
+        
+        .chat_wrap .item.yourmsg .box {
+            margin-left: 75px; 
+            margin-top: 10px; 
+            position: relative;
+        }
+        
+        .chat_wrap .item.yourmsg .box .msg{
+           
+            background-color: rgb(241, 196, 15);
+        }
+        .chat_wrap .item.yourmsg .box:before{
+           border-right:8px solid rgb(241, 196, 15); 
+        }
+        
+        .topMenu{
+        	margin-top:30px;
+        }
+        
+       
     </style>
    
     
@@ -376,12 +414,12 @@
 	<jsp:include page="../include/header.jsp"/>
 	<div id="bar"></div>
 
-<div id="container">
+<div id="container" style="margin-top: 20px;">
 
 
     <div class="chatroom_list">
         <div class="first_box">
-            <div id="title">
+            <div id="title" style="font-family: 'SUIT-Regular';">
                 전체 대화
             </div>
         </div>
@@ -461,7 +499,7 @@
           <!--    <div class="report"><jsp:include page="" /></div> -->
         </div>
         <div class="inner">
-        
+         
         <div class="scam-alert">상품 구매시 주의하세요!<br>
         불확실한 판매자(본인 미인증, 해외IP, 사기의심, 전화번호)의 물건은 구매하지 말아주세요<br>
         판매자와의 연락은 메신저보다는 전화, 메일 등을 이용하시고 개인정보 유출에 주의하세요<br>
@@ -481,7 +519,10 @@
           </c:choose> 
           on">
                 <div class="box">
-                    <p class="msg">${chattingContent.contents }</p>      
+                    <p class="msg">${chattingContent.contents }</p>
+                    <c:if test="${user.user_number ne chattingContent.user_number}">
+                    <div class="chat_profile_img"></div>
+                    </c:if>      
                     <div class="unread">${chattingContent.unread}</div>
                     <span class="time">${chattingContent.creationDateTime }</span>
                 </div>
@@ -568,9 +609,7 @@
     
   
    
-     // 「WebSocketEx」는 프로젝트 명
-    // 「websocket」는 호스트 명
-    // WebSocket 오브젝트 생성 (자동으로 접속 시작한다. - onopen 함수 호출)
+     
     const chattingRoom_id = ${current_room_id};
    
     if(chattingRoom_id === 0){
@@ -594,12 +633,7 @@
     
      
     var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/${user.user_number}");
-    // 콘솔 텍스트 에리어 오브젝트
-    //var messageTextArea = document.getElementById("messageTextArea");
-    //console.log(messageTextArea.value);
-    //console.log(messageTextArea.value);
-    //console.log(messageTextArea.value);
-    // WebSocket 서버와 접속이 되면 호출되는 함수
+    
     webSocket.onopen = function(message) {
       
       console.log('오픈');
@@ -652,7 +686,7 @@
 	      
 	      if(info.chattingRoom_id == chattingRoom_id && chattingRoom_id != 0){
 	    	  
-	      var _tar = $(".chat_wrap .inner").append('<div class="item yourmsg"><div class="box"><p class="msg">'+ info.contents+'</p><div class="unread">1</div><span class="time">'+currentTime()+'</span></div></div>');
+	      var _tar = $(".chat_wrap .inner").append('<div class="item yourmsg"><div class="box"><p class="msg">'+ info.contents+'</p><div class="chat_profile_img"></div><div class="unread">1</div><span class="time">'+currentTime()+'</span></div></div>');
 	      
 	      var lastItem = $(".chat_wrap .inner").find(".item:last");
 	      setTimeout(function(){
@@ -708,27 +742,26 @@
 	  
  	document.getElementById(chattingRoom_id).innerText = message.value;
  	document.getElementById(chattingRoom_id + 10000).innerText = currentTime();
- 	//document.querySelector('#\\3' + chattingRoom_id + ' .chat_box .last_chat').innerText = message.value;
-    //document.querySelector('#\\3' + chattingRoom_id + ' .last_chat_time').innerText = currentTime();
+
     const info = {
        type:'message',
        chattingRoom_id:chattingRoom_id,
        user_number:${user.user_number},
-       contents:message.value,
+       contents:message.value
     }
     
     const json = JSON.stringify(info);
     
     
     console.log("Send to Server => "+json+"\n");
-    // WebSocket 서버에 메시지를 송신한다.
+    
     webSocket.send(json);
-    // 송신 메시지를 작성하는 텍스트 박스를 초기화한다.
+   
      message.value = "";
   }
-  // Disconnect 버튼을 누르면 호출되는 함수
+  
   function disconnect() {
-    // WebSocket 접속 해제
+   
     webSocket.close();
 
     

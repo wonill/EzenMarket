@@ -44,6 +44,7 @@
         margin-right: 15%;
         display: flex;
         flex-wrap: wrap;
+        margin-top: 60px; margin-bottom: 243px;
      
       }
 
@@ -82,17 +83,17 @@
       .item_list .item_card .text #main-prod-price {
        float: left;
        font-weight: 900;
-       margin: 0 5px -10px 0;
-        font-size: 22px;
+       margin: 0 5px -5px 0;
+        font-size: 20px;
         opacity: .8;
         color: black; 
       }
       
       .item_list .item_card .text #main-prod-time {
         float: right;
-        margin: 0 5px 5px 0;
+        margin: 0 0 5px 0;
         font-weight: 400;
-        font-size: 16px;
+        font-size: 15px;
         opacity: .8;
         color: rgb(123, 123, 123);
       }
@@ -105,11 +106,23 @@
         padding: 5px 0 0 5px; 
      }
       
+     #icon-location {
+        position: relative; 
+        float: left; 
+        margin: 5px 5px 5px 0;
+     }
+      
      .item_list .item_card .text2 #main-prod-location {
        font-weight: 400;
         font-size: 15px;
-        color: black;  
-       
+        color: black;     
+        float: left;   
+        max-width: 170px; 
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        margin-top: 5px;
       }
       
 
@@ -251,34 +264,34 @@
             });
             
             var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/" + ${sessionScope.user_number});
-           
-          webSocket.onopen = function(message) {
-                
-                
-                console.log('오픈');
-                console.log('오픈');
-                console.log('오픈');
-                console.log('오픈');
-          };
-              
-          webSocket.onmessage = function(message) {
-             const info = JSON.parse(message.data);
-                
-              if(info.type == 'message'){
-                alert('메세지 알림이 왔습니다!')
-              }   
-          };
-              
-           webSocket.onerror = function(message) {
+            
+            webSocket.onopen = function(message) {
                   
-                console.log("error...\n");
-           };       
-              
-          webSocket.onclose = function(message) {
-                 
-                console.log("Server Disconnect...\n");
-          };
-          
+                  
+                  console.log('오픈');
+                  console.log('오픈');
+                  console.log('오픈');
+                  console.log('오픈');
+            };
+                
+            webSocket.onmessage = function(message) {
+               const info = JSON.parse(message.data);
+                  
+                if(info.type == 'message'){
+                  alert('메세지 알림이 왔습니다!')
+                }   
+            };
+                
+             webSocket.onerror = function(message) {
+                    
+                  console.log("error...\n");
+             };       
+                
+            webSocket.onclose = function(message) {
+                   
+                  console.log("Server Disconnect...\n");
+            };
+            
             
            </script>
    

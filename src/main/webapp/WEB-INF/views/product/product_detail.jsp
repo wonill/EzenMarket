@@ -167,7 +167,7 @@
         margin: -15px 0 0 20px;
       }         
       #relatedProd {
-        border: solid red 0px;        
+        width: 242px;            
       }      
       #relatedTitle {     
         font-size: 16px;  

@@ -2,9 +2,8 @@ package com.ezen.ezenmarket.chat.controller;
 
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.websocket.OnClose;
@@ -64,8 +63,8 @@ public class WebSocketChat{
 	
 	@OnOpen
 	public void onOpen(Session session, @PathParam("user_number")Integer user_number) {
-		log.info("onOpen: " + session);
-		log.info(user_number + "번 유저가 입장하셨습니다.");
+		log.info(user_number + "번 유저가 입장하셨습니다. 세션: " + session);
+		
 
 		loggedInUserMap.put(user_number, session);
 		
@@ -130,9 +129,7 @@ public class WebSocketChat{
 	@OnClose
 	public void onClose(Session session, @PathParam("user_number")Integer user_number) {
 		log.info(session.getId() + " exit the chat room");
-		log.info(user_number);
-		log.info(user_number);
-		log.info(user_number);
+		
 //		sessionList.remove(session);
 		loggedInUserMap.remove(user_number);
 	}
@@ -141,36 +138,16 @@ public class WebSocketChat{
 		
 		//List<MyChattingRoom> myChattingRooms = chatMapper.selectMyChattingRooms(user_number);
 		
-		List<Integer> myChatPartnerList = chatService.searchMyChatPartner(user_number);
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-		System.out.println(myChatPartnerList.get(0));
-//		for(Integer myChatPartner: myChatPartnerList) {
-//			System.out.println(myChatPartner + "번 유저와 채팅중");
-//		}
+		Set<Integer> myChatPartnerList = chatService.searchMyChatPartner(user_number);
 		
-//		try {
-//			for(Session session : WebSocketChat.sessionList) {
-//				if(!mySession.getId().equals(session.getId())) {
-//					session.getBasicRemote().sendText(jsonStr);
-//				}
-//			}
-//			
-//		} catch(IOException e){
-//			e.printStackTrace();
-//		}
+		for(Integer myChatPartner: myChatPartnerList) {
+			System.out.println(myChatPartner + "번 유저와 채팅중");
+		}
+		
+
 		
 		Iterator<Integer> keys = loggedInUserMap.keySet().iterator();
-        while( keys.hasNext() ){
+        while(keys.hasNext()){
             Integer key = keys.next();
             Session value = loggedInUserMap.get(key);
             System.out.println("키 : "+key+", 값 : "+value);
@@ -182,14 +159,7 @@ public class WebSocketChat{
 					for(Integer myChatPartner: myChatPartnerList) {
 						if(key == myChatPartner) {
 							WebSocketChat.loggedInUserMap.get(key).getBasicRemote().sendText(jsonStr);
-							System.out.println(myChatPartner);
-							System.out.println(myChatPartner);
-							System.out.println(myChatPartner);
-							System.out.println(myChatPartner);
-							System.out.println(myChatPartner);
-							System.out.println(myChatPartner);
-							System.out.println(myChatPartner);
-							System.out.println(myChatPartner);
+							
 						}
 					}
 				}
@@ -214,6 +184,7 @@ public class WebSocketChat{
 		
 		// 현재 내가 속한 방의 상대 유저의 유저번호를 가져옴
 		Integer myCurrentChatRoomPartner = chatMapper.getMyCurrentChatPartner(user_number, current_room_id);
+		
 		
 		try {
 			for(Integer key : WebSocketChat.loggedInUserMap.keySet()){

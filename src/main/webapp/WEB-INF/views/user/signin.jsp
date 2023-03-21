@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-	
-	String errorMsg = (String)session.getAttribute("errorMsg");
-	session.removeAttribute("errorMsg");
-	if (errorMsg == null) 
-		errorMsg ="";
+   
+   String errorMsg = (String)session.getAttribute("errorMsg");
+   session.removeAttribute("errorMsg");
+   if (errorMsg == null) 
+      errorMsg ="";
 %>
 <!doctype html>
 <html lang="ko">
@@ -18,7 +18,7 @@
     <meta name="generator" content="Hugo 0.88.1">
     <title>로그인 페이지</title>
     <!-- 폰트어썸 -->
-	<script src="https://kit.fontawesome.com/c737e525de.js" crossorigin="anonymous"></script>
+   <script src="https://kit.fontawesome.com/c737e525de.js" crossorigin="anonymous"></script>
     
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/sign-in/">   
 
@@ -39,7 +39,7 @@
     </head>
     <body class="text-center">
     
-	
+   
     <main class="form-signin">
     
         <div class="container text-center">
@@ -76,18 +76,18 @@
                
               <!-- 로그인 실패시 에러 메세지 -->
               
-              	<div id="errorMsg" style="color:red; position:relative; top:10px; right: 47px;">
-              		<%=errorMsg %>
-              	</div>
+                 <div id="errorMsg" style="color:red; position:relative; top:10px; right: 47px;">
+                    <%=errorMsg %>
+                 </div>
               
              
-                <input type="hidden" name="requestUri" value="${requestUri }"/>
-                <button id="signin-btn" class="w-100 btn btn-lg btn-primary" type="submit" id="signin">로그인</button>
-              	<a href=
-              	"https://kauth.kakao.com/oauth/authorize?client_id=539b9f686a3ecf1e986fc50b088309c0&redirect_uri=http://localhost:8888/ezenmarket/kakao&response_type=code">
-		            <img src="https://i.imgur.com/52mZm2M.png">
-		        </a>
-                <button id="signup-btn" class="w-100 btn btn-lg btn-primary" id="signup">회원가입</button>
+                <input type="hidden" name="requestUri" value="${requestUri}"/>
+                <button id="signin-btn" class="w-100 btn btn-lg btn-primary" type="submit" style="width: 417px; height: 60px;">로그인</button>
+                 <a href=
+                 "https://kauth.kakao.com/oauth/authorize?client_id=539b9f686a3ecf1e986fc50b088309c0&redirect_uri=http://localhost:8888/ezenmarket/kakao&response_type=code">
+                   <img src="https://i.imgur.com/52mZm2M.png" style="width: 417px; height: 60px; margin-bottom: 0.5em;">
+              </a>
+                <button id="signup-btn" class="w-100 btn btn-lg btn-primary" style="width: 417px; height: 60px;">회원가입</button>
            </form>
                  
                 <a href="#"><img id="naver-btn" src="./images/btnW_아이콘원형.png" alt=""></a>

@@ -15,4 +15,5 @@ public class Review {
 	private String title;
 	private String user_image;
 	private String review_content;
+	private Integer post_id;
 }

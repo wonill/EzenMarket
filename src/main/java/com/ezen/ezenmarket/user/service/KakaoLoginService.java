@@ -111,8 +111,9 @@ public class KakaoLoginService {
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
             
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-            String email = kakao_account.getAsJsonObject().get("email").getAsString();
-            
+            //String email = kakao_account.getAsJsonObject().get("email").getAsString() == null ? "" : kakao_account.getAsJsonObject().get("email").getAsString();
+            String email = kakao_account.get("email") == null ? "" : kakao_account.get("email").toString();
+            		
             userInfo.put("nickname", nickname);
             userInfo.put("email", email);
             

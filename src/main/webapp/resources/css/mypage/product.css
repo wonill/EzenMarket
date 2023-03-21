@@ -1,45 +1,6 @@
 @charset "UTF-8";
 
-/*헤더-배너*/
-.Top {
-/* display: flex;
-justify-content: space-around; */
-/* margin-left: 80%;         */
-/* margin-top: 15px; */
 
-border: 4px solid black;
-background-color: black;
-
-}
-
-.top1 {
-
-margin-left: 35%;
-color: white;
-font-size: 15px;
-font-weight: bold;   
-}
-
-.top2 {
-font-weight: bold;   
-color: white;
-font-size: 15px;   
-}
-
-/* topMenu의 ID를 가진 태그 안에 <ul> 태그 안에 <li> 태그의 스타일을 지정 */
-.topMenu ul li {   
-
-list-style: none;
-color: hsl(0, 1%, 27%);
-float: right;
-margin-right: 30px;
-}
-
-/*로고*/
-#logo {
-font-size: 40px;
-font-family: 'Knewave', cursive;
-}
 
 
 a:link {
@@ -134,9 +95,6 @@ color: black;
   margin-left: 5px;
 }
 
-
-
-
 /* 탭메뉴 */
 /* 탭 전체 스타일 */
 *{
@@ -154,8 +112,8 @@ ul{list-style:none;}
   position: relative;
 }
 .tabmenu ul li{
-  display:  inline-block;
-  width:33.33%; 
+  display: inline-block;
+  width:calc(100%/4);; 
   float:left;  
   text-align:center; 
   background :white;
@@ -196,48 +154,74 @@ ul{list-style:none;}
 
 
 
+    /*부트스트랩 기본 css*/
+   .bd-placeholder-img { font-size: 1.125rem; text-anchor: middle; -webkit-user-select: none; -moz-user-select: none; user-select: none; }
+   @media (min-width: 768px) { .bd-placeholder-img-lg {font-size: 3.5rem;} }
+    
+    /* 탭메뉴 */
+   * { margin:0; padding:0; font-size:15px; line-height:1.3; }
+   ul { list-style:none; }
+   .tabmenu { max-width:1000px; margin: 0 auto; position:relative; }
+   .tabmenu ul { position: relative; }
+   .tabmenu ul li { display: inline-block; width:calc(100%/4); float:left; text-align:center; background :white; line-height:40px; }
+   .tabmenu label { display:block; width:100%; height:40px; line-height:40px; }
+   .tabmenu input { display:none; }
+   .tabCon { display:none; width: 100%; text-align:left; padding: 20px; position:absolute; left:0; top:40px; box-sizing: border-box; border : 0px solid #f9f9f9; }
+   .tabmenu input:checked ~ label { border-bottom: 3px black solid; }
+   .tabmenu input:checked ~ .tabCon { display:block; }   
+    
+    
+    /* 전체 적용 */
+   a { text-decoration: none; color: black; }
+   a:hover { text-decoration: none; color: black; } 
+   .container { margin-top: 50px; margin-bottom: 0; padding-bottom: 0; }
+      
+     /* 프로필 단 */
+   .intro { width: 260px; height: 70px; box-sizing: border-box; border: solid 2px #1E90FF; border-radius: 5px; font-size: 16px; resize: both; }
+   #modify-btn{ margin: 0 0 10px 3px; padding: 0 5px 0 5px; color: black; font-size: 16px; }      
+   #modify-btn:hover { background-color: black; color: white; }           
+   #userInfo-btn { margin: 0 0 0 3px; padding: 0 5px 0 5px; color: black; font-size: 16px; }
+   #userInfo-btn:hover { background-color: black; color: white; }      
+   #profile-section { border: 0px solid black; width: 300px; margin-left:90px; }      
+   #profile-product { border: 0px solid black; width: 1000px; height: 1800px; margin-right:-200px; }  
+   .profile-img { margin-top : 100px; }
 
-/*상품*/
+   /*프로필*/
+   #profile-section { border: 0px solid black; padding: 30px; }   
+   #profile-section .profile-img { width: 150px; height: 150px; border-radius: 70%; overflow: hidden; margin-left: 60px }   
+   #profile-section .profile-img-img { width: 100%; height: 100%; object-fit: cover; }   
+   .profile-txt div { margin: 1em;}   
+   .profile-txt div:first-child { text-align: center; font-weight: 900; margin-bottom: 2em; }   
+   .profile-txt div:nth-child(2) { text-align: center; margin-bottom: 3em; }   
+   .product #left { text-align: left; }
+   .product #right { float: right; text-align: right; }
+   .review #left2 { text-align: left; }
+   .review #right2 { float: right; text-align: right; }
 
-/* 상품 제목 가격*/
-.card-body {
-  position: relative;
-}
-
-.card-body span {
-  color: black;
-}
-
-.card-body b {
-  color: black;
-  font-size: 1.5em;
-  float: left;
-}
-
-.card-body .modify-btn  {
-  margin-top: 5px;
-  padding: 0 5px 0 5px;
-  float: right;
-  border: 1px black solid;
-  border-radius: 3px;
-  color: white;
-  background-color: black;
-}
+   /* 탭메뉴 단 (전체) */
 
 
-.card-body .up-btn  {
-  margin-top: 5px;
-  margin-left: 5px;
-  padding: 0 5px 0 5px;
-  float: right;
-  border: 1px black solid;
-  border-radius: 3px;
-  color: white;
-  background-color: black;
-}
+
+   /* 탭메뉴 단 (세부내용) */  
+   .card-body { position: relative; }
+   .card-body span { color: black; max-width: 210px; }   
+   .card-body p { color: black; font-size: 1.5em; }
+   .card-body .up-btns { margin-left: 62px; }
+   .card-body .up-btn { margin: 3px 3px 0 0; padding: 0 5px 0 5px; border: 1px black solid; border-radius: 3px; 
+      color: white; background-color: black; width: 45px; font-size: 14px; text-align:center; justify-content: space-between; }      
+
+   /* 탭메뉴 단 (페이징) */      
+   /*   
+   #page { border: solid 1px #d7d7d7; border-radius: 0.2rem; color: #7d7d7d; text-decoration: none; text-transform: uppercase;
+      display: inline-block; text-align: center; padding: 0.5rem 0.9rem; }  
+   .pagination { justify-content: center; margin: 30px 0 50px 0; } 
+   .pagination > li > a { margin-right: 5px; color: black; } 
+   */
+   .page { margin-top: 60px; margin-bottom: 243px;   }
+   #page2 {position: static; }
+   .pagination { justify-content: center;}  
+   .pagination > li > a {  color: black; text-align: center; width:40px; }
+   .page-item { margin-right: -150px; }
 
 
-/*footer 자리 여백 두기*/
-#footer {
-  margin-top: 350px;
-}
+

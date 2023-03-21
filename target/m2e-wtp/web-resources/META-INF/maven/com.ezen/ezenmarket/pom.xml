@@ -33,6 +33,20 @@
 		    <version>${org.springframework-version}</version>
 		</dependency>
 		
+		<!-- Apache Commons FileUpload --> 
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
+		<!-- Apache Commons IO --> 
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		
 		
 		<!-- 카카오 로그인 API관련 의존성 -->
 		<dependency>

@@ -119,6 +119,8 @@
 
       .option{
         font-size: 20px;
+         width: 300px;
+        height: 50px;
        
       }
 
@@ -135,14 +137,14 @@
           <div id="question">판매완료 처리 하시겠습니까?</div>
 
           <select name="user" id="select_user">
-            <option value="0" class="option">구매자를 선택하세요</option>
-            <option value="1" class="option">1</option>
-            <option value="2" class="option">2</option>
-            <option value="3" class="option">3</option>
+            <option value="-1" class="option">구매자를 선택하세요</option>
+            <option value="0" class="option">(목록에 구매자가 없습니다.)</option>
+            
           </select>
-
-
-          <button id="confirm">판매완료</button>
+ 		
+ 		  <input type="hidden" id="hidden_post_id"/>
+		  
+          <button id="confirm" onclick="salesComplete()">판매완료</button>
           <button id="close">취소</button>
         </div>
       </div>

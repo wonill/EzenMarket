@@ -18,7 +18,10 @@ public interface ProductService {
 
 	 /* 상품 상세페이지(상품정보 + 상품이미지정보 + 판매자정보 + 찜정보) */
 	 public Post getDetails(Integer post_id);
-	
+	 
+	  // 검색된 결과의 개수
+	 public Integer getSearchCnt (String title); 
+
 	 /* 판매자가 등록한 상품 개수 가져오기 */
 	 public int cntProdBySeller(Integer user_number);
 	

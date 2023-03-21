@@ -131,6 +131,13 @@ public class ProductService_Impl implements ProductService {
 		return productMapper.countProduct(title);
 	}
 	
+	 @Override
+	   public Integer getSearchCnt(String title) {
+	      // TODO Auto-generated method stub
+	      return productMapper.getSearchCnt(title);
+	   }
+
+	
 	@Override
 	public List<Post> getProductWithPaging(String title, PagingVO vo) {
 		System.out.println("getProductWithPaging............");

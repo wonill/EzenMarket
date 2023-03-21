@@ -92,9 +92,10 @@ th {
         <td>${mngs.zzimCount }</td>
         <td id="updated">${mngs.createdTimeAgo}</td>
         <td style="line-height: 30px;">
-        <button class="btn btn-primary" style= "background-color: red; font-weight: bold; border: 0">&nbsp;UP&nbsp;</button>
-        <br>
-        <button class="btn btn-primary" style="background-color: black; font-weight: bold; border: 0; margin-top: 10px">삭제</button>
+        <button onclick="updatePost(${mngs.post_Id})" class="btn btn-primary" style= "background-color: red; font-weight: bold; border: 0">&nbsp;UP&nbsp;</button>    
+        <br>       
+        <button onclick="deletePost(${mngs.post_Id})" class="btn btn-primary" style="background-color: black; font-weight: bold; border: 0; margin-top: 10px">삭제</button>
+        
         </td>
     </tr>
     </c:forEach>
@@ -116,6 +117,7 @@ th {
 
 </div>
 	<jsp:include page="../include/sales_status.jsp"/>
+	<jsp:include page="../include/sales_status_change_confirm.jsp"/>
    <jsp:include page="../include/footer.jsp"/>
 
 
@@ -129,13 +131,54 @@ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+
     	const sales_status_box = document.getElementById(id);
     	if(sales_status_box.options[0].selected == true){
     		 if(confirm("상품 상태를 변경하시겠습니까 ?") == true){
-    		        alert("변경되었습니다");
-    		    }
-    		    else{
+    			 const xhttp = new XMLHttpRequest();
+    			 
+    			 xhttp.open('GET', '<%=request.getContextPath()%>/deleteEnddeal/' + id);
+   	             xhttp.send();
+    			 
+	   	          xhttp.addEventListener('readystatechange', (e) =>{
+	    			  if(xhttp.readyState == 4 && xhttp.status == 200){
+	    				 show2();
+	    				  
+	    			  }	 
+	    		  });
+    			 
+    		 } else{
+    			 	sales_status_box.value = 1;
     		        return ;
-    		    }
+    		 }
     	} else if(sales_status_box.options[1].selected == true){
-	       document.querySelector(".background").className = "background show";	    		
+	       document.querySelector(".background").className = "background show";
+	       document.querySelector("#hidden_post_id").value = id;
+	       
+	       
+	       // ajax로 채팅방을 공유하는 buyer_user들 불러오기
+	          const xhttp = new XMLHttpRequest();
+	          
+
+	          xhttp.addEventListener('readystatechange', (e) =>{
+	           
+	             if(xhttp.readyState == 4 && xhttp.status == 200){
+	               
+	            	 const xdocument = xhttp.responseXML;
+	            	
+	                 const list_length = xdocument.getElementsByTagName("user_number").length;
+	                 
+	                 if(list_length){
+	                	 for(i = 0; i < list_length; i++){
+	   	            	  console.log(xdocument.getElementsByTagName("user_number")[i].textContent); 	                		 
+	   	            	  console.log(xdocument.getElementsByTagName("nickname")[i].textContent); 
+	   	            	  
+	   	            	  document.querySelector('#select_user').innerHTML += '<option value="' +xdocument.getElementsByTagName("user_number")[i].textContent + '" class="option">' + xdocument.getElementsByTagName("nickname")[i].textContent + '</option>'
+	                	 }        	 
+	                 };
+	               
+	             }        
+	          });
+	          
+	      
+	          xhttp.open('GET', '<%=request.getContextPath()%>/buyerlist/' + id);
+	          xhttp.send();
 	    };
     	
     	
@@ -143,13 +186,89 @@ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+
       }
 
       function close() {
+        const post_id = document.querySelector("#hidden_post_id").value;
+        const select_user = document.querySelector("#select_user");
+        
         document.querySelector(".background").className = "background";
-        document.querySelector("#select_user").value = 0;
-
+        select_user.value = -1;
+        document.getElementById(post_id).value = 0;
+        
+        
+        const targetOptions = document.querySelectorAll('#select_user > option');
+        if(targetOptions.length > 2){
+	        for(i = 2; i < targetOptions.length; i++){
+	        	select_user.removeChild(targetOptions[i]);
+	        };
+        	
+        }
+		
       }
 
+      function deletePost(post_id){
+    	  if(confirm("해당 판매상품 게시글을 삭제하시겠습니까?") == true){
+		        alert("삭제되었습니다.");
+		        location.href='<%=request.getContextPath()%>/mypage/deletePostOnTheManagementPage?post_id=' + post_id + '&user_number=${sessionScope.user_number}&page=${page}';
+		        
+		 }
+		 else{
+		        return ;
+		 }
+    	  
+      }
+      
+      function updatePost(post_id){
+    	  if(confirm("끌어올리기를 사용하시겠습니까?") == true){
+		        alert("끌어올리기를 사용하셨습니다. 남은 개수 2개");
+		        location.href='<%=request.getContextPath()%>/mypage/updatePostOnTheManagementPage?post_id=' + post_id + '&user_number=${sessionScope.user_number}&page=${page}';
+		        
+		 }
+		 else{
+		        return ;
+		 }
+    	  
+      }
+      
+      function salesComplete(){
+    	  const user_number = document.querySelector("#select_user").value;
+    	  const post_id = document.querySelector("#hidden_post_id").value;
+    	  
+    	  if(user_number == -1){
+    		  alert('구매자를 선택하세요');
+    		  return;
+    	  } else{
+    		  const xhttp = new XMLHttpRequest();
+    		  
+    		  xhttp.open('GET', '<%=request.getContextPath()%>/sales_completion/' + user_number + '/' + post_id + '/' + ${sessionScope.user_number});
+    		  xhttp.send();
+    		  
+    		  xhttp.addEventListener('readystatechange', (e) =>{
+    			  if(xhttp.readyState == 4 && xhttp.status == 200){
+    				  alert('판매완료 처리되었습니다.');
+    				  
+    				  const post_id = document.querySelector("#hidden_post_id").value;
+    			        const select_user = document.querySelector("#select_user");
+    			        
+    			        document.querySelector(".background").className = "background";
+    			        select_user.value = -1;
+    			        
+    			        
+    			        const targetOptions = document.querySelectorAll('#select_user > option');
+    			        if(targetOptions.length > 2){
+    				        for(i = 2; i < targetOptions.length; i++){
+    				        	select_user.removeChild(targetOptions[i]);
+    				        };
+    			        	
+    			       }
+    			  }	 
+    		  });
+    	  };
+    	  
+      }
      
 
+      function show2() {
+          document.querySelector(".background2").className = "background2 show2";
+      }
       
       document.querySelector("#close").addEventListener("click", close);
 </script>

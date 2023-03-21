@@ -212,7 +212,7 @@
           color:black;
        }
       
-     #user_nickname{
+     .user_nickname{
         font-weight: bold;
      }
           
@@ -285,6 +285,9 @@
         
       
 </style>
+
+ <link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/images/ezen.png"/>
+
 </head>
 <body onscroll="headerbarToggle()">
       <div id="box">
@@ -295,12 +298,11 @@
                <c:choose >
               <c:when test="${not empty sessionScope.access_Token}">
               <li><a class="menuLink a-tag3" href="https://kauth.kakao.com/oauth/logout?client_id=539b9f686a3ecf1e986fc50b088309c0&logout_redirect_uri=http://localhost:8888/ezenmarket/logout">카카오 로그아웃</a></li>
-              <li id="user_nickname">${sessionScope.nickname}</li>
-              <li>님</li>
+              <li><span class="user_nickname">${sessionScope.nickname}</span>님</li>
               </c:when>
               <c:when test="${sessionScope.login eq 'yes' }">
               <li><a class="menuLink a-tag3" href="<%=request.getContextPath() %>/logout">로그아웃</a></li>     
-              <li><span id="user_nickname">${sessionScope.nickname}</span>님</li>
+              <li><span class="user_nickname">${sessionScope.nickname}</span>님</li>
               </c:when>
 
            <c:otherwise>              
@@ -325,59 +327,59 @@
          <!-- 메뉴바 -->
          <div id="nav">
             <ul class="menu">
-               <li class="li-title"><a class="a-title" href="viewAll">전체보기</a></li>
+               <li class="li-title"><a class="a-title" href="<%=request.getContextPath() %>/viewAll">전체보기</a></li>
       
                <li class="li-title li-cloth"><a class="a-title a-cloth" href="#;">패션의류 <i class='fa fa-angle-down'></i></a>
                   <ul class="sub">
-                     <li class="li-data"><a class="a-data" href="category?category_id=1">남성의류</a></li>
-                     <li  class="li-data"><a class="a-data" href="category?category_id=2">여성의류</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=1">남성의류</a></li>
+                     <li  class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=2">여성의류</a></li>
                   </ul>
                </li>
       
                   <li class="li-title"><a class="a-title" href="#;">패션잡화<i class='fa fa-angle-down'></i></a>
                   <ul class="sub">
-                     <li class="li-data"><a class="a-data" href="category?category_id=3">신발</a></li>
-                     <li class="li-data"><a class="a-data" href="category?category_id=4">가방</a></li>
-                     <li class="li-data"><a class="a-data" href="category?category_id=5">시계</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=3">신발</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=4">가방</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=5">시계</a></li>
                   </ul>
                </li>
       
                   <li class="li-title"><a class="a-title" href="#;">가구생활<i class='fa fa-angle-down'></i></a>
                   <ul class="sub">
-                     <li class="li-data"><a class="a-data" href="category?category_id=6">주방용품</a></li>
-                     <li class="li-data"><a class="a-data" href="category?category_id=7">인테리어</a></li>
-                     <li class="li-data"><a class="a-data" href="category?category_id=8">생필품</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=6">주방용품</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=7">인테리어</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=8">생필품</a></li>
                   </ul>
                </li>
       
                   <li class="li-title"><a class="a-title" href="#;">취미 컬렉션<i class='fa fa-angle-down'></i></a>
                   <ul class="sub">
-                     <li class="li-data"><a class="a-data" href="category?category_id=9">건강용품</a></li>
-                     <li class="li-data"><a class="a-data" href="category?category_id=10">반려용품</a></li>
-                     <li class="li-data"><a class="a-data" href="category?category_id=11">사무용품</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=9">건강용품</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=10">반려용품</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=11">사무용품</a></li>
                   </ul>
                </li>
       
                   <li class="li-title"><a class="a-title" href="#;">스포츠레저<i class='fa fa-angle-down'></i></a>
                   <ul class="sub">
-                     <li class="li-data"><a class="a-data" href="category?category_id=12">아웃도어</a></li>
-                     <li class="li-data"><a class="a-data" href="category?category_id=13">운동화</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=12">아웃도어</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=13">운동화</a></li>
                   </ul>
                </li>
       
                   <li class="li-title"><a class="a-title" href="#;">디지털기기<i class='fa fa-angle-down'></i></a>
                   <ul class="sub">
-                     <li class="li-data"><a class="a-data" href="category?category_id=14">노트북/PC</a></li>
-                     <li class="li-data"><a class="a-data" href="category?category_id=15">휴대전화</a></li>
-                     <li class="li-data"><a class="a-data" href="category?category_id=16">주변기기</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=14">노트북/PC</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=15">휴대전화</a></li>
+                     <li class="li-data"><a class="a-data" href="<%=request.getContextPath() %>/category?category_id=16">주변기기</a></li>
                   </ul>
                </li>
       
-                  <li class="li-title"><a class="a-title" href="category?category_id=17">기타</a></li>
+                  <li class="li-title"><a class="a-title" href="<%=request.getContextPath() %>/category?category_id=17">기타</a></li>
             </ul>
         
                   
-              <form id="searchForm" action="./searchPagenation" method="GET">
+              <form id="searchForm" action="<%=request.getContextPath() %>/searchPagenation" method="GET">
                   <input class="search" type="search" name="title" autocomplete="off" placeholder="">
                  <div class="searchbox"></div>     
                   <button type="submit" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>

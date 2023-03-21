@@ -8,180 +8,176 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>검색페이지</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    
+    <title>검색페이지</title>    
+    <link rel="preconnect" href="https://fonts.googleapis.com">    
     <style>
     
-       
-    
-      a:link {
-        text-decoration: none;
-      }
-
-      a {
-        color: black;
-      }
-      
-      /* .head {
-         padding-top: 15px;
-         height:  height: 70px;
-      
-      } */
-                
-      .selling {
+    html,body {
+      margin: 0;   
+      padding: 0;   
+   }
+   a:link {
+      text-decoration: none;
+   }
+   
+   a {
+      color: black;
+   }
+   
+   /* .head {
+            padding-top: 15px;
+            height:  height: 70px;
          
-         border-radius: 10px;
-           
-      }
+         } */
+   .selling {
+      border-radius: 10px;
+   }
+   
+   .item_list {
+      border: 1px solid rgb(255, 255, 255);
+      width: 90%;
+      margin-top: 100px;
+      margin-left: 12.2%;
+      display: flex;
+      flex-wrap: wrap;
+   }
+   
+   .item_list .item_card {
+      border: solid 0.2px #00000025;
+      height: 350px;
+      width: 227px;
+      padding: 0;
+      margin: 0 18px 18px 0;
+   }
+   
+   .item_list .item_card img {
+      height: 220px;
+      width: 225px;
+      border-color: #00000025;
+      border-style: solid;
+      border-width: 0 0 1px 0;
+      object-fit: cover;
+   }
+   
+   .item_list .item_card .text {
+      margin-top: 10px;
+      padding: 0 5px 0 5px;
+      color: black;
+   }
+   
+   .item_list .item_card .text #title {
+      font-size: 17px;
+      opacity: .8;
+      color: black;
+      font-weight: 400;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+   }
+   
+   .item_list .item_card .text #price {
+      font-weight: 900;
+      font-size: 20px;
+      opacity: .8;
+      color: black;
+   }
+   
+   .item_list .item_card .text #created {
+      float: right;
+      margin: 7px 5px 0 0;
+      font-weight: 400;
+      font-size: 15px;
+      opacity: .8;
+      color: rgb(123, 123, 123);
+   }
+   
+   .item_list .item_card .text2 {
+      border-color: #00000025;
+      border-style: solid;
+      border-width: 1px 0 0 0;
+      padding: 10px 0 0 5px;
+   }
+   
+   .item_list .item_card .text2 #address {
+      font-weight: 400;
+      font-size: 15px;
+      color: black;
+      max-width: 170px;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 5px;
+   }
+   
+   #icon-location {
+      position: relative;
+      float: left;
+      margin: 5px 5px 5px 0;
+   }
 
+   .a-pagination {
+      text-decoration: none;
+      border: 1px solid lightgray;
+      padding: 4px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-right: 5px;
+      border-radius: 10px;
+      color: black;
+   }
+   
+   .a-pagination:hover {
+      color: lightgray;
+   }
+   
+   #newest {
+      font-size: 16px;
+      color: white;
+      border: 1px solid black;
+      background-color: black;
+      position: relative;
+      top: 40px;
+      margin-top: 150px;
+      margin-left: 1460px;
+      cursor:pointer;
+   }
+   
+   #highest {
+      font-size: 16px;
+      position: relative;
+      top: 40px;
+      color: white;
+      border: 1px solid black;
+      background-color: black;
+      margin-left: 12px;
+      cursor:pointer;
+   }
+   
+   #lowest {
+      font-size: 16px;
+      position: relative;
+      color: white;
+      border: 1px solid black;
+      background-color: black;
+      margin-left: 1605px;
+      top: 14px;
+      cursor:pointer;
+   }
+   
+   #countProducts {
+      color: gray;
+      margin-left: 230px;
+      font-size: 20px;
+   }
+   
+   div:last-child {
+      padding-top: 10px;
+      margin-bottom: -15px;
+   }
 
-      .item_list {
-        border: 1px solid rgb(255, 255, 255);
-        width: 90%;        
-        margin-top: 100px;
-        margin-left: 12.2%;
-       
-        display: flex;
-        flex-wrap: wrap;
-       
-
-     
-      }
-
-      .item_list .item_card {
-        border: solid 0.2px #00000025;        
-        height: 340px;
-        width: 227px;
-        padding: 0;
-        margin: 0 18px 18px 0;     
-      }
-
-       .item_list .item_card img { 
-        height: 220px;
-        width: 225px;
-        border-color: #00000025;  
-        border-style: solid;  
-        border-width: 0 0 1px 0;  
-        object-fit: cover; 
-      }
-       
-      .item_list .item_card .text {
-        margin-top: 10px;
-        padding: 0 5px 0 5px;
-        color: black;        
-      }
-      
-       .item_list .item_card .text #title {
-        font-size: 17px;
-        opacity: .8;
-        color: black;  
-        font-weight: 400;
-        display: block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;          
-      }
-
-      .item_list .item_card .text #price {     
-        font-weight: 900;
-        font-size: 20px;
-        opacity: .8;
-        color: black;        
-      }
-
-      
-      .item_list .item_card .text #created {
-        float: right;
-        margin: 7px 5px 0 0;
-        font-weight: 400;
-        font-size: 15px;
-        opacity: .8;
-        color: rgb(123, 123, 123);        
-      }
-
-
-      .item_list .item_card .text2 {
-        border-color: #00000025;  
-        border-style: solid;  
-        border-width: 1px 0 0 0;  
-        padding: 10px 0 0 5px; 
-      }
-
-      .item_list .item_card .text2 #address {
-        font-weight: 400;
-        font-size: 15px;
-        color: black;   
-        max-width: 120px;
-        overflow: hidden;        
-        text-overflow: ellipsis;     
-        white-space: nowrap;       
-        word-break:break-all;
-      }
-
-
-      #icon-location {
-         color: black;
-      }
-      
-      
-      .a-pagination {
-         text-decoration: none;
-         border: 1px solid lightgray;
-        padding: 4px;
-         padding-left: 10px;
-         padding-right: 10px;
-         margin-right: 5px;
-         border-radius: 10px;
-         color: black;
-      }
-      
-      .a-pagination:hover {
-         color: lightgray;
-         
-      }
-      
-      #newest {
-         color: white;
-         border: 1px solid black;
-          background-color: black;
-          position: relative;
-          top: 40px;
-          margin-top: 150px;      
-         margin-left: 1480px;
-      }
-      
-      #highest {
-         position: relative;
-         top: 40px;
-          color: white;
-         border: 1px solid black;         
-          background-color: black;
-          margin-left: 3px;
-      }
-      
-       #lowest {
-          position: relative;
-       color: white;
-        border: 1px solid black;
-         background-color: black;
-      margin-left: 1627px;
-      top: 11px;         
-      } 
-      
-      #countProducts {
-         color: gray;
-         margin-left: 230px;
-         font-size: 15px;
-      }
-      
-      
- 
-       
-      
-      
-    </style>
+</style>
     
     <script>
    function selChange() {
@@ -200,6 +196,7 @@
         <jsp:include page="../include/header.jsp"></jsp:include> 
         <jsp:include page="../include/side.jsp"></jsp:include> 
    
+
      <c:if test="${searchKeyword != 'empty'}">         
    <%--          옵션 선택
            <div style="float: right;">
@@ -215,13 +212,13 @@
          
             <nav>
                <button id="newest" onclick="location.href='searchPagenation?title=${keyword }&type=latest'">최신순</button>
-               <button id="highest" onclick="location.href='searchPagenation?title=${keyword }&type=high'">높은순</button>
-               <button id="lowest" onclick="location.href='searchPagenation?title=${keyword }&type=low'">낮은순</button>
+               <button id="highest" onclick="location.href='searchPagenation?title=${keyword }&type=high'">고가순</button>
+               <button id="lowest" onclick="location.href='searchPagenation?title=${keyword }&type=low'">저가순</button>
             </nav>                           
                   
-          <div id="countProducts">총 <span style="font-size: 15px; color:black; font-weight: bold;">${countProduct}</span>개의 상품이 검색 되었습니다</div>     
+          <div id="countProducts">총 <span style="font-size: 16px; color:black; font-weight: bold;">${searchCnt}</span>개의 상품이 검색 되었습니다</div>     
                    
-         <div style="border: 1px solid white;width: 77.6%;margin-left: 12.2%;">
+         <div style="border: 1px solid white;width: 86%;margin-left: 12.2%;">
             <hr>         
          </div>
                       
@@ -265,7 +262,8 @@
              
              
                 <%-- 페이지네이션 --%>
-           <div style="display: block; text-align: center; margin-top: 220px; margin-left: 124px;">      
+
+           <div style="display: block; text-align: center; margin-top: 220px; margin-left: 124px; margin-bottom: 150px;">      
             <c:if test="${paging.startPage != 1 }">
                <a class="a-pagination" href="searchPagenation?title=${keyword }&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
             </c:if>
@@ -282,28 +280,29 @@
             <c:if test="${paging.endPage != paging.lastPage}">
                <a class="a-pagination" href="searchPagenation?title=${keyword }&nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
             </c:if>
-         </div>
-          
-  </c:if>             
+         </div> 
+
+      </c:if>           
+                
  
           <%-- 검색결과가 없는 경우 --%>
              <c:if test="${searchKeyword == 'empty'}">     
              
              <i class="fa-solid fa-circle-exclamation" style="color:gray; position: relative; left:850px; top: 256px; font-size:90px;"></i>    
-                <div style="color:gray; font-size:20px; margin-top: 50px; font-weight: bold; position: relative; left: 710px; top: 270px;"> 
-                   <span  style="color:red; font-size:20px; font-weight: bold;">
+                <div style="color:gray; font-size:20px; margin-top: 50px; font-weight: bold; position: relative; 
+                         left: 750px; top: 270px; height: 800px; "> 
+                   <span  style="color:red; font-size:20px; font-weight: bold; ">
                       '<c:out value = "${keyword}"/>'
                    </span>
                 에 대한 검색결과가 없습니다.
                 </div>     
              </c:if>
-             
-                 
+                      
 
-       
-       
-        
-        
+        <jsp:include page="../include/footer.jsp"/>  
+               
  
 </body>
 </html>
+
+

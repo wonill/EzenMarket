@@ -154,4 +154,42 @@
    		SELECT count(*) FROM enddeal WHERE post_id = #{post_id}
    </select>
    
+    <!-- 구매내역 불러오기 -->
+   <select id="getBuying" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.EndDeal">
+      SELECT 
+         u.user_number, u.nickname, p.title AS title, p.price AS price, i.image_url
+      FROM 
+         endDeal e
+      INNER JOIN 
+         userlist u ON e.buyer_user_number = u.user_number
+      INNER JOIN 
+         post p ON e.post_Id = p.post_id
+      INNER JOIN 
+         postimage i ON e.post_Id = i.post_id
+      WHERE 
+         (i.post_id, i.post_image_id) in (select i.post_id, min(i.post_image_id) FROM postImage i GROUP BY i.post_id) 
+        AND
+            e.buyer_user_number = #{user_num}
+      ORDER BY 
+         endDeal_id DESC
+   </select>
+   
+   <select id="getBuyingCount" parameterType="Integer" resultType="Integer">
+      SELECT 
+         count(*)
+      FROM 
+         enddeal
+      WHERE 
+         buyer_user_number = #{user_num}
+   </select>
+   
+   <select id="modifyImg" parameterType="String">
+      UPDATE
+         userlist
+      SET
+         user_image = #{userimage}
+      WHERE
+         user_number=2
+   </select>
+   
 </mapper>

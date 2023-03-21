@@ -1,8 +1,8 @@
 package com.ezen.ezenmarket.mypage.service;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.ezenmarket.mypage.dto.Post;
 
@@ -26,6 +26,10 @@ public interface MyPageService {
    
    public void modifyIntro(String userintro);
    
+   public void modifyImg(MultipartFile file);
+   
    public void getmanagement(HttpServletRequest req);
+   
+   public String getBuyList(HttpServletRequest req);
 
 }

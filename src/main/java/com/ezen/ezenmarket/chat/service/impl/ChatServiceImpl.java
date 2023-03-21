@@ -1,7 +1,9 @@
 package com.ezen.ezenmarket.chat.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +15,6 @@ import com.ezen.ezenmarket.chat.dto.ChattingContent;
 import com.ezen.ezenmarket.chat.dto.ChattingRoom;
 import com.ezen.ezenmarket.chat.dto.LastChat;
 import com.ezen.ezenmarket.chat.dto.MyChattingRoom;
-import com.ezen.ezenmarket.chat.dto.MyChattingRoomInfo;
 import com.ezen.ezenmarket.chat.dto.User;
 import com.ezen.ezenmarket.chat.mapper.ChatMapper;
 import com.ezen.ezenmarket.chat.mapper.ReadProcessingMapper;
@@ -30,9 +31,9 @@ public class ChatServiceImpl implements ChatService{
 	
 	
 	@Override
-	public List<Integer> searchMyChatPartner(Integer user_number) {
+	public Set<Integer> searchMyChatPartner(Integer user_number) {
 		List<MyChattingRoom> myChattingRooms = chatMapper.selectMyChattingRooms(user_number);
-		List<Integer> chatPartnerList = new ArrayList<>();
+		Set<Integer> chatPartnerList = new HashSet<>();
 		
 		
 		if(myChattingRooms != null && myChattingRooms.size() > 0) {
@@ -99,16 +100,14 @@ public class ChatServiceImpl implements ChatService{
 					lastChatInfo.get(i).setLast_chat(chatMapper.selectLastChat(room_id)); 
 					lastChatInfo.get(i).setChatting_date(chatMapper.selectLastChatDate(room_id));
 					
-					System.out.println(room_id);
-					System.out.println(user_number);
+					
 					
 				} else {
 					lastChatInfo.add(info);
 					lastChatInfo.get(i).setLast_chat(chatMapper.selectLastChat(room_id)); 
 					lastChatInfo.get(i).setChatting_date(chatMapper.selectLastChatDate(room_id));
 					lastChatInfo.get(i).setNumOfUnreadMsg(readProcessingMapper.countUnreadMessages(room_id, user_number));
-					System.out.println(room_id);
-					System.out.println(user_number);
+					
 					
 				}
 				
@@ -129,7 +128,8 @@ public class ChatServiceImpl implements ChatService{
 			// 내가 속한 방의 채팅내역을 가져옴
 			List<ChattingContent> chattingContents = chatMapper.getChattingContents(current_room_id);
 			
-			List<Integer> myChatPartnerList = searchMyChatPartner(user_number);
+			// 나와 채팅방을 공유하는 유저들의 번호목록을 가져옴 (HashSet을 이용해 중복제거)
+			Set<Integer> myChatPartnerList = searchMyChatPartner(user_number);
 			
 			
 			

@@ -104,13 +104,15 @@
       .item_list .item_card .text2 #address {
         font-weight: 400;
         font-size: 15px;
-        color: black;   
-        max-width: 120px;
-        overflow: hidden;        
-        text-overflow: ellipsis;     
-        white-space: nowrap;       
-        word-break:break-all;
-      }
+        color: black;     
+        float: left;   
+        max-width: 170px; 
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        margin-top: 5px;       
+   		}
 
       #recommend {        
         margin-top: 200px;
@@ -119,9 +121,11 @@
         /* margin-bottom: 40px; */      
       }
       
-      #icon-location {
-         color: black;
-      }
+       #icon-location {
+        position: relative; 
+        float: left; 
+        margin: 5px 5px 5px 0;
+   	   }
 
    .page {
       width: 100%;
@@ -159,12 +163,14 @@
    
      
         
-  <div id="recommend">오늘의 상품 추천</div>
-  <!-- 상품 사진들 넣기-->
+   
+  // 카테고리별 이름 나오게 하기   
+  <div id="recommend" style="font-weight: 500; font-size: 1.8em;">${cateList[0].category_name} <ion-icon name="sparkles-sharp" style="font-size:1em; color:#FFCC33;""></ion-icon> </div>
   
   <div class="item_list" >
       
-      <c:forEach items="${cateList}" var="list">   
+      <c:forEach items="${cateList}" var="list">  
+      
          <div class="item_card">
          
             <div class="item_img">
@@ -186,7 +192,7 @@
 
                <!-- <button><i class="fas fa-check"></i>사러가기</button> -->
             </div>   
-                  
+
                      
             <div class="text2">
                <a href="product?id=${list.post_id }">
