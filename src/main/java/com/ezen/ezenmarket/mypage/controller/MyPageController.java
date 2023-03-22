@@ -82,6 +82,7 @@ public class MyPageController {
 		}
 		service.modifyIntro(userintro);
 		if (file != null) {
+			// 디비에 해쉬로변환한 이름을 넣고 서버에 사진을 넣는 작업
 			service.modifyImg(file);
 		}
 		String nickCheck = Integer.toString(check);

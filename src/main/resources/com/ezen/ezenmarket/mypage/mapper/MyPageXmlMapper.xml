@@ -66,7 +66,7 @@
    
    <select id="getUserProfile" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.Profile">
       SELECT 
-         nickname, user_intro
+         nickname, user_intro, user_image
       FROM 
          userlist
       WHERE 
@@ -152,6 +152,15 @@
    
    <select id="countEndDeal" resultType="Integer">
    		SELECT count(*) FROM enddeal WHERE post_id = #{post_id}
+   </select>
+   
+    <select id="getZzimCount" parameterType="Integer" resultType="Integer">
+      SELECT 
+         count(*)
+      FROM 
+         wishlist
+      WHERE 
+         user_number = #{user_number}
    </select>
    
     <!-- 구매내역 불러오기 -->
