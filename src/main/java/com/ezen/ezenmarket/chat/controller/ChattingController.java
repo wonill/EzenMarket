@@ -7,9 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ezen.ezenmarket.chat.mapper.ChatMapper;
 import com.ezen.ezenmarket.chat.service.ChatService;
 
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +20,9 @@ public class ChattingController {
 	
 	@Autowired
 	ChatService chatService;
+	
+	@Autowired
+	ChatMapper chatMapper;
 	
 	
 	@GetMapping(value="/chat")
@@ -43,6 +46,14 @@ public class ChattingController {
 	public String enterChatRoomFromPost(Integer buyer_user_number, Integer seller_user_number, Integer post_id) {
 		
 		return "redirect:/chat?room_id=" + chatService.searchChatRoomNumberToEnter(buyer_user_number, seller_user_number, post_id);
+	}
+	
+	@GetMapping(value="/exitChatRoom")
+	public String exitChatRoom(Integer room_id) {
+		
+		chatMapper.exitChattingRoom(room_id);
+		
+		return "redirect:/chat"; 
 	}
 	
 	

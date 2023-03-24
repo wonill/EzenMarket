@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Locale;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +27,8 @@ public class LastChat{
 	private Integer numOfUnreadMsg;
 	
 	private static SimpleDateFormat timeFormat = new SimpleDateFormat("a hh:mm", Locale.KOREA);
+	
+	private JSONParser jsonParser = new JSONParser();
 	
 	public String getCreationDateTime() {
 		
@@ -44,4 +50,38 @@ public class LastChat{
 				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr6g2mhiF8Z2Or4GyTeneHPjXjXemwPghcX9_ZH_M7La1x2O3Vlaeiu7gsxpaGoIze-XE&usqp=CAU"
 				: user_image;
 	}
+	
+	public String getLastChatContent() {
+		
+		if(last_chat == null || last_chat.equals("")) {
+			return "";
+		}
+		
+		JSONObject jsonObj = null;
+		
+		try {
+			jsonObj = (JSONObject) jsonParser.parse(last_chat);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String type = jsonObj.get("type").toString();
+		
+		
+		
+		
+		String content;
+		
+		if(type.equals("message")) {
+			content = jsonObj.get("contents").toString();
+		} else if(type.equals("image")) {
+			content = "사진을 보냈습니다.";
+		} else {
+			content = "";
+		}
+		
+		return content;
+	}
+	
 }

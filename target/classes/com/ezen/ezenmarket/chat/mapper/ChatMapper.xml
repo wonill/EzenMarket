@@ -108,4 +108,8 @@
 	<select id="searchLastChatRoom" resultType="Integer">
 		SELECT max(chattingRoom_id) FROM chattingRoom WHERE buyer_user_number = #{buyer_user_number}
 	</select>
+	
+	<delete id="exitChattingRoom" parameterType="Integer">
+		DELETE FROM chattingRoom WHERE chattingRoom_id = #{chattingRoom_id}
+	</delete>
 </mapper>

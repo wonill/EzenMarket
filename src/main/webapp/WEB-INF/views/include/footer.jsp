@@ -12,6 +12,7 @@
     
       
     .footer_item {
+    	z-index:2;
         position : relative;
         transform : translateY(50%);
         bottom: 0px;

@@ -52,4 +52,6 @@ public interface ChatMapper {
 	
 	public Integer searchLastChatRoom(@Param("buyer_user_number")Integer buyer_user_number);
 	
+	public void exitChattingRoom(Integer chattingRoom_id);
+	
 }

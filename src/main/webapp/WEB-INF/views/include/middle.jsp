@@ -263,34 +263,7 @@
               },
             });
             
-            var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/" + ${sessionScope.user_number});
             
-            webSocket.onopen = function(message) {
-                  
-                  
-                  console.log('오픈');
-                  console.log('오픈');
-                  console.log('오픈');
-                  console.log('오픈');
-            };
-                
-            webSocket.onmessage = function(message) {
-               const info = JSON.parse(message.data);
-                  
-                if(info.type == 'message'){
-                  alert('메세지 알림이 왔습니다!')
-                }   
-            };
-                
-             webSocket.onerror = function(message) {
-                    
-                  console.log("error...\n");
-             };       
-                
-            webSocket.onclose = function(message) {
-                   
-                  console.log("Server Disconnect...\n");
-            };
             
             
            </script>

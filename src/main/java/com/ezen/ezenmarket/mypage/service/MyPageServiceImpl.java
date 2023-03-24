@@ -273,7 +273,7 @@ public class MyPageServiceImpl implements MyPageService{
 	    }
 	}
    
-   // 디비에 해쉬로변환한 이름을 넣고 서버에 사진을 넣는 작업
+   // 디비에 해쉬로 변환한 이름을 넣고 서버에 사진을 넣는 작업
    @Override
    public void modifyImg(MultipartFile file) {
 	   String imgName = generateHash(file) + "." + FilenameUtils.getExtension(file.getOriginalFilename());

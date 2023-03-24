@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.ezenmarket.review.mapper.ReviewMapper">
+	
+	<select id="countEndDeal" resultType="Integer">
+		SELECT count(*) FROM enddeal WHERE #{user_number} IN (buyer_user_number, seller_user_number) AND #{chatPartner} IN (buyer_user_number, seller_user_number) AND post_id = #{post_id}
+	</select>
+	
+	<select id="searchEnddeal" resultType="com.ezen.ezenmarket.review.dto.Enddeal" parameterType="Integer">
+		SELECT * FROM enddeal WHERE post_id = #{post_id}
+	</select>
+	
+	<insert id="insertReview">
+		INSERT INTO review VALUES(review_id_seq.nextval, #{enddeal_id}, #{rating}, #{user_number}, #{review_content})
+	</insert>
+
+</mapper>

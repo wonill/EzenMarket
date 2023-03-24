@@ -11,14 +11,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"/>
     <script src="https://code.jquery.com/jquery-1.8.3.min.js" integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"> <!-- 부트스트랩-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	
     <style>
     	
         *{
             box-sizing: border-box;
-            font-family: 'SUIT-Regular'!important;
+            
         }
         
         body{
+        	font-family: 'SUIT-Regular'!important;
             margin: 0;
             padding: 0;
         }
@@ -79,9 +82,10 @@
 
         .chatroom_list .box .nickname{
             position: absolute;
-            border: solid 0px black;
+           
             left: 130px;
             top: 25px;
+            font-weight:bold;
         }
         
         
@@ -211,6 +215,12 @@
             font-size: 20px;
         }
         
+        .chat_wrap .item .box .msg img{
+            width:150px; 
+            object-fit: cover; 
+            cursor: pointer;
+        }
+        
         .chat_wrap .item .box .unread{
             font-size:13px; 
             color:yellow; 
@@ -314,9 +324,19 @@
             top: 10px;
             left: 23px;
             position: absolute;
-            border: solid 0px black; 
             font-size: 20px;
             font-weight: bold;
+        }
+        
+        .info .chat_option{
+        	position: absolute;
+        	cursor:pointer;
+        	top: 10px;
+        	right: 30px;
+        	width: 20px;
+        	height: 35px;
+        	font-size:35px;
+        	text-align:center;
         }
         
         .info .nickname a{
@@ -430,7 +450,7 @@
 	            <div class="nickname">${lastChat.nickname }</div>
 	            <div class="alarm" id='${lastChat.chattingRoom_id + 20000}'>${lastChat.numOfUnreadMsg }</div>
 	            <div class="chat_box">
-	            <p class="last_chat" id="${lastChat.chattingRoom_id }">${lastChat.last_chat }</p>
+	            <p class="last_chat" id="${lastChat.chattingRoom_id }">${lastChat.lastChatContent }</p>
 	            </div>
 	            <span class="last_chat_time" id='${lastChat.chattingRoom_id + 10000}'>${lastChat.creationDateTime }</span>
 	        </div>
@@ -487,12 +507,14 @@
 
 
     <div class="chat_wrap">
+    	<jsp:include page="../include/chat_option.jsp"></jsp:include>
     	<div class="no_room">
             <img src="https://cdn-icons-png.flaticon.com/512/5962/5962500.png" alt="채팅">
             <p class="no_room_msg">대화방을 선택하세요</p>
         </div>
         <div class="info">
             <div class="nickname"><a href="mypage/?user_number=${myCurrentChatPartnerInfo.user_number }">${myCurrentChatPartnerInfo.nickname }</a></div>
+            <span class="material-symbols-outlined chat_option" onclick="chat_option_open()">menu</span>
             <div class="post_img" style="background-image: url('${postInfo.image_url}')" onclick="location.href='product?id=${postInfo.post_id }'"></div>
             <div class="price">${postInfo.formattedPrice}원</div>
             <div class="post_title">${postInfo.title}</div>
@@ -519,7 +541,16 @@
           </c:choose> 
           on">
                 <div class="box">
-                    <p class="msg">${chattingContent.contents }</p>
+                    <p class="msg">
+                    <c:choose>
+                    <c:when test="${chattingContent.contentType eq 'message' }">
+                    ${chattingContent.chatMessage }
+                    </c:when>
+                    <c:when test="${chattingContent.contentType eq 'image' }">
+                    <img src="${chattingContent.chatImage }" onclick="openImage(this.src)" class="selProductFile" title="Click to enlarge">
+                    </c:when>
+                    </c:choose>
+                    </p>
                     <c:if test="${user.user_number ne chattingContent.user_number}">
                     <div class="chat_profile_img"></div>
                     </c:if>      
@@ -528,33 +559,15 @@
                 </div>
             </div>
 		</c:forEach>
-	<!-- 	
-            <div class="item mymsg on">
-                <div class="box">
-                    <p class="msg">안녕하세요</p>
-                    <span class="time">오전 10:05</span>
-                </div>
-            </div>
-          <div class="item yourmsg on">
-                <div class="box">
-                    <p class="msg">안녕하세요</p>      
-                    <span class="time">오전 10:05</span>
-                </div>
-            </div>
-	-->
-
+	
 
         </div>
 	 
-        <input type="text" class="mymsg" placeholder="내용 입력" id="input">
-       <!-- <input type="text" class="yourmsg" placeholder="내용 입력">-->
+        <a href="javascript:" onclick="fileUploadAction();">사진!!!</a><input type="text" class="mymsg" placeholder="내용 입력" id="input">
+        <input type="file" id="input_imgs" style="display: none;"/>
     </div>
 </div>
     <jsp:include page="../include/footer.jsp"/>
-<!-- 
-   <input name="currentPage"  value="2"  type="hidden"/>
-	</form> 
- -->
 
 
 <script>
@@ -632,7 +645,7 @@
     }
     
      
-    var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/${user.user_number}");
+    var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888<%=request.getContextPath()%>/echo/${user.user_number}");
     
     webSocket.onopen = function(message) {
       
@@ -723,6 +736,44 @@
 	    	  }
 	    		  
     	  }
+      } else if(info.type == 'image'){
+    	  
+		  
+    	  console.log("Recieve From Server => "+info.image_url+"\n");  
+	      
+	      document.getElementById(info.chattingRoom_id).innerText = '사진을 보냈습니다.';
+	      document.getElementById(info.chattingRoom_id + 10000).innerText = currentTime();
+	      //document.querySelector('#\\3' + ${lastChat.chattingRoom_id } + ' .chat_box .last_chat').innerText = info.contents;
+	      //document.querySelector('#\\3' + ${lastChat.chattingRoom_id } + ' .last_chat_time').innerText = currentTime();
+	      
+	      if(info.chattingRoom_id == chattingRoom_id && chattingRoom_id != 0){
+	    	  
+	      var _tar = $(".chat_wrap .inner").append('<div class="item yourmsg"><div class="box"><p class="msg"><img src="' + info.image_url + '" onclick="openImage(this.src)" class="selProductFile" title="Click to enlarge"></p><div class="chat_profile_img"></div><div class="unread">1</div><span class="time">'+currentTime()+'</span></div></div>');
+	      
+	      var lastItem = $(".chat_wrap .inner").find(".item:last");
+	      setTimeout(function(){
+	          lastItem.addClass("on");
+	      },10);
+	
+	      var position = lastItem.position().top + $(".chat_wrap .inner").scrollTop();
+	      console.log(position);
+	
+	      $(".chat_wrap .inner").stop().animate({scrollTop:position},500);
+	      } else {
+	    	  var numOfUnread = document.getElementById(info.chattingRoom_id + 20000).innerText;
+	    	  document.getElementById(info.chattingRoom_id + 20000).style.display = 'block';
+	    	  
+		      document.getElementById(info.chattingRoom_id + 20000).innerText = parseInt(numOfUnread) + 1;
+		      
+		      blink(info.chattingRoom_id + 30000);
+	      }
+	      
+	      
+	      
+	      if (document.visibilityState === 'visible' && chattingRoom_id != 0) {
+			    readProcessing();
+		  } 
+    	  
       }
       
       
@@ -760,6 +811,35 @@
      message.value = "";
   }
   
+  
+  
+  
+  	function sendImage(image_name) {                      
+	   
+	  
+	 	document.getElementById(chattingRoom_id).innerText = '사진을 보냈습니다.';
+	 	document.getElementById(chattingRoom_id + 10000).innerText = currentTime();
+
+	    const info = {
+	       type:'image',
+	       chattingRoom_id:chattingRoom_id,
+	       user_number:${user.user_number},
+	       image_url:'http://localhost:8888<%=request.getContextPath()%>/tmpFiles/' + image_name
+	    }
+	    
+	    const json = JSON.stringify(info);
+	    
+	    
+	    console.log("Send to Server => "+json+"\n");
+	    
+	    webSocket.send(json);
+	    
+	    
+	 }
+  
+  
+  
+  
   function disconnect() {
    
     webSocket.close();
@@ -778,50 +858,188 @@
   
   
   
-  function readProcessing(){
-	  
-	  const info = {
-		type:'readProcessing',
-		chattingRoom_id:chattingRoom_id,
-	    user_number:${user.user_number}
+	  function readProcessing(){
+		  
+		  const info = {
+			type:'readProcessing',
+			chattingRoom_id:chattingRoom_id,
+		    user_number:${user.user_number}
+		  }
+		  
+		  
+		  webSocket.send(JSON.stringify(info));
+		  
+		  
 	  }
-	  
-	  
-	  webSocket.send(JSON.stringify(info));
-	  
-	  
-  }
   
-  function reconnect(){
-	  const info = {
-				type:'reconnect',
-				chattingRoom_id:chattingRoom_id,
-			    user_number:${user.user_number}
-			  }
-			  
-			  
-	webSocket.send(JSON.stringify(info));
-  }
+	  function reconnect(){
+		  const info = {
+					type:'reconnect',
+					chattingRoom_id:chattingRoom_id,
+				    user_number:${user.user_number}
+				  }
+				  
+				  
+		webSocket.send(JSON.stringify(info));
+	  }
   
-  function blink(id){
-      const element = document.getElementById(id);
-       element.style.backgroundColor = '#FFFF80';
+	  function blink(id){
+	      const element = document.getElementById(id);
+	       element.style.backgroundColor = '#FFFF80';
+	
+	        setTimeout(function() {
+	          element.style.backgroundColor = 'white';
+	        }, 70);
+	        
+	    }
+  
+  
+	  function openImage(image_url){
+	      var popupWidth = 500;
+	      var popupHeight = 500;
+	
+	      var popupX = (window.screen.width / 2) - (popupWidth / 2);
+	    
+	      var popupY= (window.screen.height / 2) - (popupHeight / 2);
+	
+	      window.open(image_url, '_blank', 'status=no, height=500, width=500, left='+ popupX + ', top='+ popupY);
+	
+	      //window.open(image_url, "_blank", "width=500, height=500");
+	  }  
+  
+		
+		
+		
+		//이미지 전송 파트
+		 // 이미지 정보들을 담을 배열 
+	    var sel_files = [];
 
-        setTimeout(function() {
-          element.style.backgroundColor = 'white';
-        }, 70);
+	    $(document).ready(function() {
+	        $("#input_imgs").on("change", handleImgFileSelect);
+	    }); 
+
+
+	    function fileUploadAction() {
+	        console.log("fileUploadAction");
+	        $("#input_imgs").trigger('click');
+	    }
+
+
+	    function handleImgFileSelect(e) {
+
+	    
+
+	    var files = e.target.files;
+	    var filesArr = Array.prototype.slice.call(files);
+
+	    var index = 0;
+	    filesArr.forEach(function(f) {
+	        if(!f.type.match("image.*")) {
+	            alert("확장자는 이미지 확장자만 가능합니다.");
+	            return;
+	        }
+
+	        sel_files.push(f);
+
+	        var reader = new FileReader();
+	        reader.onload = function(e) {
+	            //var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+	            // <div class="item mymsg on">
+	            //     <div class="box">
+	            //         <p class="msg"><img src="https://img.insight.co.kr/static/2021/09/14/700/img_20210914111200_9s96jjji.webp" alt="" style="width:150px; object-fit: cover; cursor: pointer;" onclick="openImage(this.src)"></p>
+	            //         <div class="unread">1</div>      
+	            //         <span class="time">오전 10:05</span>
+	            //     </div>
+	            // </div>
+
+
+	            var _tar = $(".chat_wrap .inner").append('<div class="item mymsg"><div class="box"><p class="msg"><img src="' + e.target.result + '"data-file="' + f.name + '" onclick="openImage(this.src)" class="selProductFile" title="Click to enlarge"></p><div class="unread">1</div><span class="time">'+currentTime()+'</span></div></div>');
+	            
+	            var lastItem = $(".chat_wrap .inner").find(".item:last");
+	            setTimeout(function(){
+	                lastItem.addClass("on");
+	            },10);
+	            
+	            var position = lastItem.position().top + $(".chat_wrap .inner").scrollTop();
+	            console.log(position);
+	            
+	            $(".chat_wrap .inner").stop().animate({scrollTop:position},500);
+
+
+	            index++;
+
+	        }
+	        reader.readAsDataURL(f);
+	        submitAction();
+	        deleteImageAction(0);
+	    });
+	    }
+
+
+
+	    function deleteImageAction(index) {
+	        console.log("index : "+index);
+	        console.log("sel length : "+sel_files.length);
+
+	        sel_files.splice(index, 1);
+
+	       
+	    }
+
+	    function fileUploadAction() {
+	    console.log("fileUploadAction");
+	    $("#input_imgs").trigger('click');
+	    }
+
+	    function submitAction() {
+	    console.log("업로드 파일 갯수 : "+sel_files.length);
+	    var data = new FormData();
+
+	    //for(var i=0, len=sel_files.length; i<len; i++) {
+	    //    var name = "image_"+i;
+	        var name = "img";
+	        data.append(name, sel_files[0]);
+	    //}
+	    data.append("image_count", sel_files.length);
+
+	    if(sel_files.length < 1) {
+	        alert("한개이상의 파일을 선택해주세요.");
+	        return;
+	    }           
+
+	   
+	    
+	    const xhttp = new XMLHttpRequest();
+
+	    xhttp.addEventListener('readystatechange', (e) => {
+	      
+	       if(xhttp.readyState == 4 && xhttp.status == 200){
+	           
+	            console.log('요청 성공!', xhttp.responseText);
+	            
+	            sendImage(xhttp.responseText);
+	       }
+	  
+	    });
+
+
+	   
+	    xhttp.open('POST', './chat/imgUpload');
+
+	    
+	    xhttp.send(data);
+	    
+	    }
+	
+	
+	    function chat_option_open(){
+            document.getElementById('chat_option_window').style.display = 'block';
+            document.getElementById('chat_option_window').style.zIndex = '1';
+            document.getElementById('chat_option_list').className = 'chat_option_open';
+        }
+
         
-    }
-  
-//신고팝업
-	function show() {
-		document.querySelector(".background").className = "background show";
-	}
-	function close() {
-		document.querySelector(".background").className = "background";
-	}
-	document.querySelector("#show").addEventListener("click", show);
-	document.querySelector("#close").addEventListener("click", close);
+	
  
 </script>
 

@@ -111,8 +111,16 @@ public class WebSocketChat{
             System.out.println("----------------------------"); 
 			
 			
-			chatService.insert(Integer.parseInt(jsonObj.get("chattingRoom_id").toString()), Integer.parseInt(jsonObj.get("user_number").toString()), jsonObj.get("contents").toString());
-			sendMessage(session, jsonStr, user_number);							
+			chatService.insert(Integer.parseInt(jsonObj.get("chattingRoom_id").toString()), Integer.parseInt(jsonObj.get("user_number").toString()), jsonStr);
+			sendData(session, jsonStr, user_number);							
+			
+		} else if(type.equals("image")) {
+			System.out.println("이미지를 보낸 유저 번호 : " + jsonObj.get("user_number"));
+			System.out.println("톰캣 서버 이미지 경로 : "+ jsonObj.get("image_url"));
+			System.out.println("----------------------------"); 
+			
+			chatService.insert(Integer.parseInt(jsonObj.get("chattingRoom_id").toString()), Integer.parseInt(jsonObj.get("user_number").toString()), jsonStr);
+			sendData(session, jsonStr, user_number);
 		} else {
 			System.out.println("그 외....");
 		}
@@ -134,7 +142,7 @@ public class WebSocketChat{
 		loggedInUserMap.remove(user_number);
 	}
 	
-	public void sendMessage(Session mySession, String jsonStr, Integer user_number) {
+	public void sendData(Session mySession, String jsonStr, Integer user_number) {
 		
 		//List<MyChattingRoom> myChattingRooms = chatMapper.selectMyChattingRooms(user_number);
 		
