@@ -46,7 +46,7 @@
       WHERE 
          e.seller_user_number = #{user_num}
       ORDER BY 
-         review_id DESC
+         review_id DESC 
    </select>
    
    <select id="getReviewCount" resultType="Integer">
@@ -108,7 +108,7 @@
    </delete>
    
    
-   <select id="nickCheck" parameterType="String" resultType="int">
+   <select id="nickCheck" resultType="int">
       SELECT 
          COUNT(nickname) 
       FROM 
@@ -117,22 +117,22 @@
          nickname=#{nickName}
    </select>
    
-   <update id="modifyNick" parameterType="String">
+   <update id="modifyNick">
       UPDATE
          userlist
       SET
          nickname = #{nickName}
       WHERE
-         user_number=2
+         user_number=#{user_number}
    </update>
    
-   <update id="modifyIntro" parameterType="String">
+   <update id="modifyIntro">
       UPDATE
          userlist
       SET
          user_intro = #{userintro}
       WHERE
-         user_number=2
+         user_number=#{user_number}
    </update>
    
    <!--  내 상점관리 클릭 시 나오는 판매상품들 리스트 -->
@@ -165,8 +165,8 @@
    
     <!-- 구매내역 불러오기 -->
    <select id="getBuying" parameterType="Integer" resultType="com.ezen.ezenmarket.mypage.dto.EndDeal">
-      SELECT 
-         u.user_number, u.nickname, p.title AS title, p.price AS price, i.image_url
+           SELECT 
+         u.user_number, u.nickname, p.title AS title, p.price AS price, i.image_url, e.post_id
       FROM 
          endDeal e
       INNER JOIN 
@@ -181,6 +181,8 @@
             e.buyer_user_number = #{user_num}
       ORDER BY 
          endDeal_id DESC
+
+
    </select>
    
    <select id="getBuyingCount" parameterType="Integer" resultType="Integer">
@@ -192,13 +194,21 @@
          buyer_user_number = #{user_num}
    </select>
    
-   <select id="modifyImg" parameterType="String">
+   <select id="modifyImg">
       UPDATE
          userlist
       SET
-         user_image = #{userimage}
+         user_image = #{img}
       WHERE
-         user_number=2
+         user_number=#{user_number}
+   </select>
+   
+   <select id="getEndDealList" resultType="Integer">
+   		SELECT enddeal_id FROM enddeal WHERE seller_user_number = #{user_number} or buyer_user_number = #{user_number} ORDER BY post_id DESC
+   </select>
+   
+   <select id="getOpponentReview" resultType="com.ezen.ezenmarket.mypage.dto.Review">
+   		SELECT * FROM review WHERE enddeal_id = #{enddeal_id} AND NOT user_number = #{user_number}
    </select>
    
 </mapper>

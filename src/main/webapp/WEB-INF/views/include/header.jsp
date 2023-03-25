@@ -166,6 +166,7 @@
         
      .searchbox {       
         width: 280px;
+        height:1px;
         border: 1px solid black;
         position: relative;
         left : 1540px;
@@ -283,6 +284,17 @@
         margin-left: 15px;
       }
         
+        
+        
+      #autocomplete {
+            width: 300px;
+        }
+        
+        #autocomplete-suggestions {background-color: white;border: 0px solid #ddd;width: 100%;box-sizing: border-box;font-family: sans-serif;z-index:-1;width:280px;max-height: 400px;overflow-y: auto;position: relative;}
+        ul {list-style-type: none;padding: 0;margin: 0;}
+        .lili, #autocomplete-suggestions div {padding: 8px; z-index:3;}
+        .lili:hover {background-color: #ddd;}
+        li.hl {background-color: #ddd;}  
       
 </style>
 
@@ -379,12 +391,14 @@
             </ul>
         
                   
-              <form id="searchForm" action="<%=request.getContextPath() %>/searchPagenation" method="GET">
-                  <input class="search" type="search" name="title" autocomplete="off" placeholder="">
-                 <div class="searchbox"></div>     
+              	
+                  <input class="search" type="search" name="title" placeholder="" id="autocomplete-input">
+                 <div class="searchbox"><div style="position:absolute;top:1px;left:0;"><div id="autocomplete-suggestions"></div></div></div>
+                   
                   <button type="submit" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                 
                   <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-            </form>
+           
                  
       </div>
     </div>           
@@ -396,7 +410,133 @@
           </div>
  --%>
         </header>
+	
+	
+	<script>
+   
+   const inputArea = document.getElementById("autocomplete-input");
+    const suggestionsBox = document.getElementById("autocomplete-suggestions");
+    let cache = "";
+    suggestionsBox.style.listStyle = 'none';
 
+    function hideSuggestionsBox() {
+        suggestionsBox.innerHTML = "";
+        suggestionsBox.style.zIndex = -1;
+    }
+
+    function fillSearch(suggestions) {
+        const suggestionList = suggestions.map(suggestion => '<li class="lili">' + suggestion.value + '</li>');
+        suggestionsBox.innerHTML = suggestionList.join("");
+        suggestionsBox.style.zIndex = 3;
+    }
+
+    function loadData(input) {
+        const url = 'https://completion.amazon.com/api/2017/suggestions?session-id=135-3077052-6015425&customer-id=&request-id=DMRETXPQ3PZJQ5TKYSWX&page-type=Gateway&lop=en_US&site-variant=desktop&client-info=amazon-search-ui&mid=ATVPDKIKX0DER&alias=aps&b2b=0&fresh=0&ks=undefined&prefix=' + input + '&event=onFocusWithSearchTerm&limit=11&fb=1&suggestion-type=KEYWORD&suggestion-type=WIDGET&_=1615280967091';
+
+        if (cache === url) return;
+        else {
+            cache = url;
+            fetch(url)
+                .then((res) => res.json())
+                .then(res => fillSearch(res.suggestions))
+        }
+    }
+
+    inputArea.oninput = function () {
+        const input = this.value;
+        if (input.length === 0) {
+            hideSuggestionsBox();
+            return;
+        }
+        loadData(input);
+    };
+
+    suggestionsBox.onclick = function (e) {
+        // if clicked on a suggestion, select it
+        if (e.target.className === "lili") {
+            inputArea.value = e.target.innerHTML;
+            hideSuggestionsBox();
+        }
+    }
+
+    let suggestionHighlighted = -1;
+
+    inputArea.onkeydown = function (e) {
+        const suggestionElements = suggestionsBox.querySelectorAll(".lili");
+
+        for(let i = 0; i < suggestionElements.length; i++){
+            suggestionElements[i].value
+        }
+
+        // down key is pressed
+        if (e.keyCode === 40) {
+            e.preventDefault();
+            if (suggestionHighlighted === suggestionElements.length - 1) {
+                return;
+            }
+            suggestionHighlighted++;
+            suggestionElements[suggestionHighlighted].classList.add("hl");
+            if (suggestionHighlighted > 0) {
+                suggestionElements[suggestionHighlighted - 1].classList.remove("hl");
+            }
+        }
+
+        // up key is pressed
+        if (e.keyCode === 38) {
+            e.preventDefault();
+            if (suggestionHighlighted === -1) {
+                return;
+            }
+            suggestionElements[suggestionHighlighted].classList.remove("hl");
+            suggestionHighlighted--;
+            if (suggestionHighlighted > -1) {
+                suggestionElements[suggestionHighlighted].classList.add("hl");
+            }
+        }
+
+        // enter key is pressed
+        if (e.keyCode === 13) {
+           	
+        	if(suggestionHighlighted == -1){
+        		let value = inputArea.value.trim();
+                if (value) {
+                  window.location.href = '<%=request.getContextPath() %>/searchPagenation?title=' + value;
+                };
+        	}
+        	
+           	if(suggestionElements.length == 0){
+           		let value = inputArea.value.trim();
+                if (value) {
+                  window.location.href = '<%=request.getContextPath() %>/searchPagenation?title=' + value;
+                };
+           	}
+           
+            if(suggestionsBox.style.zIndex == -1){
+            	let value = inputArea.value.trim();
+                if (value) {
+                  window.location.href = '<%=request.getContextPath() %>/searchPagenation?title=' + value;
+                }
+            } else if (suggestionHighlighted > -1) {
+                inputArea.value = suggestionElements[suggestionHighlighted].innerHTML;
+                hideSuggestionsBox();
+                suggestionHighlighted = -1;
+            }
+            
+        }
+    };
+
+    inputArea.onblur = function () {
+        setTimeout(() => {
+            hideSuggestionsBox();
+            suggestionHighlighted = -1;
+        }, 100);
+    };
+    
+  
+
+    
+
+    </script>
 
 </body>
 </html>

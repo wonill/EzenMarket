@@ -2,6 +2,8 @@ package com.ezen.ezenmarket.mypage.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ezen.ezenmarket.mypage.dto.EndDeal;
 import com.ezen.ezenmarket.mypage.dto.Post;
 import com.ezen.ezenmarket.mypage.dto.Profile;
@@ -29,11 +31,11 @@ public interface MyPageXmlMapper {
    
    public Integer nickCheck(String nickName);
    
-   public void modifyNick(String nickName);
+   public void modifyNick(@Param("nickName")String nickName, @Param("user_number")Integer user_number);
    
-   public void modifyIntro(String userintro);
+   public void modifyIntro(@Param("userintro")String userintro, @Param("user_number")Integer user_number);
    
-   public void modifyImg(String img);
+   public void modifyImg(@Param("img")String img, @Param("user_number")Integer user_number);
    
    public Integer getZzimCount (Integer user_number);   
 
@@ -46,5 +48,9 @@ public interface MyPageXmlMapper {
    public Integer zzimCountPerPost(Integer post_id);
    
    public Integer countEndDeal(Integer post_id);
+   
+   public List<Integer> getEndDealList(@Param("user_number")Integer user_number);
+   
+   public Review getOpponentReview(@Param("enddeal_id")Integer enddeal_id, @Param("user_number")Integer user_number);
    
 }

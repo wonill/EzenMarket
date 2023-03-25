@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -174,8 +175,17 @@ public class MyPageServiceImpl implements MyPageService{
       } else {
          req.setAttribute("verified", "no");
       }
+      List<Integer> endDealList = mapper.getEndDealList(user_number); 
+      List<Review> review = new ArrayList<>();
       
-      List<Review> review = mapper.getReviewList(user_number);
+      for(Integer endDeal : endDealList) {
+    	  Review opponentReview = mapper.getOpponentReview(endDeal, user_number);
+    	  if(opponentReview != null) {
+    		  review.add(opponentReview);
+    	  }
+      }
+      
+      //List<Review> review = mapper.getReviewList(user_number);
       
       Profile p = mapper.getUserProfile(user_number);
       p.setReviewCount(mapper.getReviewCount(user_number));
@@ -237,13 +247,13 @@ public class MyPageServiceImpl implements MyPageService{
    }
    
    @Override
-   public void modifyNick(String nickName) {
-      mapper.modifyNick(nickName);
+   public void modifyNick(String nickName, Integer user_number) {
+      mapper.modifyNick(nickName, user_number);
    }
    
    @Override
-   public void modifyIntro(String userintro) {
-      mapper.modifyIntro(userintro);
+   public void modifyIntro(String userintro, Integer user_number) {
+      mapper.modifyIntro(userintro, user_number);
    }
    
    public String generateHash(MultipartFile file) {
@@ -275,7 +285,7 @@ public class MyPageServiceImpl implements MyPageService{
    
    // 디비에 해쉬로 변환한 이름을 넣고 서버에 사진을 넣는 작업
    @Override
-   public void modifyImg(MultipartFile file) {
+   public void modifyImg(MultipartFile file, Integer user_number) {
 	   String imgName = generateHash(file) + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 	 
 	   if (!file.isEmpty()) {
@@ -290,7 +300,7 @@ public class MyPageServiceImpl implements MyPageService{
 		        // Create the file on server
 		        File serverFile = new File(dir.getAbsolutePath()
 		                + File.separator + imgName);
-		        mapper.modifyImg(imgName);
+		        mapper.modifyImg("http://localhost:8888/ezenmarket/tmpFiles/" + imgName, user_number);
 		        BufferedOutputStream stream = new BufferedOutputStream(
 		                new FileOutputStream(serverFile));
 		        stream.write(bytes);

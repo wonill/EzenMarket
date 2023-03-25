@@ -132,6 +132,7 @@
     
     <jsp:include page="chat_exit.jsp"></jsp:include>
     <jsp:include page="review_form.jsp"></jsp:include>
+    <jsp:include page="review_submit_confirm.jsp"></jsp:include>
 
     <script>
          

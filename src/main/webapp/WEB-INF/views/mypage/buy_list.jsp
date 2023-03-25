@@ -14,16 +14,13 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypage/buy_list.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
-    <style>
-
-    </style>
 </head>
 <body>
 
    <jsp:include page="../include/header.jsp"/>     
 
     <!--본문(해당회원 마이페이지)-->
-  
+    
   <hr>
 
    <div class="container">
@@ -34,31 +31,55 @@
          <div id="profile-section" class="col-2">
             <!--profile-section start-->
             <div class="profile-img" id="imgContainer" >
-	          <img id="img" class="profile-img-img" src="http://localhost:8888/ezenmarket/tmpFiles/${profile.user_image }"/>
-	        </div>
-	        <div class="profile-img" id="modifyimgContainer" onclick="fileUploadAction();" style="display: none;">
-	          <img id="modifyImg" class="profile-img-img" src="" alt="">
-	    	</div>
-    	  <input type="file" id="input_imgs" style="display: none;"/>
+             <img id="img" class="profile-img-img" src="${profile.user_image }"/>
+           </div>
+           <div class="profile-img" id="modifyimgContainer" onclick="fileUploadAction();" style="display: none;">
+             <img id="modifyImg" class="profile-img-img" src="" alt="">
+          </div>
+         <input type="file" id="input_imgs" style="display: none;"/>
             <div class="profile-txt">
                <div class="row">
                   <div id="nick">${profile.nickname }</div>
                   <input id="modifyNick" type="text" style="display: none;">
                </div>
 
-               <div>
+               <div  style="margin-bottom: 2em;">
                   <span></span> <span></span>
+                  
                </div>
 
+
                <div class="product">
-                  <span id="left">상품</span> <span id="right">${profile.postCount }</span>
+                  <span id="left">판매상품</span> <span id="right">${profile.postCount }</span>
                </div>
                <div class="review">
-                  <span id="left2">거래후기</span> <span id="right2">${profile.reviewCount }</span>
+                  <span id="left2">거래후기</span> 
+                  <c:choose>
+                    <c:when test="${profile.ratingAvg > 4.0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★★★</span>
+                    </c:when>     
+                    <c:when test="${profile.ratingAvg > 3.0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★★☆</span>
+                    </c:when>  
+                    <c:when test="${profile.ratingAvg > 2.0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★☆☆</span>
+                    </c:when>   
+                    <c:when test="${profile.ratingAvg > 1.0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★☆☆☆</span>
+                    </c:when> 
+                    <c:when test="${profile.ratingAvg > 0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★☆☆☆☆</span>
+                    </c:when>   
+                    <c:when test="${profile.ratingAvg == 0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">☆☆☆☆☆</span>
+                    </c:when>         
+                 </c:choose>           
+                 <span id="right2">${profile.reviewCount }</span>
                </div>
 
                <div id="intro" class="intro" style="margin-left: 10px; border: 0px;">${profile.user_intro }</div>
                <textarea id="modifyIntro" class="intro" style="display: none;"></textarea>
+               
                <c:choose>
                   <c:when test="${verified eq 'yes' }">
                      <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px; ">
@@ -68,6 +89,9 @@
                         <i class="fa-solid fa-basket-shopping"></i> 내상품관리
                      </button>
                   </c:when>
+                  <c:otherwise>
+                        
+                  </c:otherwise>
                </c:choose>
 
                <button id="modify-done-btn" onclick="modifyProfileDone()" style="display: none;">완료</button>
@@ -97,7 +121,7 @@
                                     <div class="row">
                                        <div class="col">
                                           <div class="product-section" style="margin-bottom: 1em;">
-                                             <span style="font-size: 1.2em; font-weight: 700;">구매 내역</span>
+                                             <span style="font-size: 1.2em; font-weight: 700;">전체</span>
                                              <span style="color: crimson; font-weight: 700;">${profile.buyingCount }</span>                                                                                    
                                           </div>
                                        </div>
@@ -120,6 +144,15 @@
                                              </div>
                                              <!-- 1 of 3 end-->
                                           </c:forEach>
+                                          <div class="page">
+                                          <nav aria-label="Page navigation example" id="page2">
+                                             <ul class="pagination">
+                                                <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
+                                                   <li class="page-item"><a class="page-link" href="./buy_list?user_number=${user_number }&page=${i }">${i }</a></li>
+                                                </c:forEach>   
+                                             </ul>
+                                          </nav>
+                                          </div>
                                        </c:when>
                                        <c:otherwise>
                                           <span class="noList">구매내역이 없습니다</span>
@@ -129,15 +162,7 @@
                                        <!--<c:forEach begin="${pagination_start }" end="${pagination_end }" var="i">
                                           <a id="page" href="./sales_list?user_number=${user_number }&page=${i }">${i }</a>
                                        </c:forEach>-->
-                                       <div class="page">
-                                          <nav aria-label="Page navigation example" id="page2">
-                                             <ul class="pagination">
-                                                <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
-                                                   <li class="page-item"><a class="page-link" href="./buy_list?user_number=${user_number }&page=${i }">${i }</a></li>
-                                                </c:forEach>   
-                                             </ul>
-                                          </nav>
-                                       </div>
+
                                     </div>
                                  </div>
                               </div>
@@ -163,6 +188,7 @@
       <!--container end-->
    </div>
    <!--row end-->
+   
 
 
    <jsp:include page="../include/footer.jsp"/>
@@ -209,6 +235,7 @@
           formData.append('nickname', nickname);
           formData.append('userintro', userintro);
           formData.append('nickChange', 'yes');
+          formData.append('user_number',${sessionScope.user_number});
             $.ajax({
                 url:'./modifynick', //Controller에서 요청 받을 주소
                 type:'post', //POST 방식으로 전달
@@ -250,6 +277,7 @@
           formData.append('nickname', nickname);
           formData.append('userintro', userintro);
           formData.append('nickChange', 'no');
+          formData.append('user_number',${sessionScope.user_number});
           $.ajax({
                 url:'./modifynick', //Controller에서 요청 받을 주소
                 type:'post', //POST 방식으로 전달

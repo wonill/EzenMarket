@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Enddeal {
+public class EndDeal {
 	
 	Integer enddeal_id;
 	Integer seller_user_number;

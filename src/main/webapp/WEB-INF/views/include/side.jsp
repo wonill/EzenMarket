@@ -80,11 +80,7 @@
      } 
        
        
-       
-       
-       
-       
-       var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/" + ${sessionScope.user_number});
+ var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/" + ${sessionScope.user_number});
        
        webSocket.onopen = function(message) {
              
@@ -112,6 +108,10 @@
               
              console.log("Server Disconnect...\n");
        }
+       
+       
+       
+      
        </script>
 
 </body>

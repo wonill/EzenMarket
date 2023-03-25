@@ -12,22 +12,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage/zzim.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
-      .intro {
-           width: 260px;
-          height: 70px;
-          box-sizing: border-box;
-          border: solid 2px #1E90FF;
-          border-radius: 5px;
-          font-size: 16px;
-          resize: both;
-      }
-      
-      .container {
-        margin-top: 50px;
-      }
-      #zzim{
-        z-index: 1;
-      }
+
     </style>
 </head>
 <body>
@@ -37,40 +22,59 @@
   <hr>
   <div class="container"> <!--container start-->
     <div class="row"> <!--row start-->
-      <div id="profile-section" class="col-3"> <!--profile-section start-->
-        <div class="profile-img" id="imgContainer" >
-          <img id="img" class="profile-img-img" src="http://localhost:8888/ezenmarket/tmpFiles/${profile.user_image }"/>
+      <div id="profile-section" class="col-2"> <!--profile-section start-->
+        <div class="profile-img" id="imgContainer"  >
+          <img id="img" class="profile-img-img" src="${profile.user_image }"/>
         </div>
         <div class="profile-img" id="modifyimgContainer" onclick="fileUploadAction();" style="display: none;">
           <img id="modifyImg" class="profile-img-img" src="" alt="">
-    	</div>
-    	  <input type="file" id="input_imgs" style="display: none;"/>
+       </div>
+         <input type="file" id="input_imgs" style="display: none;"/>
         <div class="profile-txt">
           <div class="row">
             <div id="nick">${profile.nickname }</div>
             <input id="modifyNick" type="text" style="display: none;">
           </div>
 
-          <div>
-            <span></span>
-            <span></span>
+          <div  style="margin-bottom: 2em;">
+            <span></span><span></span>
           </div>
 
           <div class="product">
-            <span id="left">상품</span>
+            <span id="left">판매상품</span>
             <span id="right">${profile.postCount }</span>
           </div>
           <div class="review">
             <span id="left2">거래후기</span>
-            <span id="right2"> ${profile.reviewCount }</span>
+                 <c:choose>
+                    <c:when test="${profile.ratingAvg > 4.0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★★★</span>
+                    </c:when>     
+                    <c:when test="${profile.ratingAvg > 3.0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★★☆</span>
+                    </c:when>  
+                    <c:when test="${profile.ratingAvg > 2.0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★☆☆</span>
+                    </c:when>   
+                    <c:when test="${profile.ratingAvg > 1.0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★☆☆☆</span>
+                    </c:when> 
+                    <c:when test="${profile.ratingAvg > 0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★☆☆☆☆</span>
+                    </c:when>   
+                    <c:when test="${profile.ratingAvg == 0}">
+                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">☆☆☆☆☆</span>
+                    </c:when>         
+                 </c:choose>           
+                 <span id="right2">${profile.reviewCount }</span>
           </div>
           
           <div id="intro" class="intro" style="margin-left: 10px; border: 0px;">${profile.user_intro }</div>
-          <textarea id="modifyIntro"class="intro" style="display: none;"></textarea>
+          <textarea id="modifyIntro" class="intro" style="display: none;"></textarea>
 
           <c:choose>
             <c:when test="${verified eq 'yes' }">
-               <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
+               <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px; ">
                   <i class="fa-solid fa-user-plus"></i> 프로필수정
                </button>
                <button id="userInfo-btn" onClick="location.href='management?user_number=${user_number}'" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
@@ -85,7 +89,7 @@
         
 
       <!-- 마이페이지 (본인)-->
-      <div id="profile-product" class="col-9">
+      <div id="profile-product" class="col-10">
         <div class="container">
           <div class="row">
             <div class="col">
@@ -93,7 +97,7 @@
                 <ul>
                   <li id="tab1" class="btnCon"> 
                     <input type="radio" checked name="tabmenu" id="tabmenu1" onclick="location.href='./?user_number=${user_number}'">
-                    <label for="tabmenu1">상품</label>
+                    <label for="tabmenu1">판매상품</label>
                     <div class="tabCon" >                      
                     </div>                    
                   </li>
@@ -115,7 +119,7 @@
                                     <div class="row">
                                        <div class="col">
                                           <div class="zzim-section" style="margin-bottom: 1em;">
-                                             <span style="font-size: 1.2em; font-weight: 700;">찜한 상품</span>
+                                             <span style="font-size: 1.2em; font-weight: 700; margin-left: -2px;" >전체</span>
                                              <span style="color: crimson; font-weight: 700;">${profile.zzimCount }</span>
                                              <!--후기 등록될 때마다 숫자 증가해야 함-->
                                           </div>
@@ -169,8 +173,8 @@
         </div>
       </div>
     </div>
-    <jsp:include page="../include/footer.jsp"/>
     </div>
+    <jsp:include page="../include/footer.jsp"/>
     <script>
       function deleteZzim() {
         alert('찜이 해제되었습니다.')
@@ -217,6 +221,7 @@
           formData.append('nickname', nickname);
           formData.append('userintro', userintro);
           formData.append('nickChange', 'yes');
+          formData.append('user_number',${sessionScope.user_number});
             $.ajax({
                 url:'./modifynick', //Controller에서 요청 받을 주소
                 type:'post', //POST 방식으로 전달
@@ -258,6 +263,8 @@
           formData.append('nickname', nickname);
           formData.append('userintro', userintro);
           formData.append('nickChange', 'no');
+          formData.append('user_number',${sessionScope.user_number});
+          
           $.ajax({
                 url:'./modifynick', //Controller에서 요청 받을 주소
                 type:'post', //POST 방식으로 전달

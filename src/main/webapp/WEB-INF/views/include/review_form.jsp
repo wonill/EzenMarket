@@ -276,6 +276,8 @@
     </style>
 </head>
 <body>
+
+
    
 <div class="review_background">
    <div class="review_window">
@@ -785,7 +787,8 @@
                data.append('reviewDetail', reviewText[i].value);
             }
         }
-        
+        data.append('user_number', ${sessionScope.user_number})
+        data.append('post_id', ${postInfo.post_id});
         
         const xhttp = new XMLHttpRequest();
 
@@ -795,7 +798,7 @@
   	           
   	            console.log('요청 성공!', xhttp.responseText);
   	            
-  	            alert('정상작동');
+  	            review_submit_confirm_show();
   	       }
   	  
   	    });
@@ -805,7 +808,11 @@
   	    xhttp.open('POST', './review/submitReview');
   	  
   	    
-  	    xhttp.send(data);  
+  	    if(confirm("후기를 남기시겠습니까?") == true){
+	  	    xhttp.send(data);    	    	
+  	    }else{
+  	    	return;
+  	    }
     	  
     	  
          
@@ -826,7 +833,12 @@
   	            	document.querySelector(".review_background").className = "review_background review_show";	
   	            } else if(xhttp.responseText == 0){
   	            	alert('권한이 없습니다.');
+  	            } else if(xhttp.responseText == 2){
+  	            	alert('이미 리뷰를 작성하셨습니다.')
+  	            } else if(xhttp.responseText == -1){
+  	            	alert('거래 완료된 상품이 아닙니다.')
   	            } else{
+  	            
   	            	alert('에러입니다.');
   	            	
   	            };

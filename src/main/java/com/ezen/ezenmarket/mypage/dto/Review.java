@@ -10,10 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Review {
-	private Integer user_number;
-	private String nickname;
-	private String title;
-	private String user_image;
-	private String review_content;
-	private Integer post_id;
+   private Integer user_number;
+   private String nickname;
+   private String title;
+   private String user_image;
+   private String review_content;
+   private Integer post_id;
+   private Integer rating;
+
 }

@@ -298,8 +298,10 @@
         }
 
         #input{
+        	position:absolute;
+        	left: 10%;
             border:0; 
-            width:100%;
+            width:90%;
             background:#ddd; 
             border-radius:5px; 
             height:50px; 
@@ -311,6 +313,12 @@
 
         #input::placeholder{
             color:#999
+        }
+        
+        .image_upload{
+        	position: absolute;
+        	left: 0%;
+        	width:10%;
         }
     
         .info{
@@ -563,7 +571,12 @@
 
         </div>
 	 
-        <a href="javascript:" onclick="fileUploadAction();">사진!!!</a><input type="text" class="mymsg" placeholder="내용 입력" id="input">
+        <div style="width: 100%; position:relative;">
+        <a href="javascript:" onclick="fileUploadAction();" class="image_upload">
+        <span class="material-symbols-outlined" style="font-size: 50px; padding-top: 5px; color:black;">photo_library</span>
+        </a>
+        <input type="text" class="mymsg" placeholder="내용 입력" id="input">
+        </div>
         <input type="file" id="input_imgs" style="display: none;"/>
     </div>
 </div>

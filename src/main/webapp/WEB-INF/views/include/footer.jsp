@@ -8,99 +8,142 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/d04567b543.js" crossorigin="anonymous"></script>
     <style>
-    
-      
+     
     .footer_item {
-    	z-index:2;
-        position : relative;
-        transform : translateY(50%);
-        bottom: 0px;
+      position : relative;
+      transform : translateY(50%);
+      bottom: 0px;
        display: flex;
         flex-direction: column;
-        padding-bottom: 20px;
+        
         padding-top: 20px;
         width: 1902px;
-        color: white; 
-        background-color:  darkgray;
-        text-align: center;
-       font-size: 13px;
-    }
-    
-  
-    .section1 {
-      
+        background-color:  white;
+        z-index:2
+    }   
+          
+     .wrapper {
+        border: 0px red solid;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 180px 30px 20px;
+     }   
+    .section1 {  
+       border: 0px red solid;    
         list-style: none;
+      grid-row-start: 1;
+      grid-column-end: span 2;
+      margin-left: 200px;
+      color: black; 
+      text-align: left;      
+    }   
+      .section1 .market-info {
+      list-style-type: none;
+   }
+    .section1 .text-title {
+       font-weight: 700;
+       margin: 10px 0 10px 0;
     }
-   
-    .section2 {
-      
-        padding-bottom: 20px;
+    .section1 .text {
+       font-size: 16px;
     }
-    
-   
-   .sns-icon {
-      font-size: 20px;
+    .section2 {   
+       border: 0px red solid;   
+       margin-left: 20px;
+        margin-top: 45px;
+    }
+    .section2 .a-tag {
+      text-decoration: none;   
+      color: black;   
+      font-size: 16px;   
    }
-   
-   .a-tag-section2:link {
-      text-decoration: none;
-      
+   .section2 .a-tag:hover {
+      color: black;
    }
-   
-   .a-tag-section2 {
-      color:white;
-      
+    .section3 {
+         border: 0px red solid;
+      margin-top: 45px;
+   }   
+   .section3 .fa-brands {
+      text-decoration: none;      
+      color: black;
+      font-size: 35px;
+      margin-right: 5px;
    }
-   
-   .a-tag-section2:hover {
-      color:white;
+   .section4 {   
+      border: 0px red solid;
+      grid-column-end: span 4;
+      margin-left: 200px;
+      padding-left: 40px;
+      color: #aaaaaa;
+      font-size: 14px;
+   } 
+   .section5 {   
+      grid-column-end: span 4;
+      background-color: black;
+      color: white;
+      text-align: center;
+      font-size: 15px;
    }
+
+
    
-   .section3 {
-      color: gray;
-   }
+
+   
+   
+   
+
+
    
         
 </style>
     
 </head>
 <body>
-     <footer class="footer_item">
-   
-        <ul class="section1">
-            <li class="text">
-                (주)EzenMarket
-                대표이사 : 3조    |   개인정보보호책임자 : 이윤배
-            <li class="text">
-                사업자등록번호 : 123-45-67890   |   통신판매업신고 : 2019-서울서초-1126
-            </li>    
-            <li class="text">
-                호스팅서비스 제공자 : Amazon Web Services (AWS)
-            </li>   
-            <li class="text">
-                EMAIL : ezen@ezen.co.kr   |   FAX : 02-123-1234
-            </li>
-            <li class="text">
-                주소 : 서울특별시 서초구 서초대로 38길 12,10층(서초동, 마제스타시티, 힐스테이트 서리풀)
-            </li>    
-        </ul>
-        
-        <div class="sns-icon">
-           <i class="fa-brands fa-instagram"></i>
-         <i class="fa-brands fa-facebook"></i>
-         <i class="fa-brands fa-twitter"></i>
-        </div>
-      
-          <nav class="section2">
-               <a class="a-tag-section2" href="">이용약관</a>
-               <a class="a-tag-section2" href="">개인정보처리방침</a>
-         </nav>
-    
-       <div class="section3">“Ezenmarket” 상점의 판매상품을 제외한 모든 상품들에 대하여 (주)Ezenmarket는 통신판매중개자로서 거래 당사자가 아니며 판매 회원과 
-          구매 회원 간의 상품거래 정보 및 거래에 관여하지 않고 어떠한 의무와 책임도 부담하지 않습니다.
+     <footer class="footer_item">   
+      <div class="wrapper">      
+         <div class="section1">
+              <ul class="market-info">
+                 <li class="text-title">
+                    COMPANY INFO
+                 </li>
+                  <li class="text">
+                      상호 : (주)EzenMarket&emsp;|&emsp;대표자 : 남원일&emsp;|&emsp;개인정보보호책임자 : 배성훈
+                  </li> 
+                  <li class="text">
+                      사업자등록번호 : 811-86-02421&emsp;|&emsp;통신판매업신고 : 2021-경기구리-1097
+                  </li>    
+                  <li class="text">
+                      T. 031-555-4449&emsp;|&emsp;F. 031-558-9931&emsp;|&emsp;EMAIL : ezen@ezen.co.kr
+                  </li>
+                  <li class="text">
+                      주소 : 경기도 구리시 인창동 670-1 태영빌딩 4층 409호
+                  </li>    
+                  <li class="text">
+                      호스팅서비스 제공자 : Amazon Web Services (AWS)
+                  </li>   
+              </ul>      
+         </div>         
+             <div class="section2">
+                  <a class="a-tag" href="">이용약관</a><br>
+                  <a class="a-tag" href="">개인정보처리방침</a>
+            </div>       
+             <div class="section3">
+                <a class="a-tag" href="https://github.com/wonill/EzenMarket"><i class="fa-brands fa-square-github"></i></a>
+                <a class="a-tag" href=""><i class="fa-brands fa-blogger"></i></a>
+                <a class="a-tag" href=""><i class="fa-brands fa-square-twitter"></i></a>
+                <a class="a-tag" href=""><i class="fa-brands fa-square-instagram"></i></a>
+                <a class="a-tag" href=""><i class="fa-brands fa-square-facebook"></i></a>            
+             </div>          
+          <div class="section4">
+             “Ezenmarket” 상점의 판매상품을 제외한 모든 상품들에 대하여 (주)Ezenmarket는 통신판매중개자로서 거래 당사자가 아니며 판매 회원과 구매 회원 간의 상품거래 정보 및 거래에 관여하지 않고 어떠한 의무와 책임도 부담하지 않습니다.
+             </div>      
+             <div class="section5">             
+             Copyright by Ezenmarket. All rights reserved.
+             </div>          
           </div>
-
     </footer>
           
 </body>

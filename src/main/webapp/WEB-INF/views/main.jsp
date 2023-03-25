@@ -12,7 +12,7 @@
 	
 	<jsp:include page="./include/middle.jsp"/> 
 	<jsp:include page="./include/side.jsp"/> 
-<%-- 	<jsp:include page="./include/footer.jsp"/>  --%>
+<jsp:include page="./include/footer.jsp"/>  
 
 </body>
 </html>
