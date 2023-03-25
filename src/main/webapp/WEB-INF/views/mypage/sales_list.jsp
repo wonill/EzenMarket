@@ -204,11 +204,13 @@
     const nickdonebtn = document.getElementById('modify-done-btn'); 
     const modifyImg = document.getElementById('modifyImg');
     const img = document.getElementById('img');
+    const userInfo_btn = document.getElementById('userInfo-btn');
     
     function modifyProfile(){
       
       nick.style.display="none";
       nickbtn.style.display="none";
+      userInfo_btn.style.display="none";
       intro.style.display="none";
       imgContainer.style.display="none";
       modifynick.style.display="inline";
@@ -250,6 +252,7 @@
                       nickdonebtn.style.display="none";
                       modifyintro.style.display="none";
                       modifyimgContainer.style.display="none";
+                     
                       nick.innerText=modifynick.value;
                       intro.innerText=modifyintro.value;
                       console.log(document.getElementById('img').src);
@@ -258,6 +261,7 @@
                       console.log(document.getElementById('img').src);
                       nick.style.display="inline";
                       nickbtn.style.display="inline";
+                      userInfo_btn.style.display="inline";
                       intro.style.display="inline";
                       imgContainer.style.display="block";
                     } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
@@ -299,7 +303,9 @@
                       console.log(document.getElementById('img').src);
                       nick.style.display="inline";
                       nickbtn.style.display="inline";
+                      userInfo_btn.style.display="inline";
                       intro.style.display="inline";
+                      userInfo_btn.style.display="inline";
                       imgContainer.style.display="block";
                     } else {
                       alert('오류입니다. 다시 시도해주세요.');

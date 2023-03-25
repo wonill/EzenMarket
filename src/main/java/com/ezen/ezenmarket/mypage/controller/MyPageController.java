@@ -39,7 +39,9 @@ public class MyPageController {
 	}
 	
 	@GetMapping(value="/buy_list")
-	public String buyList() {
+	public String buyList(HttpServletRequest req) {
+			
+		service.getBuyList(req);
 		
 		return "mypage/buy_list";
 	}
