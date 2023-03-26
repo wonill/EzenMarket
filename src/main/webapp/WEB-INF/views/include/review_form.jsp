@@ -289,13 +289,13 @@
       <div id="review_post_title">${postInfo.title}</div>
 
 
-      <div style="margin-top: 270px; font-size: 1.8em; font-weight: 700; text-align: center;">구매자님,<br> 판매자님과의 거래가 어떠셨나요?</div>
+      <div style="margin-top: 270px; font-size: 1.8em; font-weight: 700; text-align: center;">${user.nickname }님,<br> ${myCurrentChatPartnerInfo.nickname }님과의 거래가 어떠셨나요?</div>
       <div style="margin-left: 205px;  margin-top: 30px; color: #D3D3D3;">별점을 선택하세요</div>
 
 
       <div name="myform" id="myform" method="post">
 
-         <input type="hidden" name="reviewerType" value="seller">
+         <input type="hidden" name="reviewerType" value="seller" id="reviewerType">
 
          <fieldset>
             
@@ -827,15 +827,19 @@
   	      
   	       if(xhttp.readyState == 4 && xhttp.status == 200){
   	           
-  	            console.log('요청 성공!', xhttp.responseText);
+  	    	   const responseResult = xhttp.responseText;
+  	    	   
+  	            console.log('요청 성공!', responseResult);
   	            
-  	            if(xhttp.responseText == 1){
-  	            	document.querySelector(".review_background").className = "review_background review_show";	
-  	            } else if(xhttp.responseText == 0){
+  	            if(responseResult == 'buyer' || responseResult == 'seller'){
+  	            	document.querySelector(".review_background").className = "review_background review_show";
+  	            	document.getElementById('reviewerType').value = responseResult;
+  	            	
+  	            } else if(responseResult == 0){
   	            	alert('권한이 없습니다.');
-  	            } else if(xhttp.responseText == 2){
+  	            } else if(responseResult == 2){
   	            	alert('이미 리뷰를 작성하셨습니다.')
-  	            } else if(xhttp.responseText == -1){
+  	            } else if(responseResult == -1){
   	            	alert('거래 완료된 상품이 아닙니다.')
   	            } else{
   	            

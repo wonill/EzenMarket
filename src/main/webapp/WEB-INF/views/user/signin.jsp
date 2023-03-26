@@ -86,8 +86,8 @@
                  "https://kauth.kakao.com/oauth/authorize?client_id=539b9f686a3ecf1e986fc50b088309c0&redirect_uri=http://localhost:8888/ezenmarket/kakao&response_type=code">
                    <img src="https://i.imgur.com/52mZm2M.png" style="width: 417px; height: 60px; margin-bottom: 0.5em;">
               </a>
-                <button id="signup-btn" class="w-100 btn btn-lg btn-primary" style="width: 417px; height: 60px;">회원가입</button>
            </form>
+                <button id="signup-btn" class="w-100 btn btn-lg btn-primary" style="width: 417px; height: 60px;" onclick="location.href='signup'">회원가입</button>
                  
                 <a href="#"><img id="naver-btn" src="./images/btnW_아이콘원형.png" alt=""></a>
                 <p class="mt-5 mb-3 text-muted">&copy; 2022-2023</p>

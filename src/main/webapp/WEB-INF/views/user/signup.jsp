@@ -12,24 +12,32 @@
       <link href="<%=request.getContextPath()%>/resources/css/user/signup.css" rel="stylesheet">
       <script src="https://kit.fontawesome.com/c737e525de.js" crossorigin="anonymous"></script>
       <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
+      <style>
+            @font-face {
+           font-family: 'Tenada';
+           src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
+           font-weight: normal;
+           font-style: normal;
+         }
+      </style>
     </head>
     <body class="white">
-      <div class="container">
+      <div class="container" style="margin-top: 70px !important;">
         <main>
-          <div class="py-5 text-center" id="logo">
+          <div id="logo" style="font-size: 50px; font-family: 'Tenada' !important; text-align:center; margin-bottom: 10px;">
          <a class="logo" href="<%=request.getContextPath() %>" style="text-decoration: none; color:black;">Ezen<i class="fa-brands fa-monero logoIcon"></i>arket</a>
           </div>
 
 
-          <div class="col-md-7 col-lg-8" id="sign_up_box">
+          <div class="col-md-7 col-lg-8" id="sign_up_box" style="margin-left: 425px;">
             <form class="needs-validation" novalidate>
             
-              <div class="col-sm-6">
+              <div class="col-sm-6" style="margin-bottom: 7px;">
                 <label for="name" class="form-label">이름 <span class="text-muted"></span></label>
                 <input type="text" name="user_Name" form="user_signup" class="form-control" id="name">
               </div>
 
-              <div class="6">
+              <div class="6" style="margin-bottom: 7px;">
                 <label for="firstName" class="form-label">아이디<span class="text-muted"></span></label>
                 <div class="col-sm-8">
                   <div class="row">
@@ -43,7 +51,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-6">
+              <div class="col-sm-6" style="margin-bottom: 7px;">
                 <label for="lastName" class="form-label">비밀번호</label>
                 <input type="password" name="user_PW" form="user_signup" class="form-control" id="user_PW" placeholder="" value="" required>
                 <div id="checkPW" style="color:red;"></div>
@@ -63,7 +71,7 @@
                 
               </div>
 
-              <div class="6">
+              <div class="6" style="margin-top:7px; margin-bottom: 7px;">
                 <label for="nickName" class="form-label">닉네임<span class="text-muted"></span></label>
                 <div class="col-sm-8">
                   <div class="row">
@@ -80,13 +88,13 @@
                 </div>
               </div>
             
-              <div class="col-sm-6">
+              <div class="col-sm-6" style="margin-bottom: 7px;">
                 <label for="name" class="form-label">휴대폰 번호<span class="text-muted"></span></label>
                 <input type="text" name="phoneNumber" form="user_signup" class="form-control" id="phoneNumber">
                 <div id="checkPhone" style="color:red;"></div>
               </div>
          
-              <div class="6">
+              <div class="6" style="margin-bottom: 7px;">
                 <label for="email" class="form-label">주소입력 <span class="text-muted"></span></label>
                 <div class="col-sm-8">
                   <div class="row">
@@ -135,7 +143,7 @@
             </form>
             <form id="user_signup" action="./signup" method="POST">
               <div class="sign_up_btn">
-                <button id="checkInfo" class="col-sm-6 btn btn btn-dark btn-lg" type="submit">가입하기</button>
+                <button id="checkInfo" class="col-sm-6 btn btn btn-dark btn-lg" type="submit" style="margin-top: 15px;">가입하기</button>
               </div>
             </form>
           </div>
@@ -143,14 +151,6 @@
       </div>
       
 
-      <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2017–2022 Company Name</p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="#">Privacy</a></li>
-          <li class="list-inline-item"><a href="#">Terms</a></li>
-          <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-      </footer>
 
    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e47856cfcf539f7992f903a405faeb07&libraries=services"></script>

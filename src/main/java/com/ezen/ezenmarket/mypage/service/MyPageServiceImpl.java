@@ -59,17 +59,21 @@ public class MyPageServiceImpl implements MyPageService{
       List<Review> review = new ArrayList<>();
       
       int numOfReview = 0;
+      String ninkname = "";
+      String user_image = "";
+      String title = "";
       
       Double sumOfRating = 0.0;
       
       for(Integer endDeal : endDealList) {
-    	  Review opponentReview = mapper.getOpponentReview(endDeal, user_number);
-    	  if(opponentReview != null) {
-    		  review.add(opponentReview);
-    		  sumOfRating += opponentReview.getRating();
-    		  numOfReview++;
-    	  }
+         Review opponentReview = mapper.getOpponentReview(endDeal, user_number);
+         if(opponentReview != null) {
+            review.add(opponentReview);
+            sumOfRating += opponentReview.getRating();
+            numOfReview++;
+         }           
       }
+
       
       Double avgOfRating = sumOfRating == 0.0 ? 0.0 : sumOfRating/numOfReview;
       

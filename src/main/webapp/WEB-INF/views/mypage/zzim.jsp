@@ -12,7 +12,41 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage/zzim.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
-
+                 
+    .topMenu ul li { 
+      line-height: 120% !important;
+    }           
+     .topMenu {
+       position: relative;
+       width: 1900px;
+       top: -1px !important;
+       margin-bottom: 15px;
+       right: 120px;          
+     }  
+     .header-hr {
+        margin-top: 15px !important;
+     }
+     .menu { 
+        margin-top: -55px !important;
+        
+      }
+     .a-title {
+       text-decoration: none;
+       color: black;
+       display: block;
+       padding-bottom: 15px;
+     }
+    .a-data {
+       margin-left: 30px;
+     }
+    #nav {
+      margin-top: 15px;
+    }     
+     .logo {
+        
+      line-height: 115% !important;
+      padding-right: 50px !important;
+    }
     </style>
 </head>
 <body>
@@ -20,161 +54,179 @@
  
      <!--본문(해당회원 마이페이지)-->
   <hr>
-  <div class="container"> <!--container start-->
-    <div class="row"> <!--row start-->
-      <div id="profile-section" class="col-2"> <!--profile-section start-->
-        <div class="profile-img" id="imgContainer"  >
-          <img id="img" class="profile-img-img" src="${profile.user_image }"/>
-        </div>
-        <div class="profile-img" id="modifyimgContainer" onclick="fileUploadAction();" style="display: none;">
-          <img id="modifyImg" class="profile-img-img" src="" alt="">
-       </div>
-         <input type="file" id="input_imgs" style="display: none;"/>
-        <div class="profile-txt">
-          <div class="row">
-            <div id="nick">${profile.nickname }</div>
-            <input id="modifyNick" type="text" style="display: none;">
-          </div>
+  <div class="container" style="margin-left: 100px;  margin-right: 100px;"> <!--container start-->
+      <div class="row" style="width: 1700px">
+         <!--row start-->
+         <div id="profile-section" style="width: 300px">
+            <!--profile-section start-->
+            <div class="profile-img" id="imgContainer">
+               <img id="img" class="profile-img-img" src="${profile.user_image }" />
+            </div>
+            <div class="profile-img" id="modifyimgContainer"
+               onclick="fileUploadAction();" style="display: none;">
+               <img id="modifyImg" class="profile-img-img" src="" alt="">
+            </div>
+            <input type="file" id="input_imgs" style="display: none;" />
+            <div class="profile-txt">
+               <div class="row">
+                  <div id="nick">${profile.nickname }</div>
+                  <input id="modifyNick" type="text" style="display: none;">
+               </div>
 
-          <div  style="margin-bottom: 2em;">
-            <span></span><span></span>
-          </div>
+               <div style="margin-bottom: 2em;">
+                  <span></span><span></span>
+               </div>
 
-          <div class="product">
-            <span id="left">판매상품</span>
-            <span id="right">${profile.postCount }</span>
-          </div>
-          <div class="review">
-            <span id="left2">거래후기</span>
-                 <c:choose>
-                    <c:when test="${profile.ratingAvg > 4.0}">
-                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★★★</span>
-                    </c:when>     
-                    <c:when test="${profile.ratingAvg > 3.0}">
-                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★★☆</span>
-                    </c:when>  
-                    <c:when test="${profile.ratingAvg > 2.0}">
-                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★☆☆</span>
-                    </c:when>   
-                    <c:when test="${profile.ratingAvg > 1.0}">
-                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★☆☆☆</span>
-                    </c:when> 
-                    <c:when test="${profile.ratingAvg > 0}">
-                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★☆☆☆☆</span>
-                    </c:when>   
-                    <c:when test="${profile.ratingAvg == 0}">
-                       <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">☆☆☆☆☆</span>
-                    </c:when>         
-                 </c:choose>           
-                 <span id="right2">${profile.reviewCount }</span>
-          </div>
-          
-          <div id="intro" class="intro" style="margin-left: 10px; border: 0px;">${profile.user_intro }</div>
-          <textarea id="modifyIntro" class="intro" style="display: none;"></textarea>
+               <div class="product">
+                  <span id="left">판매상품</span> <span id="right">${profile.postCount }</span>
+               </div>
+               <div class="review">
+                  <span id="left2">거래후기</span>
+                  <c:choose>
+                     <c:when test="${profile.ratingAvg > 4.0}">
+                        <span class="star"
+                           style="color: #FFC31E; font-size: 20px; padding-left: 15px;">★★★★★</span>
+                     </c:when>
+                     <c:when test="${profile.ratingAvg > 3.0}">
+                        <span class="star"
+                           style="color: #FFC31E; font-size: 20px; padding-left: 15px;">★★★★☆</span>
+                     </c:when>
+                     <c:when test="${profile.ratingAvg > 2.0}">
+                        <span class="star"
+                           style="color: #FFC31E; font-size: 20px; padding-left: 15px;">★★★☆☆</span>
+                     </c:when>
+                     <c:when test="${profile.ratingAvg > 1.0}">
+                        <span class="star"
+                           style="color: #FFC31E; font-size: 20px; padding-left: 15px;">★★☆☆☆</span>
+                     </c:when>
+                     <c:when test="${profile.ratingAvg > 0}">
+                        <span class="star"
+                           style="color: #FFC31E; font-size: 20px; padding-left: 15px;">★☆☆☆☆</span>
+                     </c:when>
+                     <c:when test="${profile.ratingAvg == 0}">
+                        <span class="star"
+                           style="color: #FFC31E; font-size: 20px; padding-left: 15px;">☆☆☆☆☆</span>
+                     </c:when>
+                  </c:choose>
+                  <span id="right2">${profile.ratingAvg }</span>
+               </div>
 
-          <c:choose>
-            <c:when test="${verified eq 'yes' }">
-               <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px; ">
-                  <i class="fa-solid fa-user-plus"></i> 프로필수정
-               </button>
-               <button id="userInfo-btn" onClick="location.href='management?user_number=${user_number}'" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
-                  <i class="fa-solid fa-basket-shopping"></i> 내상품관리
-               </button>
-            </c:when>
-          </c:choose>
-        
-          <button id="modify-done-btn" onclick="modifyProfileDone()" style="display: none;">완료</button>
-        </div>
-      </div> <!--profile-section end-->
-        
+               <div id="intro" class="intro"
+                  style="margin-left: 10px; border: 0px;">${profile.user_intro }</div>
+               <textarea id="modifyIntro" class="intro" style="display: none;"></textarea>
 
-      <!-- 마이페이지 (본인)-->
-      <div id="profile-product" class="col-10">
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <div class="tabmenu out-tabmenu">
-                <ul>
-                  <li id="tab1" class="btnCon"> 
-                    <input type="radio" checked name="tabmenu" id="tabmenu1" onclick="location.href='./?user_number=${user_number}'">
-                    <label for="tabmenu1">판매상품</label>
-                    <div class="tabCon" >                      
-                    </div>                    
-                  </li>
-                  <li id="tab2" class="btnCon">
-                     <input type="radio" name="tabmenu" id="tabmenu2" onclick="location.href='./buy_list?user_number=${user_number}'">
-                     <label for="tabmenu2">구매내역</label>
-                     <div class="tabCon"></div>
-                  </li>
-                  <li id="tab3" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu3" onclick="location.href='./review?user_number=${user_number}'">
-                    <label for="tabmenu3">후기</label>
-                    <div class="tabCon" >                      
-                    </div>                    
-                  </li>    
-                  <li id="tab4" class="btnCon">
-                              <input type="radio" name="tabmenu" id="tabmenu4" checked> 
-                              <label for="tabmenu4">찜</label>
+               <c:choose>
+                  <c:when test="${verified eq 'yes' }">
+                         <button id="modify-btn" onclick="modifyProfile()" type="button" style="width: 240px; height: 40px; border-radius: 5px; border:0 !important;">
+                           <i class="fa-solid fa-user-plus"></i> 프로필수정
+                         </button>
+                         <button id="userInfo-btn" onClick="location.href='management?user_number=${user_number}'" type="button" style="width: 240px; height: 40px; border-radius: 5px; border:0 !important;">
+                           <i class="fa-solid fa-basket-shopping"></i> 내상품관리
+                         </button>
+                     </button>
+                  </c:when>
+               </c:choose>
+
+               <button id="modify-done-btn" onclick="modifyProfileDone()"
+                  style="display: none;">완료</button>
+            </div>
+         </div>
+         <!--profile-section end-->
+
+
+         <!-- 마이페이지 (본인)-->
+         <div id="profile-product" style="width: 1200px">
+            <div class="container">
+               <div class="row" style="width: 1200px;">
+                  <div class="col">
+                     <div class="tabmenu out-tabmenu">
+                        <ul>
+                           <li id="tab1" class="btnCon" style="width: 240px"><input
+                              type="radio" checked name="tabmenu" id="tabmenu1"
+                              onclick="location.href='./?user_number=${user_number}'">
+                              <label for="tabmenu1">판매상품</label>
+                              <div class="tabCon"></div></li>
+                           <li id="tab2" class="btnCon" style="width: 240px"><input
+                              type="radio" name="tabmenu" id="tabmenu2"
+                              onclick="location.href='./buy_list?user_number=${user_number}'">
+                              <label for="tabmenu2">구매내역</label>
+                              <div class="tabCon"></div></li>
+                           <li id="tab3" class="btnCon" style="width: 240px"><input
+                              type="radio" name="tabmenu" id="tabmenu3"
+                              onclick="location.href='./review?user_number=${user_number}'">
+                              <label for="tabmenu3">후기</label>
+                              <div class="tabCon"></div></li>
+                           <li id="tab4" class="btnCon" style="width: 240px"><input
+                              type="radio" name="tabmenu" id="tabmenu4" checked> <label
+                              for="tabmenu4">찜</label>
                               <div class="tabCon">
                                  <div class="container">
-                                    <div class="row">
+                                    <div class="row" style="width: 1000px; margin-left: -50px;">
                                        <div class="col">
                                           <div class="zzim-section" style="margin-bottom: 1em;">
-                                             <span style="font-size: 1.2em; font-weight: 700; margin-left: -2px;" >전체</span>
+                                             <span
+                                                style="font-size: 1.2em; font-weight: 700; margin-left: -2px;">전체</span>
                                              <span style="color: crimson; font-weight: 700;">${profile.zzimCount }</span>
                                              <!--후기 등록될 때마다 숫자 증가해야 함-->
                                           </div>
                                        </div>
-                                    </div>                                 
-                                    <div class="row">
-                                    <c:choose>
-                                       <c:when test="${profile.zzimCount > 0}">
-                                       <c:forEach items="${zzim }" var="zzim">
-                                          <div class="col-4">
-                                            
-                                                <div class="card" style="width: 13em; margin: 0 10px 20px 0;">
-                                                   <img src="${zzim.image_url }" class="card-img-top" alt="..." style="width: 100%; height: 250px;" onclick="location.href='../product?id=${zzim.post_Id }'"> 
-                                                      <a href="./deleteZzim?post_Id=${zzim.post_Id }&user_number=${user_number}" onclick="deleteZzim()">
-                                                         <i class="fa-solid fa-heart"></i>                                                         
+                                    </div>
+                                    <div class="row" style="width: 1000px; margin-left: -50px;">
+                                       <c:choose>
+                                          <c:when test="${profile.zzimCount > 0}">
+                                             <c:forEach items="${zzim }" var="zzim">
+                                                <div class="col-4">
+
+                                                   <div class="card"
+                                                      style="width: 280px; margin-right: 20px; margin-bottom: 40px;">
+                                                      <img src="${zzim.image_url }" class="card-img-top"
+                                                         alt="..." style="width: 100%; height: 280px;"
+                                                         onclick="location.href='../product?id=${zzim.post_Id }'">
+                                                      <a
+                                                         href="./deleteZzim?post_Id=${zzim.post_Id }&user_number=${user_number}"
+                                                         onclick="deleteZzim()"> <i
+                                                         class="fa-solid fa-heart"></i>
                                                       </a>
                                                       <!--찜 목록 해제시 색상변경되어야 함-->
-                                                   <div class="card-body">
-                                                      <span class="d-inline-block text-truncate card-text" >${zzim.title }</span>
-                                                      <p><fmt:formatNumber value="${zzim.price }" pattern="#,###" />원</p>
+                                                      <div class="card-body">
+                                                         <span class="d-inline-block text-truncate card-text">${zzim.title }</span>
+                                                         <p>
+                                                            <fmt:formatNumber value="${zzim.price }"
+                                                               pattern="#,###" />
+                                                            원
+                                                         </p>
+                                                      </div>
                                                    </div>
+
                                                 </div>
-                                             
-                                          </div>
-                                       </c:forEach>
-                                       </c:when>
-                                       <c:otherwise>
-                                          <span>찜한 상품이 없습니다</span>
-                                       </c:otherwise>                                    
-                                    </c:choose>
+                                             </c:forEach>
+                                          </c:when>
+                                          <c:otherwise>
+                                             <span>찜한 상품이 없습니다</span>
+                                          </c:otherwise>
+                                       </c:choose>
                                        <!--<c:forEach begin="${pagination_start }" end="${pagination_end }" var="i">
                                           <a id="page" href="./zzim?user_number=${user_number }&page=${i }">${i }</a>
                                        </c:forEach>-->
-                                       <div class="page">
-                                          <nav aria-label="Page navigation example" id="page2">
-                                             <ul class="pagination">
-                                                <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
-                                                   <li class="page-item"><a class="page-link" href="./zzim?user_number=${user_number }&page=${i }">${i }</a></li>
-                                                </c:forEach>   
-                                             </ul>
-                                          </nav>
+                                       <div style="display: block; text-align: center; justify-content: center; margin-top: 50px; width: 100%;">
+                                          <c:forEach begin="${pagination_start}"
+                                             end="${pagination_end}" var="i">
+                                             <a href="./zzim?user_number=${user_number }&page=${i }"
+                                                style="text-decoration: none; border: 1px solid lightgray; padding: 4px; padding-left: 10px; padding-right: 10px; margin-right: 5px; border-radius: 10px; color: black;">${i }</a>
+                                          </c:forEach>
                                        </div>
-                                       
-                                    </div>   
-                                 </div>                        
+                                    </div>
+                                 </div>
                               </div>
                            </li>
-              </ul>              
+                        </ul>
+                     </div>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
+         </div>
       </div>
-    </div>
-    </div>
-    <jsp:include page="../include/footer.jsp"/>
+      <jsp:include page="../include/footer.jsp"/>
     <script>
       function deleteZzim() {
         alert('찜이 해제되었습니다.')

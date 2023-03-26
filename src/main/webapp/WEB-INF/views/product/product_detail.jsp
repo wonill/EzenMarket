@@ -20,10 +20,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
+    <style>   
+           
+    .topMenu ul li { 
+      line-height: 120% !important;
+     }   
+     .topMenu {
+        top: -10px !important;
+        margin-bottom: 20px !important;
+     } 
+     .header-hr {
+        margin-top: 15px !important;
+     }
+     .menu { 
+        margin-top: -55px !important;
+        
+      }
+   .a-title {
+       text-decoration: none;
+       color: black;
+       display: block;
+       padding-bottom: 15px;
+    }
+   .a-data {
+       margin-left: 30px;
+    }
 
        a {
-        text-decoration: none;
+        text-decoration: none !important;
       }
     
         .box {
@@ -38,6 +62,7 @@
             object-fit: cover;
         }     
        .swiper-container {
+          position:relative;
           width:500px;
           height:500px;
           border:1px solid silver;
@@ -106,19 +131,20 @@
    
       }      
       #settingBtn {
-         width: 500px; 
+         width: 550px; 
          height: 50px; 
          background:black; 
          color:white;
-         margin: 10px 0 0 250px;
+         margin: 10px 0 0 175px;
+         font-size: 20px;
       }      
       #zzimBtn {
          position: relative;
          background:#a0a0a0; 
          color: black;
-         width: 280px; 
+         width: 290px; 
          height: 50px;
-         margin: 20px 0 0 150px;         
+         margin: 20px 25px 0 155px;         
          border: solid black 0px;
          border-radius: 5px;
       }      
@@ -131,7 +157,7 @@
       #chatBtn {
          background: #FFA500;
          color: black;
-         width: 280px; 
+         width: 290px; 
          height: 50px;   
          margin: 20px;      
          border: solid black 0px;
@@ -148,10 +174,12 @@
            margin: -30px 0 -78px 0;
       }      
       #prodInfo2 {
-         margin: 50px 30px 50px 0;      
+         margin: 50px 30px 50px 0;     
+         font-size:1.3em; 
       }      
       #prodInfo3 {
-         margin: 20px 30px 50px 0;      
+         margin: 20px 30px 50px 0;     
+ 
       }      
       #sellerInfo {
          float: right;
@@ -167,17 +195,17 @@
         margin: -15px 0 0 20px;
       }         
       #relatedProd {
-        width: 242px;            
+        width: 240px;            
       }      
       #relatedTitle {     
-        font-size: 16px;  
+        font-size: 20px;  
         overflow: hidden;        
         text-overflow: ellipsis;     
         white-space: nowrap;       
         word-break:break-all;  
       }
       #relatedPrice {
-         font-size: 20px; 
+         font-size: 25px; 
          font-weight: 900;
       }  
       
@@ -278,6 +306,20 @@
          margin: 10px 10px 0 0;
 
       }
+      
+      #enddeal-wrapper{
+	  	position:absolute;
+	  	width: 500px;
+	  	height: 500px;
+	  	background-color: rgba(0, 0, 0, 0.7);
+	  	z-index: 2;
+	  	font-size: 70px;
+	  	color: white;
+	  	font-weight: bold;
+	  	text-align:center;
+	  	padding-top: 200px;
+	  	
+	  }
 
 
       
@@ -297,13 +339,15 @@
           
    <!-- Product section-->               
        
-    <div style="width: 1280px; clear: both; margin:0 20% 0 20%;">
+    <div style="width: 1280px; clear: both; margin:0 auto 0 15%;">
         <section class="py-5">  
             <div class="container px-lg-5 my-5" style="width: 1000px;">
                 <div class="row gx-4 gx-lg-5 m-auto">
                     <div class="col-md-5">
                         <div class="swiper-container swiper1">
-                          
+                          <c:if test="${isEndDeal eq true }">
+                          	<div id="enddeal-wrapper">판매 완료</div>
+                         </c:if> 
                           <div class="swiper-wrapper">
                              <c:forEach items="${postImages }" var="postImage">
                               <div class="swiper-slide"><img src="${postImage.image_url }" alt="..." ></div>
@@ -346,21 +390,20 @@
                                       내 상점 관리
                                   </button>
                                </c:when>
-                               <c:otherwise>   
-                    
+                               <c:when test="${sessionScope.user_number ne post.user_number }">               
                                <div class="btns">
-                           <button id="zzimBtn" type="button" ><i id="zzimIcon" class="bi bi-heart-fill"></i><span id="zzimText"> 찜</span></button>                       
-                           <tooltip id='tooltip' style='display:none'>상품을 찜했습니다!</tooltip>
-                           <tooltip id='tooltip2' style='display:none'>찜이 해제되었습니다!</tooltip>                        
-                        </div>   
-                        <div class="btns2">                                                                              
-                                  <button id="chatBtn" type="button"><i class="bi bi-messenger"></i> 채팅</button>  
+                                 <button id="zzimBtn" type="button" ><i id="zzimIcon" class="bi bi-heart-fill"></i><span id="zzimText"> 찜</span></button>                       
+                                 <tooltip id='tooltip' style='display:none'>상품을 찜했습니다!</tooltip>
+                                 <tooltip id='tooltip2' style='display:none'>찜이 해제되었습니다!</tooltip>                        
+                              </div>   
+                              <div class="btns2">                                                                              
+                                   <button id="chatBtn" type="button"><i class="bi bi-messenger"></i> 채팅</button>  
                                </div>         
                                <button type="button" id="show" style="position: absolute;border: 0;background-color: white;margin: -290px -740px 0 0;">
-							      <img src="https://cdn-icons-png.flaticon.com/512/1198/1198487.png"
-							         width="25" height="25" style="vertical-align: -3px;">신고하기
-							   </button>                                  
-                               </c:otherwise>
+                           <img src="https://cdn-icons-png.flaticon.com/512/1198/1198487.png"
+                              width="25" height="25" style="vertical-align: -3px;">신고하기
+                        </button>                                  
+                               </c:when>
                             </c:choose>                                
                         </div>
                     </div>
@@ -386,7 +429,7 @@
                 </div>-->
                 &emsp;
                 <div id="sellerInfo" style="width: 28%;">
-                    <h4 class="fw-bolder mb-4">판매자정보</h4>
+                    <h4 class="fw-bolder mb-4" style="font-size:1.3em;">판매자정보</h4>
                    <!-- <hr style="opacity: 25%;"> --> 
                     <div class="d-flex">
                         <div class="box" style="background: #BDBDBD;">                        
@@ -409,18 +452,18 @@
 
       <section class="py-3 ">
          <div class="container px-3 px-lg-5 mt-5">
-            <h4 class="fw-bolder mb-4">${post.nickname }님의 판매상품</h4>
-            <div
+            <h4 class="fw-bolder mb-4" style="font-size:1.3em; ">${post.nickname }님의 판매상품</h4>
+            <div style="width: 1150px;"
                class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"">
                <c:forEach items="${lists}" var="list">
                   <div class="col mb-5" onclick="location.href='product?id=${list.post_id }'" style="cursor:pointer;">
-                     <div id="relatedProd" class="card h-80">
+                     <div id="relatedProd" class="card h-80" >
                         <!-- Product image-->
                         
                         <img id="profile" class="card-img-top" src="${list.image_url }" alt="..." style="height: 240px"/>
                            
                         <!-- Product details-->
-                        <div>
+                        <div >
                         <div class="card-body p-3">
                            <div class="text-center">
                               <!-- Product name-->

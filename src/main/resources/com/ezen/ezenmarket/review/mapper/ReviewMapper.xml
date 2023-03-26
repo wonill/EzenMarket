@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ezen.ezenmarket.review.mapper.ReviewMapper">
+
+	<select id="selectEndDeal" resultType="com.ezen.ezenmarket.review.dto.EndDeal">
+		SELECT * FROM enddeal WHERE #{user_number} IN (buyer_user_number, seller_user_number) AND #{chatPartner} IN (buyer_user_number, seller_user_number) AND post_id = #{post_id} 
+	</select>
 	
 	<select id="countEndDeal" resultType="Integer">
 		SELECT count(*) FROM enddeal WHERE #{user_number} IN (buyer_user_number, seller_user_number) AND #{chatPartner} IN (buyer_user_number, seller_user_number) AND post_id = #{post_id}

@@ -266,7 +266,7 @@
         .chat_wrap .item.mymsg .box .unread{
             right:auto; 
             left:-78px;
-            
+            bottom: 25px;
         }
         
         .chat_wrap .item.yourmsg .box .unread{
@@ -277,7 +277,7 @@
         .chat_wrap .item.mymsg .box .time{
             right:auto; 
             left:-78px;
-            
+            bottom: 10px;
         }
         .chat_wrap .item .box{
             transition:all .3s ease-out; 
@@ -499,12 +499,12 @@
        .chat_wrap .item.mymsg .box.transparency .time{
             right:auto; 
             left:-72px;
-            bottom: 27px;
+            bottom: 17px;
             
         }
         
         .chat_wrap .item.yourmsg .box.transparency .time{
-        	bottom: 25px;
+        	bottom: 15px;
         	left: 175px;
         }
         

@@ -17,7 +17,9 @@ public interface ProductMapper {
    
    public Post selectProduct(String id);
    
-   public void insertProduct(Post post); 
+   public void insertProduct(Post post);
+   
+   public void insertPostImage(Post post);
 
    
    
@@ -81,4 +83,11 @@ public interface ProductMapper {
 	/* 전체 상품 개수 */
 	public int countAllProduct();
     
+	
+	public Integer isEndDeal(Integer post_id);
+	
+	public void insertNewPost(Post post);
+	
+	public int getPost_Id(Integer user_number);
+	
 }

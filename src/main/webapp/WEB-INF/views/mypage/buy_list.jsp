@@ -11,9 +11,46 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>마이페이지</title>
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypage/buy_list.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypage/buy_list.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>  
+    <style>
+                 
+    .topMenu ul li { 
+         line-height: 120% !important;
+    }           
+     .topMenu {
+       position: relative;
+       width: 1900px;
+       top: -1px !important;
+       margin-bottom: 15px;
+       right: 120px;          
+     }  
+     .header-hr {
+        margin-top: 15px !important;
+     }
+     .menu { 
+        margin-top: -55px !important;
+        
+      }
+     .a-title {
+       text-decoration: none;
+       color: black;
+       display: block;
+       padding-bottom: 15px;
+     }
+    .a-data {
+       margin-left: 30px;
+     }
+    #nav {
+      margin-top: 15px;
+    }     
+     .logo {
+        
+      line-height: 115% !important;
+      padding-right: 50px !important;
+    }
+    </style>
 </head>
 <body>
 
@@ -23,25 +60,23 @@
     
   <hr>
 
-   <div class="container">
-      <!--container start-->
-      <div class="row">
-         <!--row start-->
+  <div class="container" style="margin-left: 100px; margin-right: 100px;"> <!--container start-->
+  
+    <div class="row" style="width:1700px"> <!--row start-->
 
-         <div id="profile-section" class="col-2">
-            <!--profile-section start-->
-            <div class="profile-img" id="imgContainer" >
-             <img id="img" class="profile-img-img" src="${profile.user_image }"/>
-           </div>
-           <div class="profile-img" id="modifyimgContainer" onclick="fileUploadAction();" style="display: none;">
-             <img id="modifyImg" class="profile-img-img" src="" alt="">
-          </div>
+      <div id="profile-section" style="width:300px"> <!--profile-section start-->
+        <div class="profile-img" id="imgContainer" >
+          <img id="img" class="profile-img-img" src="${profile.user_image }"/>
+        </div>
+        <div class="profile-img" id="modifyimgContainer" onclick="fileUploadAction();" style="display: none;">
+          <img id="modifyImg" class="profile-img-img" src="" alt="">
+       </div>
          <input type="file" id="input_imgs" style="display: none;"/>
-            <div class="profile-txt">
-               <div class="row">
-                  <div id="nick">${profile.nickname }</div>
-                  <input id="modifyNick" type="text" style="display: none;">
-               </div>
+        <div class="profile-txt">
+          <div class="row">
+            <div id="nick">${profile.nickname }</div>
+            <input id="modifyNick" type="text" style="display: none;">
+          </div>
 
                <div  style="margin-bottom: 2em;">
                   <span></span> <span></span>
@@ -53,7 +88,7 @@
                   <span id="left">판매상품</span> <span id="right">${profile.postCount }</span>
                </div>
                <div class="review">
-                  <span id="left2">거래후기</span> 
+                  <span id="left2">거래후기 </span> 
                   <c:choose>
                     <c:when test="${profile.ratingAvg > 4.0}">
                        <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">★★★★★</span>
@@ -74,7 +109,7 @@
                        <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">☆☆☆☆☆</span>
                     </c:when>         
                  </c:choose>           
-                 <span id="right2">${profile.reviewCount }</span>
+                 <span id="right2">${profile.ratingAvg }</span>
                </div>
 
                <div id="intro" class="intro" style="margin-left: 10px; border: 0px;">${profile.user_intro }</div>
@@ -82,12 +117,12 @@
                
                <c:choose>
                   <c:when test="${verified eq 'yes' }">
-                     <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px; ">
-                        <i class="fa-solid fa-user-plus"></i> 프로필수정
-                     </button>                     
-                     <button id="userInfo-btn" onClick="location.href='management?user_number=${user_number}'" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
-                        <i class="fa-solid fa-basket-shopping"></i> 내상품관리
-                     </button>
+                   <button id="modify-btn" onclick="modifyProfile()" type="button" style="width: 240px; height: 40px; border-radius: 5px;">
+                     <i class="fa-solid fa-user-plus"></i> 프로필수정
+                   </button>
+                   <button id="userInfo-btn" onClick="location.href='management?user_number=${user_number}'" type="button" style="width: 240px; height: 40px; border-radius: 5px;">
+                     <i class="fa-solid fa-basket-shopping"></i> 내상품관리
+                   </button>
                   </c:when>
                   <c:otherwise>
                         
@@ -101,24 +136,24 @@
 
 
          <!-- 마이페이지 (본인)-->
-         <div id="profile-product" class="col-10">
+         <div id="profile-product"style="width:1200px; ">
             <!--tab start-->
             <div class="container">
-               <div class="row">
+               <div class="row" style="width:1200px; ">
                   <div class="col">
                      <div class="tabmenu out-tabmenu">
                         <ul>
-                           <li id="tab1" class="btnCon">
+                           <li id="tab1" class="btnCon" style="width:240px">
                               <input type="radio"  name="tabmenu" id="tabmenu1" onclick="location.href='./?user_number=${user_number}'">
                               <label for="tabmenu1">판매상품</label>
                               <div class="tabCon"></div>
                            </li>
-                           <li id="tab2" class="btnCon">
+                           <li id="tab2" class="btnCon" style="width:240px">
                               <input type="radio"  name="tabmenu" id="tabmenu2" checked>
                               <label for="tabmenu2">구매내역</label>
                               <div class="tabCon">
                                  <div class="container">
-                                    <div class="row">
+                                    <div class="row" style="width:1000px; margin-left: -50px;">
                                        <div class="col">
                                           <div class="product-section" style="margin-bottom: 1em;">
                                              <span style="font-size: 1.2em; font-weight: 700;">전체</span>
@@ -126,15 +161,15 @@
                                           </div>
                                        </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" style="width:1000px; margin-left: -50px;">
                                     <c:choose>
                                        <c:when test="${profile.buyingCount > 0}">
                                           <c:forEach items="${buying }" var="buying">
                                              <div class="col-4">
                                                 <!-- 1 of 3 start -->
                                                 <a class="product" href="../product?id=${buying.post_id }">
-                                                   <div class="card" style="width: 13em; margin: 0 10px 20px 0;">
-                                                      <img src=${buying.image_url } class="card-img-top" alt="..." style="width: 100%; height: 250px;">
+                                                   <div class="card" style="width: 280px; margin-right: 20px; margin-bottom: 40px;">
+                                                      <img src=${buying.image_url } class="card-img-top" alt="..." style="width: 100%; height: 280px;">
                                                       <div class="card-body">
                                                          <span class="d-inline-block text-truncate card-text" >${buying.title }</span><br>
                                                          <p><fmt:formatNumber value="${buying.price }" pattern="#,###" />원</p>                                          
@@ -143,19 +178,16 @@
                                                 </a> 
                                              </div>
                                              <!-- 1 of 3 end-->
-                                          </c:forEach>
-                                          <div class="page">
-                                          <nav aria-label="Page navigation example" id="page2">
-                                             <ul class="pagination">
-                                                <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
-                                                   <li class="page-item"><a class="page-link" href="./buy_list?user_number=${user_number }&page=${i }">${i }</a></li>
-                                                </c:forEach>   
-                                             </ul>
-                                          </nav>
-                                          </div>
+                                          </c:forEach> 
+                                          <div style="display: block; text-align: center; justify-content: center; margin-top: 50px; width: 100%;">                                
+                                             <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
+                                                <a href="./buy_list?user_number=${user_number }&page=${i }" 
+                                                style="text-decoration: none; border: 1px solid lightgray; padding: 4px; padding-left: 10px; padding-right: 10px; margin-right: 5px; border-radius: 10px; color: black;">${i }</a>
+                                             </c:forEach>   
+                                          </div>  
                                        </c:when>
                                        <c:otherwise>
-                                          <span class="noList">구매내역이 없습니다</span>
+                                          <span style="text-indent: 2px;">구매내역이 없습니다</span>
                                        </c:otherwise>                                    
                                     </c:choose>
 
@@ -167,12 +199,12 @@
                                  </div>
                               </div>
                            </li>
-                           <li id="tab3" class="btnCon">
+                           <li id="tab3" class="btnCon" style="width:240px">
                               <input type="radio" name="tabmenu" id="tabmenu3" onclick="location.href='./review?user_number=${user_number}'">
                               <label for="tabmenu3">후기</label>
                               <div class="tabCon"></div>
                            </li>
-                           <li id="tab4" class="btnCon">
+                           <li id="tab4" class="btnCon" style="width:240px">
                               <input type="radio" name="tabmenu" id="tabmenu4" onclick="location.href='./zzim\?user_number=${user_number}'">
                               <label for="tabmenu4">찜</label>
                               <div class="tabCon"></div>
@@ -237,7 +269,6 @@
           formData.append('nickname', nickname);
           formData.append('userintro', userintro);
           formData.append('nickChange', 'yes');
-          formData.append('user_number',${sessionScope.user_number});
             $.ajax({
                 url:'./modifynick', //Controller에서 요청 받을 주소
                 type:'post', //POST 방식으로 전달
@@ -280,7 +311,6 @@
           formData.append('nickname', nickname);
           formData.append('userintro', userintro);
           formData.append('nickChange', 'no');
-          formData.append('user_number',${sessionScope.user_number});
           $.ajax({
                 url:'./modifynick', //Controller에서 요청 받을 주소
                 type:'post', //POST 방식으로 전달

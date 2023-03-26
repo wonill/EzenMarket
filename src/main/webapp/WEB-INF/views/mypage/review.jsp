@@ -12,7 +12,41 @@
      <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage/review.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
-
+                 
+    .topMenu ul li { 
+         line-height: 120% !important;
+    }           
+     .topMenu {
+       position: relative;
+       width: 1900px;
+       top: -1px !important;
+       margin-bottom: 15px;
+       right: 120px;          
+     }  
+     .header-hr {
+        margin-top: 15px !important;
+     }
+     .menu { 
+        margin-top: -55px !important;
+        
+      }
+     .a-title {
+       text-decoration: none;
+       color: black;
+       display: block;
+       padding-bottom: 15px;
+     }
+    .a-data {
+       margin-left: 30px;
+     }
+    #nav {
+      margin-top: 15px;
+    }     
+     .logo {
+        
+      line-height: 115% !important;
+      padding-right: 50px !important;
+    }
     </style>
 </head>
 <body>
@@ -21,11 +55,11 @@
   
      <!--본문(해당회원 마이페이지)-->
    <hr>
-   <div class="container">
+   <div class="container" style="margin-left: 100px; margin-right: 100px;">
       <!--container start-->
-      <div class="row">
+      <div class="row"  style="width:1700px">
          <!--row start-->
-         <div id="profile-section" class="col-2">
+         <div id="profile-section" style="width:300px">
             <!--profile-section start-->
             <div class="profile-img" id="imgContainer">
                <img id="img" class="profile-img-img" src="${profile.user_image }" alt="프로필이미지" />
@@ -68,8 +102,8 @@
                           <c:when test="${profile.ratingAvg == 0}">
                              <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">☆☆☆☆☆</span>
                           </c:when>         
-                       </c:choose>           
-                       <span id="right2">${profile.reviewCount }</span>                 
+                       </c:choose> 
+                 <span id="right2">${profile.ratingAvg }</span>                
                </div>
 
                <div id="intro" class="intro" style="margin-left: 10px; border: 0px;">${profile.user_intro }</div>
@@ -77,12 +111,12 @@
 
                <c:choose>
                   <c:when test="${verified eq 'yes' }">
-                     <button id="modify-btn" onclick="modifyProfile()" type="button"   class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
-                        <i class="fa-solid fa-user-plus"></i> 프로필수정
-                     </button>
-                     <button id="userInfo-btn" onClick="location.href='management?user_number=${user_number}'" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
-                        <i class="fa-solid fa-basket-shopping"></i> 내상품관리
-                     </button>
+                   <button id="modify-btn" onclick="modifyProfile()" type="button" style="width: 240px; height: 40px; border-radius: 5px;">
+                     <i class="fa-solid fa-user-plus"></i> 프로필수정
+                   </button>
+                   <button id="userInfo-btn" onClick="location.href='management?user_number=${user_number}'" type="button" style="width: 240px; height: 40px; border-radius: 5px;">
+                     <i class="fa-solid fa-basket-shopping"></i> 내상품관리
+                   </button>
                   </c:when>
                </c:choose>
                <button id="modify-done-btn" onclick="modifyProfileDone()" style="display: none;">완료</button>
@@ -91,46 +125,46 @@
          <!--profile-section end-->
 
          <!-- 마이페이지 (본인)-->
-         <div id="profile-product" class="col-10">
+         <div id="profile-product" style="width:1200px">
             <div class="container">
-               <div class="row">
+               <div class="row" style="width:1200px">
                   <div class="col">
                      <div class="tabmenu out-tabmenu">
                         <ul>
-                           <li id="tab1" class="btnCon">
+                           <li id="tab1" class="btnCon" style="width:240px">
                               <input type="radio" name="tabmenu" id="tabmenu1" onclick="location.href='./?user_number=${user_number}'">
                               <label for="tabmenu1">판매상품</label>
                               <div class="tabCon"></div>
                            </li>
-                           <li id="tab2" class="btnCon">
+                           <li id="tab2" class="btnCon" style="width:240px">
                               <input type="radio" name="tabmenu" id="tabmenu2" onclick="location.href='./buy_list?user_number=${user_number}'">
                               <label for="tabmenu2">구매내역</label>
                               <div class="tabCon"></div>
                            </li>                           
-                           <li id="tab3" class="btnCon">
+                           <li id="tab3" class="btnCon" style="width:240px">
                               <input type="radio" name="tabmenu" id="tabmenu3" checked> 
                               <label for="tabmenu3">후기</label>
                               <div class="tabCon">
-                                 <div class="review-section">
-                                    <span style="font-size: 1.2em; font-weight: 700; margin-left: 18px; ">전체</span>
+                                 <div class="review-section" style="text-indent: 5px; margin-bottom: -5px;">
+                                    <span style="font-size: 1.2em; font-weight: 700;  margin-left: -30px;">전체</span>
                                     <span style="color: crimson; font-weight: 700;">${profile.reviewCount }</span>
                                  </div>
                                                                  
-                                 <div class="review-body">
+                                 <div class="review-body" style="width:1000px; margin-left: -20px;">
                                     <div class="review-list">
                                        <ul>
                                           <li>
                                           <c:choose>
                                              <c:when test="${profile.reviewCount > 0}">
-                                                <c:forEach items="${review }" var="review"> 
+                                                <c:forEach items="${review}" var="review"> 
                                      
-                                                   <div class="review-div">                                       
+                                                   <div class="review-div" style="width: 1000px;">                                       
                                                       <div class="member-image">
                                                          <div class="member-image-box">
                                                             <img src="${review.user_image }">      
                                                          </div>
                                                          <a href="./sales_list?user_number=${review.user_number }">
-                                                            <div class="title">${review.nickname }</div> <!--리뷰 작성자 닉네임-->
+                                                            <div class="title">${review.nickname }</div> <!--리뷰 작성자 닉네임-->                                                       
                                                          </a>
                                                       </div>
                                                       <div class="member-box">                                                          
@@ -175,21 +209,20 @@
                                                 </c:forEach> 
                                              </c:when>
                                              <c:otherwise>
-                                                <span class="noReviews">등록된 후기가 없습니다</span>
+                                                <span style="margin-left:-700px;">등록된 후기가 없습니다</span>
                                              </c:otherwise>                                    
                                           </c:choose>
                                              <!--<c:forEach begin="${pagination_start }" end="${pagination_end }" var="i">
                                                 <a id="page" href="./review?user_number=${user_number }&page=${i }">${i }</a>
                                              </c:forEach>-->
-                                             <div class="page">
-                                                <nav aria-label="Page navigation example" id="page2">
-                                                   <ul class="pagination">
-                                                      <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
-                                                         <li class="page-item"><a class="page-link" href="./review?user_number=${user_number }&page=${i }">${i }</a></li>
-                                                      </c:forEach>   
-                                                   </ul>
-                                                </nav>
-                                             </div>
+                       
+                                              <div style="display: block; text-align: center; justify-content: center; margin-top: 50px; width: 100%;">                                
+                                             <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
+                                                <a href="./review?user_number=${user_number }&page=${i }" 
+                                                style="text-decoration: none; border: 1px solid lightgray; padding: 4px; padding-left: 10px; padding-right: 10px; margin-right: 5px; border-radius: 10px; color: black;">${i }</a>
+                                             </c:forEach>   
+                                          </div> 
+                                          
                                           </li>
                                           <li></li>
                                           <li></li>
@@ -198,7 +231,7 @@
                                  </div>
                               </div></li>
 
-                           <li id="tab4" class="btnCon">
+                           <li id="tab4" class="btnCon" style="width:240px">
                            <input type="radio" name="tabmenu" id="tabmenu4" onclick="location.href='./zzim?user_number=${user_number}'">
                               <label for="tabmenu4">찜</label>
                               <div class="tabCon"></div>

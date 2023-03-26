@@ -10,12 +10,10 @@
     <title>이젠마켓 | 상품등록</title>
 <style>
     .container{
-      
       position: relative;
       top: 100px;
       left: 25%;
       font-size: 25px;
-      
    }
    
    .Title {
@@ -209,7 +207,7 @@
            position: relative;
            top: 40px;
            left: 71%;
-           color: white;   
+           color: white;
            background: black;
            font-size: 30px;
            width: 180px;
@@ -223,18 +221,18 @@
     <jsp:include page="../include/header.jsp" />
  
  <!-- 내가 만든 메서드 경로 주소 -> action -->
-<form action="./insert" method="POST" name="myForm" onsubmit="return validateForm();">
+
 
  <div class="container">
    
     <!-- <div class="line"></div> -->
       <div class="Title">기본정보</div>
-   
+       
     <div class="line"></div>
 
 <div>
    <div>
-       <input type="file" id="input_imgs" multiple/>
+       <input type="file" id="input_imgs" name="file" multiple/>
    </div>
 </div>
 
@@ -249,7 +247,7 @@
         - 이미지를 클릭할 경우 원본 이미지를 확인할 수 있습니다.<br>
         - 이미지를 클릭 후 이동하여 등록순서를 변경할 수 있습니다.<br>
         - 큰 이미지일 경우 이미지가 깨지는 경우가 발생할 수 있습니다.<br>
-            최대 지원 사이즈인 640 X 640으로 리사이즈 해서 올려주세요.(개당 이미지 최대 10M)
+          최대 지원 사이즈인 640 X 640으로 리사이즈 해서 올려주세요.(개당 이미지 최대 10M)
    </div>
 </div>
    
@@ -257,7 +255,7 @@
    
    <div class="flex-wrap">
    <div class="title">제목</div>
-    <input type="text" id="product_title" class="textbox short-title" name="title" placeholder="상품 제목을 입력해주세요.">
+     <input type="text" id="product_title" class="textbox short-title" name="title" placeholder="상품 제목을 입력해주세요.">
    </div>
     
     <div class="line2"></div>
@@ -266,7 +264,7 @@
        <div class="title">카테고리</div>
            <div class="Category"> 
             <!-- value : category_id-->
-           <select name="category_id"  class="textbox dropbar">
+           <select name="category_id"  class="textbox dropbar" id="category_select">
               <option value="">카테고리를 선택하세요</option>
               <option value="1">남성의류</option>
               <option value="2">여성의류</option>
@@ -312,7 +310,7 @@
      <div class="flex-wrap">
         <div class="title">상품설명</div>
         <textarea class="textbox" cols="60" rows="8" name="post_content" placeholder=
-        "여러 장의 상품 사진과 구입 연도, 브랜드, 사용감, 하자 유무 등 구매자에게 필요한 정보를 꼭 포함해 주세요. (10자 이상)"></textarea>
+        "여러 장의 상품 사진과 구입 연도, 브랜드, 사용감, 하자 유무 등 구매자에게 필요한 정보를 꼭 포함해 주세요. (10자 이상)" id="text_box"></textarea>
      </div>
    </div>
    
@@ -320,11 +318,11 @@
    <div class="line3"></div> 
    
    <div class="submit-background">      
-         <button type="submit" id="registerBtn">등록하기</button>   
+         <button onclick="validateForm()" id="registerBtn">등록하기</button>   
    </div> 
 
     
-</form>
+
 
    <!--    <div class="submit-background">                                                      
         <div class="btnContainer"><a href="javascript:" class="my_button" onclick="submitAction();"></a></div>
@@ -392,10 +390,12 @@
         $(document).ready(function() {
             $("#input_imgs").on("change", handleImgFileSelect);
         }); 
+
         function fileUploadAction() {
             console.log("fileUploadAction");
             $("#input_imgs").trigger('click');
         }
+
         function handleImgFileSelect(e) {
             var files = e.target.files;
             var filesArr = Array.prototype.slice.call(files);
@@ -422,14 +422,15 @@
                 }
                 
                 sel_files.push(f);
+
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+                    var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>" +
+                    "<input type=\"file\" name=\"files\" value="+sel_files[index]+">";
                     $(".imgs_wrap").append(html);
                     index++;
                 }
                 reader.readAsDataURL(f);
-
             });
         }
         
@@ -445,11 +446,20 @@
         
         // 빈칸 있을 때 알림창 나오기
         function validateForm() {
-             var product_title = document.forms["myForm"]["title"].value;
-             var category = document.forms["myForm"]["category_id"].value;     
-             var address = document.forms["myForm"]["post_address"].value;     
-             var price = document.forms["myForm"]["price"].value;     
-             var content = document.forms["myForm"]["post_content"].value;     
+        	var inputs = document.getElementsByTagName("input");
+        	for (var i = 0; i < inputs.length; i++) {
+        	  if (inputs[i].name === "title") {
+        	    var product_title = inputs[i].value;
+        	  } else if (inputs[i].name === "post_address") {
+        	    var address = inputs[i].value;
+        	  } else if (inputs[i].name === "price") {
+        	    var price = inputs[i].value;
+        	  } 
+        	}	
+        	  var category_select = document.getElementById('category_select');
+        	  var category = category_select.options[category_select.selectedIndex].value;
+        	  var content = document.getElementById('text_box').value;
+        	   
              
              if (product_title == "") {
                   alert("상품의 제목을 입력해주세요.");
@@ -463,7 +473,7 @@
                }else if(price == ""){
                   alert("가격을 입력해주세요.");
                    return false;
-               }else if(isNaN(price) || price >= 100000000){
+               }else if(isNaN(price) && price >= 100000000){
                   alert("올바른 가격을 입력해주세요.");
                    return false;
                }else if(content == ""){
@@ -473,7 +483,35 @@
                   alert("10자 이상 입력해주세요.");
                   return false;
                }   
-    }   
+
+                var formData = new FormData();
+                for (var i = 0; i < sel_files.length; i++) {
+                   formData.append('file', sel_files[i]);
+                }
+                formData.append('title', product_title);
+                formData.append('category_id', category);
+                formData.append('post_address', address);
+                formData.append('price', price);
+                formData.append('post_content', content);
+                $.ajax({
+                        url:'./insert', 
+                        type:'post', 
+                        processData: false,
+                        contentType: false,
+                        data: formData,
+                        success:function(result){ 
+                            if(result == 1){ 
+                            
+                            location.href = 'insertSuccess';
+                            } else {
+                            alert('오류입니다. 다시 시도해주세요.');
+                            }
+                        },
+                        error:function(){
+                            alert("에러입니다");
+                        }
+                    });
+                }   
                
     </script>
 </body>

@@ -13,19 +13,58 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
     <style>
+           
+    .topMenu ul li { 
+      line-height: 120% !important;
+     }   
+     .topMenu {
+        top: -10px !important;
+        margin-bottom: 15px !important;
+     } 
+     .header-hr {
+        margin-top: 15px !important;
+     }
+     .menu { 
+        margin-top: -55px !important;
+        
+      }
+   .a-title {
+       text-decoration: none;
+       color: black;
+       display: block;
+       padding-bottom: 15px;
+    }
+   .a-data {
+       margin-left: 30px;
+    }
+   #nav {
+      margin-top: 15px;
+   }     
+     .logo {
+        
+      line-height: 115% !important;
+      padding-right: 50px !important;
+   }
     </style>
 </head>
 <body>
   <jsp:include page="../include/header.jsp"/> 
-  <jsp:include page="../report.jsp"/>
+  <jsp:include page="../report.jsp"/>   
+   <input name="report_detail" value="${user_number }" type="hidden" />  
+    <input name="currentPage"  value="0"  type="hidden"/>
+   </form>
+ 
+  
+  
+  
   <!--본문(해당회원 마이페이지)-->
   <hr>
    
-  <div class="container" style="margin-right: 500px;"> <!--container start-->
+  <div class="container" style="margin-left: 100px; margin-right: 100px;"> <!--container start-->
   
-    <div class="row"> <!--row start-->
+    <div class="row" style="width:1700px"> <!--row start-->
 
-      <div id="profile-section" class="col-2"> <!--profile-section start-->
+      <div id="profile-section" style="width:300px"> <!--profile-section start-->
         <div class="profile-img" id="imgContainer" >
           <img id="img" class="profile-img-img" src="${profile.user_image }"/>
         </div>
@@ -71,18 +110,18 @@
                        <span class="star" style="color:#FFC31E; font-size: 20px; padding-left:15px;">☆☆☆☆☆</span>
                     </c:when>         
                  </c:choose>           
-                 <span id="right2">${profile.reviewCount }</span>
+                 <span id="right2">${profile.ratingAvg }</span>
           </div>
           
-          <div id="intro" class="intro" style="margin-left: 10px; border: 0px;">${profile.user_intro }</div>
+          <div id="intro" class="intro" style="margin-left: 10px; border: 0px; width:240px;">${profile.user_intro }</div>
           <textarea id="modifyIntro"class="intro" style="display: none;"></textarea>
 
           <c:choose>
             <c:when test="${verified eq 'yes'}">
-                <button id="modify-btn" onclick="modifyProfile()" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
+                <button id="modify-btn" onclick="modifyProfile()" type="button" style="width: 240px; height: 40px; border-radius: 5px;">
                   <i class="fa-solid fa-user-plus"></i> 프로필수정
                 </button>
-                <button id="userInfo-btn" onClick="location.href='management?user_number=${user_number}'" type="button" class="btn btn-outline-secondary" style="width: 95%; height: 40px; margin-right: 10px;">
+                <button id="userInfo-btn" onClick="location.href='management?user_number=${user_number}'" type="button" style="width: 240px; height: 40px; border-radius: 5px;">
                   <i class="fa-solid fa-basket-shopping"></i> 내상품관리
                 </button>
             </c:when>
@@ -98,20 +137,20 @@
 
       <!-- 마이페이지 (본인)--> 
       
-      <div id="profile-product" class="col-10"> <!--tab start-->
-        <div class="container">
-          <div class="row">
-            <div class="col">
+      <div id="profile-product" style="width:1200px; "> <!--tab start-->
+        <div class="container" >
+          <div class="row" style="width:1200px;">
+            <div class="col" >
               <div class="tabmenu out-tabmenu">
 
                 <ul>
-                  <li id="tab1" class="btnCon">
+                  <li id="tab1" class="btnCon" style="width:240px;">
                     <input type="radio" checked name="tabmenu" id="tabmenu1">
-                    <label for="tabmenu1">판매상품</label>
+                    <label for="tabmenu1" style="font-weight: 400;">판매상품</label>
                     <div class="tabCon" >
                     <div class="container">
                   
-                      <div class="row"> 
+                      <div class="row" style="width:1000px; margin-left: -50px;"> 
                         <div class="col">
                           <div class="product-section" style="margin-bottom: 1em;">
                             <span style="font-size: 1.2em; font-weight: 700;">전체</span>
@@ -120,20 +159,20 @@
                         </div>                                               
                       </div>
                           
-                      <div class="row">
+                      <div class="row" style="width:1000px; margin-left: -50px;">
                         <c:choose>
                         <c:when test="${profile.postCount > 0}">
                            <c:forEach items="${post }" var="post">
-                              <div class="col-4">
+                              <div class="col-4" >
                                  <!-- 1 of 3 start -->
                                 
-                                    <div class="card" style="width: 13em; margin: 0 10px 20px 0;">
-                                       <img src=${post.image_url } class="card-img-top" alt="..." style="width: 100%; height: 250px;" onclick="location.href='../product?id=${post.post_Id}'">
-                                       <div class="card-body">
+                                    <div class="card" style="width: 280px; margin-right: 20px; margin-bottom: 40px;">
+                                       <img src=${post.image_url } class="card-img-top" alt="..." style="width: 100%; height: 280px;" onclick="location.href='../product?id=${post.post_Id}'">
+                                       <div class="card-body" >
                                           <span class="d-inline-block text-truncate card-text" >${post.title }</span><br>
                                           <p><fmt:formatNumber value="${post.price }" pattern="#,###" />원</p>
-                                          <div class="up-btns">
-                                             <button class="custom-btn up-btn" onclick="location.href='./product'">수정</button>
+                                          <div class="up-btns" style="margin-left:95px;">
+                                             <button class="custom-btn up-btn" onclick="location.href='./product'" >수정</button>
                                              <button class="custom-btn up-btn" onclick="location.href='./update?post_Id=${post.post_Id }&user_number=${user_number }'">UP</button>
                                              <button class="custom-btn up-btn" onclick="location.href='./delete?post_Id=${post.post_Id }&user_number=${user_number }'">삭제</button>
                                           </div>
@@ -142,18 +181,15 @@
                                  
                               </div>
                            </c:forEach>
-                              <div class="page">
-                                <nav aria-label="Page navigation example" id="page2">
-                                    <ul class="pagination">
-                                       <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
-                                          <li class="page-item"><a class="page-link" href="./sales_list?user_number=${user_number }&page=${i }">${i }</a></li>
-                                       </c:forEach>   
-                                    </ul>
-                                 </nav>
+                              <div style="display: block; text-align: center; justify-content: center; margin-top: 50px; width: 100%;">                                
+                                 <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
+                                    <a href="./sales_list?user_number=${user_number }&page=${i }" 
+                                    style="text-decoration: none; border: 1px solid lightgray; padding: 4px; padding-left: 10px; padding-right: 10px; margin-right: 5px; border-radius: 10px; color: black;">${i }</a>
+                                 </c:forEach>   
                               </div>
                         </c:when>
                         <c:otherwise>
-                           <span>판매중인 상품이 없습니다</span>
+                           <span style="text-indent: 10px;">판매중인 상품이 없습니다</span>
                         </c:otherwise>                                    
                           </c:choose>
                       </div>
@@ -164,20 +200,22 @@
                     </div>                      
                   </li>
               
-              <li id="tab2" class="btnCon">
+                   <li id="tab2" class="btnCon" style="width:240px">
                      <input type="radio" name="tabmenu" id="tabmenu2" onclick="location.href='./buy_list?user_number=${user_number}'">
-                     <label for="tabmenu2">구매내역</label>
+                     <label for="tabmenu2" style="font-weight: 400;">구매내역</label>
                      <div class="tabCon"></div>
                   </li> 
                   
-                  <li id="tab3" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu3" onclick="location.href='review?user_number=${user_number}'">
-                    <label for="tabmenu3">후기</label>
+                  <li id="tab3" class="btnCon" style="width:240px">
+                  <input type="radio" name="tabmenu" id="tabmenu3" onclick="location.href='review?user_number=${user_number}'">
+                    <label for="tabmenu3" style="font-weight: 400;">후기</label>
                     <div class="tabCon">
                     </div>
                   </li>  
 
-                  <li id="tab4" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu4" onclick="location.href='zzim\?user_number=${user_number}'">
-                    <label for="tabmenu4">찜</label>
+                  <li id="tab4" class="btnCon" style="width:240px">
+                  <input type="radio" name="tabmenu" id="tabmenu4" onclick="location.href='zzim\?user_number=${user_number}'">
+                    <label for="tabmenu4" style="font-weight: 400;">찜</label>
                     <div class="tabCon">
                     </div>                    
                   </li>
@@ -189,17 +227,14 @@
       </div> <!--tab end-->
     </div> <!--container end-->
   </div> <!--row end-->
-  <c:if test="${verified ne 'yes'}">
-	<button type="button" id="show" style="position: absolute; top:450px; left:460px; background-color:white;">
-		<img src="https://cdn-icons-png.flaticon.com/512/1198/1198487.png"
-		width="25" height="25" style="vertical-align: -3px;">신고하기
-		</button>	
-	<input name="report_detail" value="${user_number }" type="hidden" />  
-    <input name="currentPage"  value="0"  type="hidden"/>
-   </form>
-  </c:if>	
+    <c:if test="${verified ne 'yes'}">
+   <button type="button" id="show" style="position: absolute; top:440px; left:300px; background-color:white;">
+      <img src="https://cdn-icons-png.flaticon.com/512/1198/1198487.png"
+      width="25" height="25" style="vertical-align: -3px;">신고하기
+   </button>
+     </c:if>
   <jsp:include page="../include/footer.jsp"/>
-	
+   
   
   <script>
     const imgContainer = document.getElementById('imgContainer');

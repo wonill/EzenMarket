@@ -30,8 +30,14 @@ public class ReviewRestController {
 				// 이미 작성한 리뷰가 있는 경우
 				return "2";
 			};
+			EndDeal myEndDeal = reviewMapper.selectEndDeal(user_number, chatPartner, post_id);
 			
-			return "1";
+			if(myEndDeal.getBuyer_user_number() == user_number) {
+				return "buyer";
+			} else {
+				return "seller";				
+			}
+			
 		} else if(reviewMapper.countEndDeal(user_number, chatPartner, post_id) == 0) {
 			// 내가 거래 당사자가 아닌 경우
 			return "0";

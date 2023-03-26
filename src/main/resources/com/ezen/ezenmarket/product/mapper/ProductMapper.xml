@@ -28,6 +28,7 @@
    
    
    
+   
    <select id="deduplicatedProd" resultType="com.ezen.ezenmarket.product.dto.Post">
       SELECT * FROM post INNER JOIN postImage USING (post_id)
       WHERE (post_id, post_image_id) in 
@@ -172,6 +173,23 @@
         USING (post_id)
         WHERE (post_id, post_image_id) IN (select post_id, MIN(post_image_id) FROM postImage GROUP BY post_id)
    </select>
+   
+   <select id="isEndDeal" resultType="Integer">
+   		SELECT enddeal_id FROM enddeal WHERE post_id = #{post_id}
+   </select>
+   
+   <select id="getPost_Id" resultType="int">
+      SELECT max(post_id) FROM post  WHERE user_number = #{user_number}
+   </select>
+   
+   <insert id="insertNewPost">
+   	  INSERT INTO post VALUES (post_id_seq.nextval, #{user_number}, #{post_address}, #{title}, #{post_content}, #{category_id}, #{price}, sysdate, sysdate, 0)
+   </insert>
+   
+   
+   <insert id="insertPostImage" parameterType="com.ezen.ezenmarket.product.dto.Post">
+   	  Insert into postImage values(post_image_id_seq.nextval, #{post_id}, #{image_url})
+   </insert>
       
 	
    

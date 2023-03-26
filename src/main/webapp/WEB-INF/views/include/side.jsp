@@ -68,7 +68,7 @@
       <div class="aside">
         <div class="sideBtn"><a href="chat"><i class="fa-regular fa-comment sideIcon chaticon"></i></a></div>
           <div class="sideBtn"><i class="fa-regular fa-bell sideIcon"></i></div>
-             <div class="sideBtn topBtn"><i class="fa-solid fa-caret-up sideIcon topicon"></i><span style="margin-left: 8.9px;">TOP</span></div>
+             <div class="sideBtn topBtn"><i class="fa-solid fa-caret-up sideIcon topicon"></i><span style="margin-left: 6px;">TOP</span></div>
                 <!-- <div class="sideBtn">공유</div> -->
        </div>
        

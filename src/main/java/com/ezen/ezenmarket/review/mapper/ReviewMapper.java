@@ -7,6 +7,8 @@ import com.ezen.ezenmarket.review.dto.EndDeal;
 public interface ReviewMapper {
 	
 	
+	public EndDeal selectEndDeal(@Param("user_number")Integer user_number, @Param("chatPartner")Integer chatPartner, @Param("post_id")Integer post_id);
+	
 	public Integer countEndDeal(@Param("user_number")Integer user_number, @Param("chatPartner")Integer chatPartner, @Param("post_id")Integer post_id);
 	
 	public EndDeal searchEndDeal(Integer post_id);
@@ -16,4 +18,5 @@ public interface ReviewMapper {
 	public Integer countReview(@Param("user_number")Integer user_number, @Param("enddeal_id")Integer enddeal_id);
 	
 	public Integer countEndDealAnyone(Integer post_id);
+
 }	

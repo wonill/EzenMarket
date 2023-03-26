@@ -114,6 +114,10 @@
     </style>
 </head>
 <body>
+	<jsp:include page="../report.jsp"/>
+	<input name="report_detail" value="${current_room_id }" type="hidden"/> 
+    <input name="currentPage"  value="2"  type="hidden"/>
+   </form>
 
     <div id="chat_option_window">
         <div id="chat_option_background">
@@ -137,10 +141,6 @@
     <jsp:include page="chat_exit.jsp"></jsp:include>
     <jsp:include page="review_form.jsp"></jsp:include>
     <jsp:include page="review_submit_confirm.jsp"></jsp:include>
-	<jsp:include page="../report.jsp"/>
-	<input name="report_detail" value="${current_room_id }" type="hidden" />  
-    <input name="currentPage"  value="2"  type="hidden"/>
-   </form>
     <script>
          
     function chat_option_close(){
@@ -162,12 +162,13 @@
     function show() {
         document.querySelector(".background").className = "background show";
      }
+     
      function close() {
-        document.querySelector(".background").className = "background";
-     }
+         document.querySelector(".background").className = "background";
+      }
      document.querySelector("#show").addEventListener("click", show);
-     document.querySelector("#close").addEventListener("click", close);
-
+     
+     
     </script>
 </body>
 </html>
