@@ -99,7 +99,7 @@
                 <div class="col-sm-8">
                   <div class="row">
                     <div class="col">
-                      <input type="text" name="address" form="user_signup" class="form-control" id="sample5_address" placeholder="주소">
+                      <input type="text" name="user_address" form="user_signup" class="form-control" id="sample5_address" placeholder="주소">
                       <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
                     </div>
                     <div class="col">

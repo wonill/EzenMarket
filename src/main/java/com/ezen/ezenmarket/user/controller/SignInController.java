@@ -1,8 +1,5 @@
 package com.ezen.ezenmarket.user.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.ezenmarket.user.dto.User;
+import com.ezen.ezenmarket.user.dto.User2;
 import com.ezen.ezenmarket.user.mapper.UserMapper;
 import com.ezen.ezenmarket.user.mapper.UserXmlMapper;
 import com.ezen.ezenmarket.user.service.impl.LoginServiceImpl;
@@ -68,14 +66,14 @@ public class SignInController {
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	@PostMapping(value="/signup")
-	public String userSingUp(User user) {
+	public String userSingUp(User2 user) {
 
 //		user.setUser_PW(passwordEncoder.encode(user.getUser_PW()));
 //		System.out.println(passwordEncoder.matches("12341234a", user.getUser_PW()));
 		
 		System.out.println(user.getUser_address());
 		
-//		uxm.userSignUp(user);
+		uxm.userSignUp(user);
 		
 		return "main";
 	}

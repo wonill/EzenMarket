@@ -493,7 +493,7 @@
        .chat_wrap .item.mymsg .box.transparency .unread{
             right:auto; 
             left:-72px;
-            bottom: 42px;
+            bottom: 32px;
             
         }
        .chat_wrap .item.mymsg .box.transparency .time{

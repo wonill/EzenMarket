@@ -2,8 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="config" class="com.zaxxer.hikari.HikariConfig">
@@ -36,6 +40,8 @@
 	    </props>
 	    </property>
 	  </bean>
+	  
+	  	
 		
 		<mybatis-spring:scan base-package="com.ezen.ezenmarket.product.mapper"/>
 		<mybatis-spring:scan base-package="com.ezen.ezenmarket.admin.mapper"/>

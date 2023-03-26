@@ -92,8 +92,8 @@
 
             top: 100px;
             left: 35px;
-			background-image: url('${postInfo.image_url}');
-			background-size: cover;
+         background-image: url('${postInfo.image_url}');
+         background-size: cover;
             background-repeat: no-repeat;
             }
 
@@ -113,13 +113,13 @@
             padding: 5px 10px 5px 10px;
             top: 165px;
             left: 165px;
-            font-size: 1.1em;
+            font-size: 1.3em;
             
             max-width: 350px;
             
-            overflow: hidden;  		
-            text-overflow: ellipsis;  	
-            white-space: nowrap; 		
+            overflow: hidden;        
+            text-overflow: ellipsis;     
+            white-space: nowrap;       
             word-break:break-all;
         }
 
@@ -132,9 +132,9 @@
 
 
         .reviewContents {
-            width: 500px;
-            height: 150px;
-            padding: 10px;
+            width: 500px !important;
+            height: 150px!important;
+            padding: 10px!important;
             box-sizing: border-box;
             border: solid 1.5px #D3D3D3;
             border-radius: 10px;
@@ -240,8 +240,8 @@
         }
 
         .checkbox_text{
-            vertical-align: 30%;
-            font-size: 18px;
+           line-height: 110%;
+            font-size: 19px;
         }
 
         #myform fieldset{
@@ -267,8 +267,8 @@
         }
         
         fieldset{
-            margin-left: 85px;
-            margin-bottom: 50px;
+            margin-left: 120px !important;
+            margin-bottom: 50px !important;
         }
       
 
@@ -290,7 +290,7 @@
 
 
       <div style="margin-top: 270px; font-size: 1.8em; font-weight: 700; text-align: center;">${user.nickname }님,<br> ${myCurrentChatPartnerInfo.nickname }님과의 거래가 어떠셨나요?</div>
-      <div style="margin-left: 205px;  margin-top: 30px; color: #D3D3D3;">별점을 선택하세요</div>
+      <div style="margin-left: 205px;  margin-top: 30px; color: #D3D3D3; font-size: 16px;">별점을 선택하세요</div>
 
 
       <div name="myform" id="myform" method="post">
@@ -366,7 +366,7 @@
 
 
       <div style="font-weight: 700; font-size: 1.4em; margin: 40px 0 15px 20px;">따뜻한 거래경험을 알려주세요!</div>
-      <div style="font-weight: 400; font-size: 1.1em; margin: 15px 0 30px 20px;">남겨주신 후기는 상대방의 프로필에 공개돼요.</div>
+      <div style="font-weight: 400; font-size: 1.3em !important; margin: 15px 0 30px 20px;">남겨주신 후기는 상대방의 프로필에 공개돼요.</div>
       
          
          <div>
@@ -432,7 +432,7 @@
 
 
       <div style="font-weight: 700; font-size: 1.4em; margin: 40px 0 15px 20px;">구매자님께 감사 인사를 남겨보세요!</div>
-      <div style="font-weight: 400; font-size: 1.1em; margin: 15px 0 30px 20px;">남겨주신 후기는 상대방의 프로필에 공개돼요.</div>
+      <div style="font-weight: 400; font-size: 1.3em !important; margin: 15px 0 30px 20px;">남겨주신 후기는 상대방의 프로필에 공개돼요.</div>
     
          
          <div>
@@ -456,7 +456,7 @@
 
 
    <div id="bad_buyer">
-      <div style="font-weight: 700; font-size: 1.5em; margin-left: 20px; margin-bottom: 40px;">어떤 점이 별로였나요?</div>
+      <div style="font-weight: 700; font-size: 1.5em !important; margin-left: 20px; margin-bottom: 40px;">어떤 점이 별로였나요?</div>
 
       <div>
          <label class="checkbox">
@@ -531,7 +531,7 @@
 
 
       <div style="font-weight: 700; font-size: 1.4em; margin: 40px 0 15px 20px;">아쉬웠던 점을 알려주세요!</div>
-      <div style="font-weight: 400; font-size: 1.1em; margin: 15px 0 30px 20px;">남겨주신 후기는 상대방의 프로필에 공개돼요.</div>
+      <div style="font-weight: 400; font-size: 1.3em !important; margin: 15px 0 30px 20px;">남겨주신 후기는 상대방의 프로필에 공개돼요.</div>
       
          
          <div>
@@ -565,7 +565,7 @@
 
 
    <div id="bad_seller">
-      <div style="margin-bottom: 15px; margin-top: 15px;">어떤 점이 별로였나요?</div>
+      <div style="font-weight: 700; font-size: 1.5em !important; margin-left: 20px; margin-bottom: 40px;">어떤 점이 별로였나요?</div>
 
       <div>
          <label class="checkbox">
@@ -640,7 +640,7 @@
 
 
       <div style="font-weight: 700; font-size: 1.4em; margin: 40px 0 15px 20px;">아쉬웠던 점을 알려주세요!</div>
-      <div style="font-weight: 400; font-size: 1.1em; margin: 15px 0 30px 20px;">남겨주신 후기는 상대방의 프로필에 공개돼요.</div>
+      <div style="font-weight: 400; font-size: 1.3em !important; margin: 15px 0 30px 20px;">남겨주신 후기는 상대방의 프로필에 공개돼요.</div>
       
          
          <div>
@@ -792,72 +792,72 @@
         
         const xhttp = new XMLHttpRequest();
 
-  	    xhttp.addEventListener('readystatechange', (e) => {
-  	      
-  	       if(xhttp.readyState == 4 && xhttp.status == 200){
-  	           
-  	            console.log('요청 성공!', xhttp.responseText);
-  	            
-  	            review_submit_confirm_show();
-  	       }
-  	  
-  	    });
+         xhttp.addEventListener('readystatechange', (e) => {
+           
+            if(xhttp.readyState == 4 && xhttp.status == 200){
+                
+                 console.log('요청 성공!', xhttp.responseText);
+                 
+                 review_submit_confirm_show();
+            }
+       
+         });
 
 
-  	   
-  	    xhttp.open('POST', './review/submitReview');
-  	  
-  	    
-  	    if(confirm("후기를 남기시겠습니까?") == true){
-	  	    xhttp.send(data);    	    	
-  	    }else{
-  	    	return;
-  	    }
-    	  
-    	  
+        
+         xhttp.open('POST', './review/submitReview');
+       
+         
+         if(confirm("후기를 남기시겠습니까?") == true){
+            xhttp.send(data);              
+         }else{
+            return;
+         }
+         
+         
          
          
       }  
 
 
       function reviewShow() {
-    	  const xhttp = new XMLHttpRequest();
+         const xhttp = new XMLHttpRequest();
 
-  	    xhttp.addEventListener('readystatechange', (e) => {
-  	      
-  	       if(xhttp.readyState == 4 && xhttp.status == 200){
-  	           
-  	    	   const responseResult = xhttp.responseText;
-  	    	   
-  	            console.log('요청 성공!', responseResult);
-  	            
-  	            if(responseResult == 'buyer' || responseResult == 'seller'){
-  	            	document.querySelector(".review_background").className = "review_background review_show";
-  	            	document.getElementById('reviewerType').value = responseResult;
-  	            	
-  	            } else if(responseResult == 0){
-  	            	alert('권한이 없습니다.');
-  	            } else if(responseResult == 2){
-  	            	alert('이미 리뷰를 작성하셨습니다.')
-  	            } else if(responseResult == -1){
-  	            	alert('거래 완료된 상품이 아닙니다.')
-  	            } else{
-  	            
-  	            	alert('에러입니다.');
-  	            	
-  	            };
-  	       }
-  	  
-  	    });
+         xhttp.addEventListener('readystatechange', (e) => {
+           
+            if(xhttp.readyState == 4 && xhttp.status == 200){
+                
+             const responseResult = xhttp.responseText;
+             
+                 console.log('요청 성공!', xhttp.responseText);
+                 
+               if(responseResult == 'buyer' || responseResult == 'seller'){
+                  document.querySelector(".review_background").className = "review_background review_show";
+                  document.getElementById('reviewerType').value = responseResult;
+                  
+               } else if(responseResult == 0){
+                  alert('권한이 없습니다.');
+               } else if(responseResult == 2){
+                  alert('이미 리뷰를 작성하셨습니다.')
+               } else if(responseResult == -1){
+                  alert('거래 완료된 상품이 아닙니다.')
+               } else{
+               
+                  alert('에러입니다.');
+                    
+                 };
+            }
+       
+         });
 
 
-  	   
-  	    xhttp.open('POST', './review/reviewerCheck?user_number=' + ${sessionScope.user_number} + '&chatPartner=' + ${myCurrentChatPartnerInfo.user_number} +'&post_id=' + ${postInfo.post_id});
-  	  
-  	    
-  	    xhttp.send();  
-    	  
-    	  
+        
+         xhttp.open('POST', './review/reviewerCheck?user_number=' + ${sessionScope.user_number} + '&chatPartner=' + ${myCurrentChatPartnerInfo.user_number} +'&post_id=' + ${postInfo.post_id});
+       
+         
+         xhttp.send();  
+         
+         
         
       }
 

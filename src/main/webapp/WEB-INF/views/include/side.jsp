@@ -28,6 +28,7 @@
         color: whitesmoke;
         
         margin-left: 8px;
+        cursor: pointer;
        
       }
       .sideIcon {
@@ -56,7 +57,13 @@
       }
       
       .topBtn{
-         cursor: pointer;
+         
+      }
+      
+      #notification_btn{
+      	position: relative;
+      	
+      	
       }
       
 </style>
@@ -67,7 +74,7 @@
     <!-- 사이드 -->
       <div class="aside">
         <div class="sideBtn"><a href="chat"><i class="fa-regular fa-comment sideIcon chaticon"></i></a></div>
-          <div class="sideBtn"><i class="fa-regular fa-bell sideIcon"></i></div>
+          <div class="sideBtn"><div id="alarmBtn"><jsp:include page="notifications.jsp"/><i class="fa-regular fa-bell sideIcon"></i></div></div>
              <div class="sideBtn topBtn"><i class="fa-solid fa-caret-up sideIcon topicon"></i><span style="margin-left: 6px;">TOP</span></div>
                 <!-- <div class="sideBtn">공유</div> -->
        </div>
@@ -79,7 +86,8 @@
        window.scrollTo({ top: 0, behavior: "smooth" });  
      } 
        
-       
+if(${sessionScope.user_number}){
+	
  var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/" + ${sessionScope.user_number});
        
        webSocket.onopen = function(message) {
@@ -95,7 +103,10 @@
           const info = JSON.parse(message.data);
              
            if(info.type == 'message'){
-             alert('메세지 알림이 왔습니다!')
+             alert('메세지 알림이 왔습니다!');
+             addNewAlarm();
+           } else if(info.type == 'zzim'){
+        	   alert('내 상품에 찜 요청이 왔습니다.');
            }   
        }
            
@@ -108,9 +119,9 @@
               
              console.log("Server Disconnect...\n");
        }
+}
        
-       
-       
+      
       
        </script>
 

@@ -4,17 +4,19 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ezen.ezenmarket.user.mapper.UserXmlMapper">
 
-  <insert id="userSignUp" parameterType="com.ezen.ezenmarket.user.dto.User">
+  <insert id="userSignUp" parameterType="com.ezen.ezenmarket.user.dto.User2">
     INSERT INTO userlist VALUES (
-    	7,
+    	user_number_seq.nextval,
     	#{user_Name},
     	#{user_ID},
     	#{user_PW},
     	#{nickname},
     	#{phoneNumber},
     	#{email},
+    	#{user_address},
     	null,
-    	sysdate
+    	0,
+    	null
     )
   </insert>
   
