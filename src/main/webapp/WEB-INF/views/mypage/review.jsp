@@ -18,7 +18,7 @@
 <body>
 
   <jsp:include page="../include/header.jsp"/>
- 
+  
      <!--본문(해당회원 마이페이지)-->
    <hr>
    <div class="container">

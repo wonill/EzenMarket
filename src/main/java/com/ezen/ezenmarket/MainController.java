@@ -29,7 +29,7 @@ public class MainController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		
-		List<Post> posts = productMapper.selectAllProducts();
+		List<Post> posts = productMapper.selectAllProductsOrderByView();
 		if(posts != null && posts.size() >= 60) {
 			model.addAttribute("posts", posts.subList(0, 60));			
 		}

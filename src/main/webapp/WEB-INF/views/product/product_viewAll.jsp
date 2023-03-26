@@ -12,6 +12,39 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <style>
+    
+    .topMenu ul li { 
+      list-style: none;
+      color: hsl(0, 1%, 27%);
+      float: right;
+      margin-right: 25px;
+      margin-top: 10px !important;
+     }    
+     .menu { 
+        margin-top: -55px !important;
+        
+      }
+   .a-title {
+       text-decoration: none;
+       color: black;
+       display: block;
+       padding-bottom: 15px;
+    }
+   .a-data {
+       margin-left: 30px;
+    }
+   #nav {
+      margin-top: 15px;
+   }     
+     .logo {
+        
+      line-height: 115% !important;
+      padding-right: 50px !important;
+   }
+
+
+
+
 
    a:link {text-decoration: none;}   
    a {color: black;}
@@ -76,25 +109,55 @@
         border-width: 1px 0 0 0;  
         padding: 10px 0 0 5px; 
    }
+   
+   #icon-location {
+      float: left;  
+      margin-right: 5px;
+      color: black;
+   }
+   
    .item_list .item_card .text2 #address {
         font-weight: 400;
         font-size: 15px;
         color: black;   
-        max-width: 120px;
-        overflow: hidden;        
-        text-overflow: ellipsis;     
-        white-space: nowrap;       
-        word-break:break-all;
+        float: left;   
+        max-width: 180px; 
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; 
    }
    
    #recommend {font-size: 1.5em; margin: 10% 0 -3% 20%;}
    #icon-recommend {font-size:1em; color:#FFCC33;}
-   #icon-location {color: black;}
    
-   .page {width: 100%;   position:relative; margin-top: 60px; margin-bottom: 243px;}
-   .paging {position: absolute; left: 47.5%;}
-   .pagination {justify-content: center;}  
-   .pagination > li > a {margin-right: 5px; color: black;}
+   
+   .paging {
+         width: 100%;
+         justify-content: center;
+         text-align: center;
+         margin-top: 50px;
+   }
+   
+   .paging > ul {    
+      text-align: center;
+       display: inline-block;
+       border: 1px solid #ccc;
+   } 
+   .paging > ul > li{
+      text-align: center;
+       float: left;
+      list-style:none;
+   }
+   .paging > ul > li > a {
+       display: block;
+       font-size: 14px;
+      color: black;
+       padding: 9px 12px;
+       border-right: solid 1px #ccc;
+       box-sizing: border-box;
+      text-decoration-line:none;
+   } 
    
 </style>
 </head>
@@ -129,15 +192,13 @@
       </c:forEach>
    </div>
 
-   <div class="page">
-      <nav aria-label="Page navigation example" class="paging">
-         <ul class="pagination">
+   <div  class="paging">   
+         <ul>
             <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
-               <li class="page-item"><a class="page-link" href="./viewAll?page=${i }">${i }</a></li>
+               <li class="pageItem"><a href="./viewAll?page=${i }">${i }</a></li>
             </c:forEach>   
          </ul>
-      </nav>
-   </div>
+    </div>
   
    <jsp:include page="../include/footer.jsp"/>
 

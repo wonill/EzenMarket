@@ -123,7 +123,11 @@
                 <div><a href="mypage/?user_number=${myCurrentChatPartnerInfo.user_number }">대화상대 정보보기</a></div>
                 <div><a href="product?id=${postInfo.post_id }">상품 정보보기</a></div>
                 <div><a onclick="reviewShow()">후기 작성하기</a></div>
-                <div><a href="">신고하기</a></div>
+                <div><button id="show" style="border: 0; background-color: white;">
+					<img src="https://cdn-icons-png.flaticon.com/512/1198/1198487.png"
+					width="30px" height="30px" style="vertical-align: -3px;">신고하기
+					</button>
+				</div>
                 <div><a onclick="block()">차단하기</a></div>
                 <div><a id="exit_show">채팅방 나가기</a></div>
             </div>
@@ -133,7 +137,10 @@
     <jsp:include page="chat_exit.jsp"></jsp:include>
     <jsp:include page="review_form.jsp"></jsp:include>
     <jsp:include page="review_submit_confirm.jsp"></jsp:include>
-
+	<jsp:include page="../report.jsp"/>
+	<input name="report_detail" value="${current_room_id }" type="hidden" />  
+    <input name="currentPage"  value="2"  type="hidden"/>
+   </form>
     <script>
          
     function chat_option_close(){
@@ -151,6 +158,15 @@
     	alert('추후 업데이트 예정입니다.');
     	chat_option_close();
     }
+    
+    function show() {
+        document.querySelector(".background").className = "background show";
+     }
+     function close() {
+        document.querySelector(".background").className = "background";
+     }
+     document.querySelector("#show").addEventListener("click", show);
+     document.querySelector("#close").addEventListener("click", close);
 
     </script>
 </body>

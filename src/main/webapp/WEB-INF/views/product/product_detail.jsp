@@ -289,6 +289,7 @@
 <body>
 
    <jsp:include page="../include/header.jsp"/>
+   <jsp:include page="../report.jsp"/>
 
 
     
@@ -346,7 +347,7 @@
                                   </button>
                                </c:when>
                                <c:otherwise>   
-                     
+                    
                                <div class="btns">
                            <button id="zzimBtn" type="button" ><i id="zzimIcon" class="bi bi-heart-fill"></i><span id="zzimText"> 찜</span></button>                       
                            <tooltip id='tooltip' style='display:none'>상품을 찜했습니다!</tooltip>
@@ -354,8 +355,11 @@
                         </div>   
                         <div class="btns2">                                                                              
                                   <button id="chatBtn" type="button"><i class="bi bi-messenger"></i> 채팅</button>  
-                               </div>                                           
-                        <jsp:include page="../report.jsp"/>
+                               </div>         
+                               <button type="button" id="show" style="position: absolute;border: 0;background-color: white;margin: -290px -740px 0 0;">
+							      <img src="https://cdn-icons-png.flaticon.com/512/1198/1198487.png"
+							         width="25" height="25" style="vertical-align: -3px;">신고하기
+							   </button>                                  
                                </c:otherwise>
                             </c:choose>                                
                         </div>
@@ -438,8 +442,8 @@
      </div>
 
    
-      
-    <input name="currentPage"  value="0"  type="hidden"/>
+    <input name="report_detail" value="${post.post_id}" type="hidden" />  
+    <input name="currentPage"  value="1"  type="hidden"/>
    </form> 
    
     

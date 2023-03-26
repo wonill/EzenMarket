@@ -13,6 +13,39 @@
 <script src="https://kit.fontawesome.com/d04567b543.js" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
+    
+     .topMenu ul li {
+      list-style: none;
+      color: hsl(0, 1%, 27%);
+      float: right;
+      margin-right: 25px;
+      margin-top: 10px !important;
+     }
+     
+     .menu { 
+        margin-top: -55px !important;
+        
+      }
+   .a-title {
+       text-decoration: none;
+       color: black;
+       display: block;
+       padding-bottom: 15px;
+    }
+   .a-data {
+       margin-left: 30px;
+    }
+   #nav {
+      margin-top: 15px;
+   }     
+     .logo {        
+      line-height: 115% !important;
+      padding-right: 50px !important;
+   }
+   *, ::after, ::before {
+      box-sizing: border-box;
+   }
+
 
    a:link {
            text-decoration: none;
@@ -112,7 +145,7 @@
         overflow: hidden;
         text-overflow: ellipsis; 
         margin-top: 5px;       
-   		}
+         }
 
       #recommend {        
         margin-top: 200px;
@@ -125,29 +158,38 @@
         position: relative; 
         float: left; 
         margin: 5px 5px 5px 0;
-   	   }
+         }
 
-   .page {
-      width: 100%;
-      position:relative;
-      margin-top: 60px; margin-bottom: 243px;
+   
+   .paging {
+         width: 100%;
+         justify-content: center;
+         text-align: center;
+         margin-top: 50px;
    }
    
-   #page2 {
-      position: absolute;
-      left: 50%;
+   .paging > ul {    
+      text-align: center;
+       display: inline-block;
+       border: 1px solid #ccc;
+       
+   } 
+   .paging > ul > li{
+      text-align: center;
+       float: left;
+      list-style:none;
+      
    }
-   
-
-   .pagination {
-       justify-content: center;
-   }
-  
-   .pagination > li > a {
-     margin-right: 5px;
-     color: black;
-   }
-  
+   .paging > ul > li > a {
+       display: block;
+       font-size: 14px;
+      color: black;
+       padding: 9px 12px;
+       border-right: solid 1px #ccc;
+       box-sizing: border-box;
+      text-decoration-line:none;
+      
+   } 
 
 </style>
 
@@ -215,17 +257,19 @@
 -->
 
     </main>
+ 
 
-<div class="page">
-   <nav aria-label="Page navigation example" id="page2">
-      <ul class="pagination">
-         <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
-            <li class="page-item"><a class="page-link" href="./category?category_id=<%=request.getParameter("category_id")%>&page=${i }">${i }</a></li>
-         </c:forEach>   
-      </ul>
-   </nav>
-</div>
-  
+   <div  class="paging">   
+         <ul>
+            <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i" >
+               <li class="pageItem"><a href="./category?category_id=<%=request.getParameter("category_id")%>&page=${i }">${i }</a></li>
+            </c:forEach>   
+         </ul>
+    </div>
+
+
+
+
 
    <!-- 
    * 제목 말줄임 적용하기

@@ -130,9 +130,9 @@
                                        <c:when test="${profile.zzimCount > 0}">
                                        <c:forEach items="${zzim }" var="zzim">
                                           <div class="col-4">
-                                             <a class="product" href="../product?id=${zzim.post_Id }">
+                                            
                                                 <div class="card" style="width: 13em; margin: 0 10px 20px 0;">
-                                                   <img src="${zzim.image_url }" class="card-img-top" alt="..." style="width: 100%; height: 250px;"> 
+                                                   <img src="${zzim.image_url }" class="card-img-top" alt="..." style="width: 100%; height: 250px;" onclick="location.href='../product?id=${zzim.post_Id }'"> 
                                                       <a href="./deleteZzim?post_Id=${zzim.post_Id }&user_number=${user_number}" onclick="deleteZzim()">
                                                          <i class="fa-solid fa-heart"></i>                                                         
                                                       </a>
@@ -142,7 +142,7 @@
                                                       <p><fmt:formatNumber value="${zzim.price }" pattern="#,###" />원</p>
                                                    </div>
                                                 </div>
-                                             </a> 
+                                             
                                           </div>
                                        </c:forEach>
                                        </c:when>

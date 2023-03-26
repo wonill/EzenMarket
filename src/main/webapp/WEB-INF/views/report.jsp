@@ -44,8 +44,8 @@
 }
 .show {
    opacity: 1;
-   z-index: 1;
-   transition: all 0.5s;
+   z-index: 11;
+   transition: all 0.1s;
 }
 .window {
    position: relative;
@@ -97,10 +97,7 @@
    transition: all 0.5s;
 }
 #show {
-   position: absolute;
-   border: 0;
-   background-color: white;   
-   margin: -290px -740px 0 0;
+   
 }
 #when_other {
    width: 350px;
@@ -125,10 +122,7 @@
 <body>
 
 
-   <button type="button" id="show">
-      <img src="https://cdn-icons-png.flaticon.com/512/1198/1198487.png"
-         width="25" height="25" style="vertical-align: -3px;">신고하기
-   </button>
+   
 
 
 
@@ -137,7 +131,7 @@
          <div class="popup">
             <h3 class="title" >신고 사유를 선택해 주세요.</h3>
             <hr>
-            <form method="get" action="./report" id="myForm">
+            <form method="get" action="<%=request.getContextPath() %>/report" id="myForm">
                <input id="cause" type="radio" name="cause" value="안전결제 거부" checked/> 안전결제 거부<br> 
                <input id="cause" type="radio" name="cause" value="주류, 담배" /> 주류, 담배<br> 
                <input id="cause" type="radio" name="cause" value="전문의약품" /> 전문의약품, 의료기기<br> 
@@ -153,7 +147,7 @@
                
 
                <!-- 주소에 있는 post_id(상품번호)를 숨겨서 가져오기 위해  -->
-               <input name="post_id" value="${post.post_id}" type="hidden" /> <br>
+                <br>
                
                <!-- 세션에서 로그인 정보(유저넘버) 가져오기 위해 -->
                <input name="user_number" value="${sessionScope.user_number}" type="hidden" /> 
@@ -174,13 +168,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">게시물 신고</h5>
+        <h5 class="modal-title" id="exampleModalLabel">신고</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-               게시물을 신고하시겠습니까?
+               신고하시겠습니까?
       </div>
       <div class="modal-footer">
          <button type="submit" class="btn btn-warning" >신고</button>

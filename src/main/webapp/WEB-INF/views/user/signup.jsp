@@ -9,71 +9,15 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+      <link href="<%=request.getContextPath()%>/resources/css/user/signup.css" rel="stylesheet">
+      <script src="https://kit.fontawesome.com/c737e525de.js" crossorigin="anonymous"></script>
       <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
-
-      <style>
-       
-        #logo {
-          font-size: 40px;
-          font-family: 'Knewave', cursive;
-        }
-        a:link {
-          text-decoration: none;
-        }
-        a {
-          color: black;
-        }
-        #logo>img {
-          top: 50%;
-          left: 50%;
-          width: 20%;
-          height: 20%;
-        }
-        @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-          }
-        }
-        .b-example-vr {
-          flex-shrink: 0;
-          width: 1.5rem;
-          height: 100vh;
-        }
-        .bi {
-          vertical-align: -.125em;
-          fill: white;
-        }
-        .nav-scroller {
-          position: relative;
-          z-index: 2;
-          height: 2.75rem;
-          overflow-y: hidden;
-        }
-        .nav-scroller .nav {
-          display: flex;
-          flex-wrap: nowrap;
-          padding-bottom: 1rem;
-          margin-top: -1px;
-          overflow-x: auto;
-          text-align: center;
-          white-space: nowrap;
-          -webkit-overflow-scrolling: touch;
-        }
-        #sign_up_box {
-          margin-left: 430px;
-        }
-      </style>
-
-
     </head>
     <body class="white">
       <div class="container">
         <main>
           <div class="py-5 text-center" id="logo">
-            <img class="d-block mx-auto mb-4"
-              src="https://t4.ftcdn.net/jpg/03/48/11/53/360_F_348115379_nLV6ulz8NDrY7McW2z6J6m7AI5ciBN3p.jpg" alt=""
-              width="72" height="57">
-            <h2>Ezen Market</h2>
+         <a class="logo" href="<%=request.getContextPath() %>" style="text-decoration: none; color:black;">Ezen<i class="fa-brands fa-monero logoIcon"></i>arket</a>
           </div>
 
 
@@ -135,13 +79,13 @@
                   </div>
                 </div>
               </div>
-				
+            
               <div class="col-sm-6">
                 <label for="name" class="form-label">휴대폰 번호<span class="text-muted"></span></label>
                 <input type="text" name="phoneNumber" form="user_signup" class="form-control" id="phoneNumber">
                 <div id="checkPhone" style="color:red;"></div>
               </div>
-			
+         
               <div class="6">
                 <label for="email" class="form-label">주소입력 <span class="text-muted"></span></label>
                 <div class="col-sm-8">
@@ -151,7 +95,7 @@
                       <div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
                     </div>
                     <div class="col">
-                 		  <input type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>   
+                         <input type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>   
                     </div>
                   </div>
                 </div>
@@ -185,11 +129,9 @@
                     </div>
                   </div>
                 </div>
-              
-                
-              
+          
               <br>
-			  
+           
             </form>
             <form id="user_signup" action="./signup" method="POST">
               <div class="sign_up_btn">
@@ -210,7 +152,7 @@
         </ul>
       </footer>
 
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e47856cfcf539f7992f903a405faeb07&libraries=services"></script>
     
     <script>
@@ -278,8 +220,8 @@
                 url:'./nickCheck', //Controller에서 요청 받을 주소
                 type:'post', //POST 방식으로 전달
                 headers : {
-         			 'Content-Type' : 'application/json'
-         		    },
+                   'Content-Type' : 'application/json'
+                   },
                 dataType: 'text',
                 data:nickname,
                 async: false,
@@ -314,8 +256,8 @@
                 url:'./idCheck', //Controller에서 요청 받을 주소
                 type:'post', //POST 방식으로 전달
                 headers : {
-         			 'Content-Type' : 'application/json'
-         		    },
+                   'Content-Type' : 'application/json'
+                   },
                 dataType:'text',
                 data: id,
                 async: false,

@@ -20,7 +20,7 @@ public class ReportController {
 	ProductMapper productMapper;
 	
 	 @GetMapping(value="/report")
-	 public String paramTest(HttpServletRequest req, String  post_id, String user_number) {
+	 public String paramTest(HttpServletRequest req, Integer report_detail, String user_number) {
 	      
 		 String cause = req.getParameter("cause");
 		 String etc = req.getParameter("etc");
@@ -34,12 +34,22 @@ public class ReportController {
 		 } 
 		
 		//  System.out.println("사유: " + cause);
-		 reportmapper.insertReport(currentPage, cause, Integer.parseInt(post_id), Integer.parseInt(user_number));
+		 reportmapper.insertReport(currentPage, cause, report_detail, Integer.parseInt(user_number));
 		 
 		 System.out.println("사용자번호: " + user_number);
 		 
 		 // 신고 후 기존에 신고했던 상세페이지로 
-		 return "redirect:/product?id=" + post_id;
+		 if(currentPage.equals("0")) {
+			 return "redirect:/mypage/?user_number=" + report_detail;
+		 } else if(currentPage.equals("1")) {
+			 return "redirect:/product?id=" + report_detail;
+		 } else if(currentPage.equals("2")) {
+			 return "redirect:/chat?room_id=" + report_detail;
+		 } else if(currentPage.equals("3")) {
+			 //return "redirect:/mypage/review?=" + report_detail;
+		 }
+		 
+		 return "redirect:/";
 	 }
 
 }

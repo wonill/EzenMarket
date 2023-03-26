@@ -4,8 +4,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.ezen.ezenmarket.user.dto.User;
+import com.ezen.ezenmarket.user.mapper.UserMapper;
 import com.ezen.ezenmarket.user.mapper.UserXmlMapper;
 import com.ezen.ezenmarket.user.service.UserService;
 
@@ -14,6 +17,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserXmlMapper mapper;
+	
+	@Autowired
+	UserMapper usermapper;
+	
+	 @Autowired
+	private JavaMailSender emailSender;
 	
 	@Override
 	public int idCheck(String id) {
@@ -45,4 +54,16 @@ public class UserServiceImpl implements UserService {
 		
 		return null;
 	}
+	// 비밀번호 변경 시 입력하는 정보들
+		@Override
+	    public User findUserById(String user_id, String user_name, String email) {
+	        return usermapper.findUserById(user_id, user_name, email);
+	    }
+
+	    User user;
+	    
+	    @Override
+	    public void updateUserPw(String new_password, String user_id) {
+	        usermapper.updateUserPw(new_password, user_id);
+	    }
 }

@@ -10,6 +10,13 @@
       ORDER BY updated DESC
    </select>
    
+   <select id="selectAllProductsOrderByView" resultType="com.ezen.ezenmarket.product.dto.Post">
+      SELECT * FROM post INNER JOIN postImage USING (post_id)
+      WHERE (post_id, post_image_id) in 
+      (select post_id, min(post_image_id) FROM postImage GROUP BY post_id)
+      ORDER BY post_view DESC
+   </select>
+   
    <select id="selectProduct" resultType="com.ezen.ezenmarket.product.dto.Post">
       SELECT * FROM post INNER JOIN postImage USING (post_id) WHERE post_image_id = (SELECT min(post_image_id) FROM postimage WHERE post_id = #{id})
    </select>

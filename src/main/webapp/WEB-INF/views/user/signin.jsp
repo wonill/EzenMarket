@@ -14,8 +14,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
-    <meta name="generator" content="Hugo 0.88.1">
+   
     <title>로그인 페이지</title>
     <!-- 폰트어썸 -->
    <script src="https://kit.fontawesome.com/c737e525de.js" crossorigin="anonymous"></script>
@@ -53,7 +52,7 @@
                 
                 <div class="form-floating">
                     <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="user_id">
-                    <label for="floatingInput">이메일</label>
+                    <label for="floatingInput">아이디</label>
                 </div>
                 <div class="form-floating">
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="user_pw">
@@ -66,9 +65,9 @@
                         <input type="checkbox" value="remember-me"> 자동로그인 
                     </label>
                     <label>
-                        <a href="#">아이디 찾기</a>
+                        <a href="<%=request.getContextPath() %>/find_id">아이디 찾기</a>
                         <span> | </span>
-                        <a href="#">비밀번호 찾기</a>
+                        <a href="<%=request.getContextPath() %>/find_pw">비밀번호 변경</a>
                     </label>
                 </div>
                 

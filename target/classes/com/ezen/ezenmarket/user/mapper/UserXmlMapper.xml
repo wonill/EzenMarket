@@ -35,4 +35,8 @@
 		WHERE 
 			nickname=#{nickName}
 	</select>
+	
+
+	
+	
 </mapper>

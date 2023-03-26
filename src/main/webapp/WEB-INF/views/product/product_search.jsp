@@ -12,6 +12,46 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">    
     <style>
     
+        
+    .topMenu ul li { 
+      list-style: none;
+      color: hsl(0, 1%, 27%);
+      float: right;
+      margin-right: 25px;
+      margin-top: 10px !important;
+     }    
+     .menu { 
+        margin-top: -60px !important;
+        
+      }
+   .a-title {
+       text-decoration: none;
+       color: black;
+       display: block;
+       padding-bottom: 15px;
+    }
+   .a-data {
+       margin-left: 30px;
+    }
+   #nav {
+      margin-top: 15px;
+   }     
+     .logo {
+        
+      line-height: 115% !important;
+      padding-right: 50px !important;
+   }
+   .search {
+       margin-top: 20px;
+
+   }
+   #searchBtn {
+      margin-top: 17px !important;
+    }
+   
+    
+    
+    
     html,body {
       margin: 0;   
       padding: 0;   
@@ -140,7 +180,7 @@
       position: relative;
       top: 40px;
       margin-top: 150px;
-      margin-left: 1460px;
+      margin-left: 1480px;
       cursor:pointer;
    }
    
@@ -161,7 +201,7 @@
       color: white;
       border: 1px solid black;
       background-color: black;
-      margin-left: 1605px;
+      margin-left: 1625px;
       top: 14px;
       cursor:pointer;
    }
@@ -172,10 +212,38 @@
       font-size: 20px;
    }
    
+   
+   #icon-noResult {
+       width:100%;
+        margin-top: 250px;
+        margin-bottom: 20px;
+        font-size: 100px;
+        text-align: center;
+        color: #bebebe;
+   }
+   
+   .div-noResult {
+      margin-top: 2em;
+      margin-bottom: 250px;
+      width:100%;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+   }
+
+   .p-noResult {
+         color: #bebebe;     
+         font-size: 18px;
+         text-align: center;
+         
+   }
+   
    div:last-child {
       padding-top: 10px;
       margin-bottom: -15px;
    }
+
+
 
 </style>
     
@@ -216,9 +284,9 @@
                <button id="lowest" onclick="location.href='searchPagenation?title=${keyword }&type=low'">저가순</button>
             </nav>                           
                   
-          <div id="countProducts">총 <span style="font-size: 16px; color:black; font-weight: bold;">${searchCnt}</span>개의 상품이 검색 되었습니다</div>     
+          <div id="countProducts">총 <span style="font-size: 20px; color:black; font-weight: bold;">${searchCnt}</span>개의 상품이 검색 되었습니다</div>     
                    
-         <div style="border: 1px solid white;width: 86%;margin-left: 12.2%;">
+         <div style="border: 1px solid white;width: 77%;margin-left: 12.2%;">
             <hr>         
          </div>
                       
@@ -262,8 +330,7 @@
              
              
                 <%-- 페이지네이션 --%>
-
-           <div style="display: block; text-align: center; margin-top: 220px; margin-left: 124px; margin-bottom: 150px;">      
+           <div style="display: block; text-align: center; justify-content: center; margin-top: 50px; width: 100%;">      
             <c:if test="${paging.startPage != 1 }">
                <a class="a-pagination" href="searchPagenation?title=${keyword }&nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
             </c:if>
@@ -288,13 +355,15 @@
           <%-- 검색결과가 없는 경우 --%>
              <c:if test="${searchKeyword == 'empty'}">     
              
-             <i class="fa-solid fa-circle-exclamation" style="color:gray; position: relative; left:850px; top: 256px; font-size:90px;"></i>    
-                <div style="color:gray; font-size:20px; margin-top: 50px; font-weight: bold; position: relative; 
-                         left: 750px; top: 270px; height: 800px; "> 
+             <i id="icon-noResult"class="fa-solid fa-circle-exclamation" ></i>    
+                <div class="div-noResult""> 
                    <span  style="color:red; font-size:20px; font-weight: bold; ">
                       '<c:out value = "${keyword}"/>'
                    </span>
-                에 대한 검색결과가 없습니다.
+                에 대한 검색결과가 없습니다.   
+               <p class="p-noResult">단어의 철자가 정확한지 확인해 주세요.</p>
+               <p class="p-noResult">검색어의 단어 수를 줄이거나, 다른 검색어로 검색해보세요.</p>
+               <p class="p-noResult">보다 일반적인 검색어로 다시 검색해 보세요.</p>
                 </div>     
              </c:if>
                       
@@ -304,5 +373,4 @@
  
 </body>
 </html>
-
 

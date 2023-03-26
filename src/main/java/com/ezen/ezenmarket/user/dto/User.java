@@ -2,6 +2,9 @@ package com.ezen.ezenmarket.user.dto;
 
 import java.sql.Date;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +24,7 @@ public class User {
 	private String user_image;
 	private String user_intro;
 	private Integer banned;
+	private String user_pw_confirm;
+	
+
 }

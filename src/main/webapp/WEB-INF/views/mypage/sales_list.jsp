@@ -17,11 +17,12 @@
 </head>
 <body>
   <jsp:include page="../include/header.jsp"/> 
-  
+  <jsp:include page="../report.jsp"/>
   <!--본문(해당회원 마이페이지)-->
   <hr>
    
-  <div class="container"> <!--container start-->
+  <div class="container" style="margin-right: 500px;"> <!--container start-->
+  
     <div class="row"> <!--row start-->
 
       <div id="profile-section" class="col-2"> <!--profile-section start-->
@@ -95,7 +96,8 @@
       </div> <!--profile-section end-->
         
 
-      <!-- 마이페이지 (본인)-->
+      <!-- 마이페이지 (본인)--> 
+      
       <div id="profile-product" class="col-10"> <!--tab start-->
         <div class="container">
           <div class="row">
@@ -124,9 +126,9 @@
                            <c:forEach items="${post }" var="post">
                               <div class="col-4">
                                  <!-- 1 of 3 start -->
-                                 <a class="product" href="../product?id=${post.post_Id }">
+                                
                                     <div class="card" style="width: 13em; margin: 0 10px 20px 0;">
-                                       <img src=${post.image_url } class="card-img-top" alt="..." style="width: 100%; height: 250px;">
+                                       <img src=${post.image_url } class="card-img-top" alt="..." style="width: 100%; height: 250px;" onclick="location.href='../product?id=${post.post_Id}'">
                                        <div class="card-body">
                                           <span class="d-inline-block text-truncate card-text" >${post.title }</span><br>
                                           <p><fmt:formatNumber value="${post.price }" pattern="#,###" />원</p>
@@ -137,7 +139,7 @@
                                           </div>
                                        </div>
                                     </div>
-                                 </a> 
+                                 
                               </div>
                            </c:forEach>
                               <div class="page">
@@ -187,11 +189,17 @@
       </div> <!--tab end-->
     </div> <!--container end-->
   </div> <!--row end-->
-
-
-
+  <c:if test="${verified ne 'yes'}">
+	<button type="button" id="show" style="position: absolute; top:450px; left:460px; background-color:white;">
+		<img src="https://cdn-icons-png.flaticon.com/512/1198/1198487.png"
+		width="25" height="25" style="vertical-align: -3px;">신고하기
+		</button>	
+	<input name="report_detail" value="${user_number }" type="hidden" />  
+    <input name="currentPage"  value="0"  type="hidden"/>
+   </form>
+  </c:if>	
   <jsp:include page="../include/footer.jsp"/>
-
+	
   
   <script>
     const imgContainer = document.getElementById('imgContainer');
@@ -317,6 +325,15 @@
             });
         }
       }
+    
+    function show() {
+        document.querySelector(".background").className = "background show";
+     }
+     function close() {
+        document.querySelector(".background").className = "background";
+     }
+     document.querySelector("#show").addEventListener("click", show);
+     document.querySelector("#close").addEventListener("click", close);
     
  
   </script>

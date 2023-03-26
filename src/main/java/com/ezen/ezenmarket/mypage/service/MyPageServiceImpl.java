@@ -55,10 +55,31 @@ public class MyPageServiceImpl implements MyPageService{
 
       List<Post> post = mapper.getPost(user_number);
       
-      Profile p = mapper.getUserProfile(user_number);
-      p.setReviewCount(mapper.getReviewCount(user_number));
-      p.setPostCount(mapper.getPostCount(user_number));
+      List<Integer> endDealList = mapper.getEndDealList(user_number); 
+      List<Review> review = new ArrayList<>();
       
+      int numOfReview = 0;
+      
+      Double sumOfRating = 0.0;
+      
+      for(Integer endDeal : endDealList) {
+    	  Review opponentReview = mapper.getOpponentReview(endDeal, user_number);
+    	  if(opponentReview != null) {
+    		  review.add(opponentReview);
+    		  sumOfRating += opponentReview.getRating();
+    		  numOfReview++;
+    	  }
+      }
+      
+      Double avgOfRating = sumOfRating == 0.0 ? 0.0 : sumOfRating/numOfReview;
+      
+      
+      
+      
+      Profile p = mapper.getUserProfile(user_number);
+      p.setReviewCount(numOfReview);
+      p.setPostCount(mapper.getPostCount(user_number));
+      p.setRatingAvg(avgOfRating);
       
       String pageStr = req.getParameter("page");
       
@@ -115,8 +136,27 @@ public class MyPageServiceImpl implements MyPageService{
       
       List<Post> zzim = mapper.getZzim(user_number);
       
+      List<Integer> endDealList = mapper.getEndDealList(user_number); 
+      List<Review> review = new ArrayList<>();
+      
+      int numOfReview = 0;
+      
+      Double sumOfRating = 0.0;
+      
+      for(Integer endDeal : endDealList) {
+    	  Review opponentReview = mapper.getOpponentReview(endDeal, user_number);
+    	  if(opponentReview != null) {
+    		  review.add(opponentReview);
+    		  sumOfRating += opponentReview.getRating();
+    		  numOfReview++;
+    	  }
+      }
+      
+      Double avgOfRating = sumOfRating == 0.0 ? 0.0 : sumOfRating/numOfReview;
+      
       Profile p = mapper.getUserProfile(user_number);
-      p.setReviewCount(mapper.getReviewCount(user_number));
+      p.setRatingAvg(avgOfRating);
+      p.setReviewCount(numOfReview);
       p.setPostCount(mapper.getPostCount(user_number));
       p.setZzimCount(mapper.getZzimCount(user_number));
       
@@ -178,17 +218,26 @@ public class MyPageServiceImpl implements MyPageService{
       List<Integer> endDealList = mapper.getEndDealList(user_number); 
       List<Review> review = new ArrayList<>();
       
+      int numOfReview = 0;
+      
+      Double sumOfRating = 0.0;
+      
       for(Integer endDeal : endDealList) {
     	  Review opponentReview = mapper.getOpponentReview(endDeal, user_number);
     	  if(opponentReview != null) {
     		  review.add(opponentReview);
+    		  sumOfRating += opponentReview.getRating();
+    		  numOfReview++;
     	  }
       }
+      
+      Double avgOfRating = sumOfRating == 0.0 ? 0.0 : sumOfRating/numOfReview;
       
       //List<Review> review = mapper.getReviewList(user_number);
       
       Profile p = mapper.getUserProfile(user_number);
-      p.setReviewCount(mapper.getReviewCount(user_number));
+      p.setRatingAvg(avgOfRating);
+      p.setReviewCount(numOfReview);
       p.setPostCount(mapper.getPostCount(user_number));
       
       String pageStr = req.getParameter("page");
@@ -405,8 +454,27 @@ public class MyPageServiceImpl implements MyPageService{
 
       List<EndDeal> endDeal = mapper.getBuying(user_number);
       
+      List<Integer> endDealList = mapper.getEndDealList(user_number); 
+      List<Review> review = new ArrayList<>();
+      
+      int numOfReview = 0;
+      
+      Double sumOfRating = 0.0;
+      
+      for(Integer endDeal2 : endDealList) {
+    	  Review opponentReview = mapper.getOpponentReview(endDeal2, user_number);
+    	  if(opponentReview != null) {
+    		  review.add(opponentReview);
+    		  sumOfRating += opponentReview.getRating();
+    		  numOfReview++;
+    	  }
+      }
+      
+      Double avgOfRating = sumOfRating == 0.0 ? 0.0 : sumOfRating/numOfReview;
+      
       Profile p = mapper.getUserProfile(user_number);
-      p.setReviewCount(mapper.getReviewCount(user_number));
+      p.setRatingAvg(avgOfRating);
+      p.setReviewCount(numOfReview);
       p.setPostCount(mapper.getPostCount(user_number));
       p.setBuyingCount(mapper.getBuyingCount(user_number));
       

@@ -32,7 +32,7 @@
       var currentScrollpos = window.pageYOffset;
       console.log("current Y offset: " + currentScrollpos)
       if (prevScrollpos < currentScrollpos) {
-         headerbar.style.opacity = 0.7;
+         headerbar.style.opacity = 0.9;
          headerbar.style.top = 0;
 
          
@@ -66,7 +66,7 @@
      font-family: 'SUIT-Regular';
    }
       
-    .head {
+   .head {
      position: fixed;
      border: 1px solid white;
      height: 70px;
@@ -74,7 +74,8 @@
      transition: opacity 0.8s;
      width: 1900px;
      z-index: 10;
-   } 
+   }
+
    
    .logo {
      font-family: 'Tenada';
@@ -83,6 +84,8 @@
      font-size: 39px;
      font-weight: bold; 
      color: black;
+     margin-top:30px;
+     line-height: 115%;
    }
    
    .logoIcon {
@@ -144,8 +147,9 @@
         
      .topMenu {
        position: relative;
+       width: 1900px;
        top: -10px;
-       left: 70px;   
+       right: 120px;   
         
      }
     
@@ -167,21 +171,23 @@
      .searchbox {       
         width: 280px;
         height:1px;
-        border: 1px solid black;
+        border-bottom: 2px solid black;
         position: relative;
-        left : 1540px;
-        top: 20px;
+        left : 1485px;
+        top: 30px;
         display: block;
+        
      }
      
      .search {
        position: absolute;
          top: 0;
-        left: 1540px;
+        left: 1490px;
         width : 260px;
         border : 0px;
         outline : none;
         display: block;
+        
      }
         
   
@@ -192,7 +198,7 @@
         border: 0px;       
         outline: none;
         background-color: white;     
-        left: 1780px;
+        left: 1720px;
         top: 7px;
         display: block;
      }
@@ -240,14 +246,13 @@
       .li-title {
         list-style-type: none;
         float:left;
-          margin-right: 30px;
+        margin-right: 30px;
         overflow: hidden
         
       }
 
       .li-data {
-        list-style-type: none;
-        
+        list-style-type: none;       
         margin-top: 0px;      
         margin-left: -50px;
         overflow: hidden;
@@ -257,8 +262,8 @@
       .a-title {
         text-decoration:none;
         color: black;
-      display: block;
-      padding-bottom: 15px;
+        display: block;
+        padding-bottom: 15px;
       }
        
        .a-title:hover {color: lightgray;}
@@ -294,7 +299,7 @@
         ul {list-style-type: none;padding: 0;margin: 0;}
         .lili, #autocomplete-suggestions div {padding: 8px; z-index:3;}
         .lili:hover {background-color: #ddd;}
-        li.hl {background-color: #ddd;}  
+        li.hl {background-color: #ddd;}   
       
 </style>
 
@@ -302,7 +307,7 @@
 
 </head>
 <body onscroll="headerbarToggle()">
-      <div id="box">
+      <!-- <div id="box"> -->
        <header>
      
           <nav class="topMenu">
@@ -331,9 +336,9 @@
 
 
       <!-- <div style="border: 1px solid white; margin-top: 20px; width: 1900px;"></div> -->
-      <hr style="width: 1900px;">
+      <hr id="header-hr" style="width: 100%;">
       
-          <div id="headerbar" class="head">
+        <div id="headerbar" class="head">
             <a class="logo a-tag" href="<%=request.getContextPath()%>">Ezen<i class="fa-brands fa-monero logoIcon"></i>arket</a>
                   
          <!-- 메뉴바 -->
@@ -391,7 +396,15 @@
             </ul>
         
                   
-              	
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                 
                   <input class="search" type="search" name="title" placeholder="" id="autocomplete-input">
                  <div class="searchbox"><div style="position:absolute;top:1px;left:0;"><div id="autocomplete-suggestions"></div></div></div>
                    
@@ -410,9 +423,9 @@
           </div>
  --%>
         </header>
-	
-	
-	<script>
+   
+   
+   <script>
    
    const inputArea = document.getElementById("autocomplete-input");
     const suggestionsBox = document.getElementById("autocomplete-suggestions");
@@ -496,23 +509,23 @@
 
         // enter key is pressed
         if (e.keyCode === 13) {
-           	
-        	if(suggestionHighlighted == -1){
-        		let value = inputArea.value.trim();
+              
+           if(suggestionHighlighted == -1){
+              let value = inputArea.value.trim();
                 if (value) {
                   window.location.href = '<%=request.getContextPath() %>/searchPagenation?title=' + value;
                 };
-        	}
-        	
-           	if(suggestionElements.length == 0){
-           		let value = inputArea.value.trim();
+           }
+           
+              if(suggestionElements.length == 0){
+                 let value = inputArea.value.trim();
                 if (value) {
                   window.location.href = '<%=request.getContextPath() %>/searchPagenation?title=' + value;
                 };
-           	}
+              }
            
             if(suggestionsBox.style.zIndex == -1){
-            	let value = inputArea.value.trim();
+               let value = inputArea.value.trim();
                 if (value) {
                   window.location.href = '<%=request.getContextPath() %>/searchPagenation?title=' + value;
                 }
