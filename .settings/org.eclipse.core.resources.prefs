@@ -1,5 +1,9 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/admin/includes/footer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/includes/loginInclude.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/modifyBannerPage.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/postlist.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/userlist.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/include/chat_option.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/include/footer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/include/notifications.jsp=UTF-8

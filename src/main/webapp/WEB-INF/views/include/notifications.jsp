@@ -35,6 +35,7 @@
         overflow: auto; /* Enable scroll if needed */
         background-color: rgba(221, 221, 221, 0.1); /* Black w/ opacity */
         display:none;
+        
         }
 
         #modalContent{
@@ -90,6 +91,7 @@
             padding: 20px;        
             cursor: pointer;
             color: black;
+            
         }
         .modalList:hover {
             background-color:  rgba(221, 221, 221, 0.4);    
@@ -107,6 +109,10 @@
         .bold_font{
         	display: inline;
         	font-weight: bold;
+        }
+        
+        .on{
+        	display: block;
         }
         
         
@@ -181,14 +187,25 @@
 
 
     let num = 0;
-    function addNewAlarm(){
-        var _tar = $("#modalSub").append('<div class="modalList"><p class="bold_font">"철철철수"</p>님으로부터 후기가 도착했습니다' + ++num + '</div>');
+    function addNewAlarm(message){
+    	
+    	const info = JSON.parse(message.data);
+        
+        if(info.type == 'message'){
+        	var _tar = $("#modalSub").append('<div class="modalList"><p class="bold_font">"테스트"</p>님으로부터 메세지가 도착했습니다.</div>');
+        } else if(info.type == 'zzim'){
+        	var _tar = $("#modalSub").append('<div class="modalList"><p class="bold_font">"테스트"</p>님이 내 상품에 찜을 했습니다.</div>');
+        } else if(info.type == 'review'){
+        	var _tar = $("#modalSub").append('<div class="modalList"><p class="bold_font">"테스트"</p>님으로부터 후기가 도착했습니다</div>');
+        } else if(info.type == 'enddeal'){
+        	var _tar = $("#modalSub").append('<div class="modalList"><p class="bold_font">"테스트"</p>님이 구매하신 상품을 판매완료처리했습니다. 후기를 남겨보세요.</div>');
+        } 
+    	
+    	
+        //var _tar = $("#modalSub").append('<div class="modalList"><p class="bold_font">"철철철수"</p>님으로부터 후기가 도착했습니다' + ++num + '</div>');
         no_alarm.style.display = 'none';
 		modalScroll.style.display = 'block';
-        var lastItem = $("#modalSub").find(".item:last");
-            setTimeout(function(){
-                lastItem.addClass("on");
-            },300);
+        
     }
     
     </script>

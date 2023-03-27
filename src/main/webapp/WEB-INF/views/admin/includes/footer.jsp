@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
       <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>±¸¸®ÀÌÁ¨ ÆÀÇÁ·ÎÁ§Æ® </span>
+                        <span>êµ¬ë¦¬ì´ì   íŒ€í”„ë¡œì íŠ¸ </span>
                     </div>
                 </div>
             </footer>
@@ -24,15 +24,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">·Î±×¾Æ¿ô</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">ë¡œê·¸ì•„ì›ƒ</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">¡¿</span>
+                        <span aria-hidden="true">Ã—</span>
                     </button>
                 </div>
-                <div class="modal-body">·Î±×¾Æ¿ôÀ» ´©¸¦½Ã ÁøÇà»óÈ²ÀÌ ÀúÀåµÇÁö ¾Ê½À´Ï´Ù.</div>
+                <div class="modal-body">ë¡œê·¸ì•„ì›ƒì„ ëˆ„ë¥¼ì‹œ ì§„í–‰ìƒí™©ì´ ì €ì¥ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</div>
                 <div class="modal-footer">
-                    <a class="btn btn-primary" href="login.html">·Î±×¾Æ¿ô</a>
-                    <button class="btn btn-secondary " type="button" data-dismiss="modal" >Ãë¼Ò</button>
+                    <a class="btn btn-primary" href="login.html">ë¡œê·¸ì•„ì›ƒ</a>
+                    <button class="btn btn-secondary " type="button" data-dismiss="modal" >ì·¨ì†Œ</button>
                 </div>
             </div>
         </div>
@@ -54,6 +54,7 @@
 
     <!-- Page level custom scripts -->
     <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
+    
 	
 	 <!-- Page level plugins -->
     <script src="${pageContext.request.contextPath}/resources/vendor/chart.js/Chart.min.js"></script> 
@@ -73,7 +74,7 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["³²¼ºÀÇ·ù", "¿©¼ºÀÇ·ù", "½Å¹ß"],
+    labels: ["ë‚¨ì„±ì˜ë¥˜", "ì—¬ì„±ì˜ë¥˜", "ì‹ ë°œ"],
     datasets: [{
       data: [${categoryFirst}, ${categorySecond}, ${categoryThird}],
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
@@ -106,22 +107,89 @@ var myPieChart = new Chart(ctx, {
         const reportType = parseInt(cell.textContent);
         switch (reportType) {
           case 0:
-            cell.textContent = 'À¯Àú';
+            cell.textContent = 'ìœ ì €';
             break;
           case 1:
-            cell.textContent = '°Ô½Ã¹°';
+            cell.textContent = 'ê²Œì‹œë¬¼';
             break;
           case 2:
-              cell.textContent = 'Ã¤ÆÃ';
+              cell.textContent = 'ì±„íŒ…';
               break;
           case 3:
-              cell.textContent = '¸®ºä';
+              cell.textContent = 'ë¦¬ë·°';
               break;
           default:
             cell.textContent = reportType;
             break;
         }
       });
+      
+      const categoryTypeCells = document.querySelectorAll('#category-type');
+      categoryTypeCells.forEach(cell => {
+        const categoryType = parseInt(cell.textContent);
+        switch (categoryType) {
+          case 1:
+            cell.textContent = 'ë‚¨ì„±ì˜ë¥˜';
+            break;
+          case 2:
+            cell.textContent = 'ì—¬ì„±ì˜ë¥˜';
+            break;
+          case 3:
+            cell.textContent = 'ì‹ ë°œ';
+            break;
+          case 4:
+            cell.textContent = 'ê°€ë°©';
+            break;
+          case 6:
+            cell.textContent = 'ì£¼ë°©ìš©í’ˆ';
+            break;
+          case 7:
+            cell.textContent = 'ì¸í…Œë¦¬ì–´';
+            break;
+          case 8:
+            cell.textContent = 'ìƒí•„í’ˆ';
+            break;
+          case 9:
+            cell.textContent = 'ê±´ê°•ìš©í’ˆ';
+            break;
+          case 10:
+            cell.textContent = 'ë°˜ë ¤ìš©í’ˆ';
+            break;
+          case 11:
+            cell.textContent = 'ì‚¬ë¬´ìš©í’ˆ';
+            break;
+          case 12:
+            cell.textContent = 'ì•„ì›ƒë„ì–´';
+            break;
+          case 13:
+            cell.textContent = 'ìš´ë™í™”';
+            break;
+          case 14:
+            cell.textContent = 'ë…¸íŠ¸ë¶/PC';
+            break;
+          case 15:
+            cell.textContent = 'íœ´ëŒ€ì „í™”';
+            break;
+          case 16:
+            cell.textContent = 'ì£¼ë³€ê¸°ê¸°';
+            break;
+          case 17:
+            cell.textContent = 'ê¸°íƒ€ìš©í’ˆ';
+            break;
+  
+          default:
+            cell.textContent = categoryType;
+            break;
+        }
+      });
+      
+      
+      
+      
+      
+      
+      
+      
 </script>
 
 <script>
@@ -157,7 +225,7 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["¿ù", "È­", "¼ö", "¸ñ", "±İ", "Åä", "ÀÏ"],
+    labels: ["ì›”", "í™”", "ìˆ˜", "ëª©", "ê¸ˆ", "í† ", "ì¼"],
     datasets: [{
       label: "",
       lineTension: 0.3,
@@ -273,8 +341,138 @@ var myLineChart = new Chart(ctx, {
             })
             .catch(error => console.log(error));
     }
+    function displayImage1(event) {
+    	  var image = document.getElementById('myImage1');
+    	  image.src = URL.createObjectURL(event.target.files[0]);
+    	}
+    function displayImage2(event) {
+  	  var image = document.getElementById('myImage2');
+  	  image.src = URL.createObjectURL(event.target.files[0]);
+  	}
+    function displayImage3(event) {
+  	  var image = document.getElementById('myImage3');
+  	  image.src = URL.createObjectURL(event.target.files[0]);
+  	}
+    function displayImage4(event) {
+  	  var image = document.getElementById('myImage4');
+  	  image.src = URL.createObjectURL(event.target.files[0]);
+  	}
+    
+    
+    
 </script>
 
+<script>
+//Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+function number_format(number, decimals, dec_point, thousands_sep) {
+  // *     example: number_format(1234.56, 2, ',', ' ');
+  // *     return: '1 234,56'
+  number = (number + '').replace(',', '').replace(' ', '');
+  var n = !isFinite(+number) ? 0 : +number,
+    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+    s = '',
+    toFixedFix = function(n, prec) {
+      var k = Math.pow(10, prec);
+      return '' + Math.round(n * k) / k;
+    };
+  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+  if (s[0].length > 3) {
+    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+  }
+  if ((s[1] || '').length < prec) {
+    s[1] = s[1] || '';
+    s[1] += new Array(prec - s[1].length + 1).join('0');
+  }
+  return s.join(dec);
+}
+// Bar Chart Example
+var ctx = document.getElementById("myBarChart");
+var myBarChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ["${userAddresses[0]}", "${userAddresses[1]}", "${userAddresses[2]}", "${userAddresses[3]}", "${userAddresses[4]}"],
+    datasets: [{
+      label: "Revenue",
+      backgroundColor: "#4e73df",
+      hoverBackgroundColor: "#2e59d9",
+      borderColor: "#4e73df",
+      data: [${countValues[0]}, ${countValues[1]}, ${countValues[2]}, ${countValues[3]}, ${countValues[4]}],
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'month'
+        },
+        gridLines: {
+          display: false,
+          drawBorder: false
+        },
+        ticks: {
+          maxTicksLimit: 6
+        },
+        maxBarThickness: 25,
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: ${countValues[0]}+1,
+          maxTicksLimit: 5,
+          padding: 10,
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return number_format(value);
+          }
+        },
+        gridLines: {
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, chart) {
+          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+          return number_format(tooltipItem.yLabel) + 'ëª…' ;
+        }
+      }
+    },
+  }
+});
+</script>
 
 </body>
 

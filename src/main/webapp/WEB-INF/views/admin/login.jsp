@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BrickUp ∞¸∏Æ¿⁄∆‰¿Ã¡ˆ</title>
+    <title>BrickUp Í¥ÄÎ¶¨ÏûêÌéòÏù¥ÏßÄ</title>
 
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">∞¸∏Æ¿⁄ ∑Œ±◊¿Œ</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Í¥ÄÎ¶¨Ïûê Î°úÍ∑∏Ïù∏</h1>
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
@@ -56,7 +56,7 @@
                                         </div>
                                      
                                         <a href="mainpage" class="btn btn-primary btn-user btn-block">
-                                            ∑Œ±◊¿Œ
+                                            Î°úÍ∑∏Ïù∏
                                         </a>                              
                                     </form>
                                     <hr>

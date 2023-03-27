@@ -18,6 +18,7 @@ import com.ezen.ezenmarket.user.dto.User;
 import com.ezen.ezenmarket.user.dto.User2;
 import com.ezen.ezenmarket.user.mapper.UserMapper;
 import com.ezen.ezenmarket.user.mapper.UserXmlMapper;
+import com.ezen.ezenmarket.user.service.MailService;
 import com.ezen.ezenmarket.user.service.impl.LoginServiceImpl;
 import com.ezen.ezenmarket.user.service.impl.UserServiceImpl;
 
@@ -35,6 +36,10 @@ public class SignInController {
 	
 	@Autowired
 	UserServiceImpl userService;
+	
+	@Autowired
+	   MailService mailservice;
+
 
 	
 	@GetMapping(value="/signin")
@@ -169,48 +174,56 @@ public class SignInController {
 	    }
 	}
 
-	// 비밀번호 변경하는 페이지
-	@PostMapping(value="/pw_changing")
-	public String changePassword(@ModelAttribute("User") User user, Model model) {
-	    String user_id = user.getUser_id();
-	    String user_name = user.getUser_name();
-	    String email = user.getEmail();
-	    String new_password = user.getUser_pw();
-	    String user_pw_confirm = user.getUser_pw_confirm();
+	   // 비밀번호 변경하는 페이지
+	   @PostMapping(value="/pw_changing")
+	   public String changePassword(@ModelAttribute("User") User user, Model model) {
+	       String user_id = user.getUser_id();
+	       String user_name = user.getUser_name();
+	       String email = user.getEmail();
+	       String new_password = user.getUser_pw();
+	       String user_pw_confirm = user.getUser_pw_confirm();
 
-	    model.addAttribute("user_id", user_id);
-	    
-	    // mapper 불러서 입력이 정확한지 확인
-	    User matchingUser = usermapper.findUserById(user_id, user_name, email);
+	       model.addAttribute("user_id", user_id);
+	       
+	       // mapper 불러서 입력이 정확한지 확인
+	       User matchingUser = usermapper.findUserById(user_id, user_name, email);
 
-	    if (matchingUser == null) {
-	        return "user/find_pw";
-	    } else {
-	        model.addAttribute("User", user);
-	      
-	        return "user/pw_changing";
-	    }
-	}
+	       if (matchingUser == null) {
+	           return "user/find_pw";
+	       } else {
+	           model.addAttribute("User", user);
+	           
+	           if (!email.equals(matchingUser.getEmail())) {
+	               return "user/find_pw";
+	           }
+	         
+	           return "user/pw_changing";
+	       }
+	   }
+
 	
 	@PostMapping(value="/pw_confirmation")
-	public String confirmPassword(@ModelAttribute("User") User user, Model model) {
-	    String user_id = user.getUser_id();
-	    String new_password = user.getUser_pw();
-	    String new_password_confirm = user.getUser_pw_confirm();
+	   public String confirmPassword(@ModelAttribute("User") User user, Model model) {
+	       String user_id = user.getUser_id();
+	       String new_password = user.getUser_pw();
+	       String new_password_confirm = user.getUser_pw_confirm();
 
-	    model.addAttribute("user_id", user_id);
-	    
-	    System.out.println("아이디: " + user_id);
-	    System.out.println("새 비밀번호: " + new_password);
+	       model.addAttribute("user_id", user_id);
+	       
+	       System.out.println("아이디: " + user_id);
+	       System.out.println("새 비밀번호: " + new_password);
 
-	    if (!new_password.equals(new_password_confirm)) {
-	        return "user/pw_changing";
-	    }
+	       if (!new_password.equals(new_password_confirm)) {
+	           return "user/pw_changing";
+	       }
 
-	    // db에 새 비밀번호 업데이트
-	    usermapper.updateUserPw(new_password, user_id);
+	       // db에 새 비밀번호 업데이트
+	       usermapper.updateUserPw(new_password, user_id);
 
-	    return "user/pw_confirmation";
-	}
+	       mailservice.sendPasswordChangeConfirmationEmail(user.getEmail());
+
+	       return "user/pw_confirmation";
+	   }
+
 	
 }

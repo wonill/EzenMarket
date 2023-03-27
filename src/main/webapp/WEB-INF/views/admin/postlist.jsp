@@ -11,13 +11,13 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="mainpage.html">
                 <img style="height: 50px" src="https://i.ibb.co/bXJWJZL/1233.png"/ >
 
             </a>
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="mainpage">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>메인 페이지</span></a>
@@ -45,6 +45,12 @@
                 <a class="nav-link" href="reportlist">
                     <i class="fas fa-fw fa-table"></i>
                     <span>신고 관리</span></a>
+            </li>
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="postlist">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>게시물 관리</span></a>
             </li>
             
             		<!-- Nav Item - Pages Collapse Menu -->
@@ -139,7 +145,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">이젠마켓 월별통계</h1>
+                        <h1 class="h3 mb-0 text-gray-800">게시물 월별통계</h1>
                        
                     </div>
 
@@ -153,12 +159,12 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                               대기중인 신고 </div>
+                                               오늘 올라온 게시물 </div>
                                                                                 
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${reportCount}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${todayPostCount}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-solid fa-triangle-exclamation fa-2x text-gray-300"></i>
+                                            <i class="fas fa-solid fa-file-circle-plus fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +179,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                이번달 등록된 게시물</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${postCount}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${thisMonthPostCount}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-solid fa-comments fa-2x text-gray-300"></i>
@@ -189,23 +195,19 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">일일 사이트 접속자 수
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">지난달 등록된 게시물
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${todayVisitor}</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${lastMonthPostCount}</div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 15%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
+                                                  
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-solid fa-user-large fa-2x text-gray-300"></i>
+                                            <i class="fas fa-solid fa-book-open fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -219,11 +221,11 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                이번달 사이트 접속자 수</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${thisMonthVisitor }</div>
+                                                이번달 거래완료된 게시물</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${thisMotnthEndDealCount }</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-solid fa-user-group fa-2x text-gray-300"></i>
+                                            <i class="fas fa-solid fa-coins fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -231,63 +233,101 @@
                         </div>
                     </div>
 
-                    <!-- Content Row -->
+                     <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                    <!-- Project Card Example -->
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">주간 사이트 접속자 수</h6>
+                                <div class="card-header py-3">
                                    
                                 </div>
-                                <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                    
+                                    <h4 class="small font-weight-bold">전월 대비 게시물 수 <span
+                                            class="float-right">${roundedPercentage}%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: ${roundedPercentage}%"
+                                            aria-valuenow="${roundedPercentage}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">최다 카테고리 <span
+                                            class="float-right">남성의류</span></h4>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 37%"
+                                            aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                    
+               
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">카테고리별 게시물(상위 3개)</h6>
-                                   
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> 남성의류
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> 여성의류
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> 신발 
-                                        </span>
-                                    </div>
-                                </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">게시글 목록</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>게시물 번호</th>
+                                            <th>유저 번호</th>
+                                            <th>거래 지역</th>
+                                            <th>제목</th>
+                                            <th>카테고리</th>
+                                            <th>생성날짜</th>
+                                            <th>관리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${postlist}" var="post"> 
+                                        <tr>
+                                            <td>${post.post_id }</td>
+                                            <td>${post.user_number }</td>
+                                            <td>${post.post_address }</td>
+                                            <td>${post.title }</td>
+                                            <td id="category-type">${post.category_id}</td>
+                                            <td>${post.created }</td>                       
+                                            <td>
+                                            <a href="../post?id=${post.post_id }" class="view" title="View"
+												data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+												<a id="postDelete_${post.post_id}" href="postlist/deletePost?post_id=${post.post_id }"
+															class="delete" title="삭제" data-toggle="tooltip"> 
+															<i class="material-icons">&#xE5C9;</i>
+														</a>
+												<c:forEach items="${endDeal}" var="endDeal">
+													<c:if test="${endDeal.post_id == post.post_id }">
+														<a class="small font-weight-bold">판매 완료</a>
+														<script>
+													        document.getElementById("postDelete_${post.post_id}").style.display = "none";
+													    </script>
+													</c:if>
+
+												</c:forEach>
+											</td>
+                                        </tr>
+                                        </c:forEach>
+                                        
+                                      
+                                       
+
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
 
                 </div>
+                
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
+
+                </div>
+                <!-- /.container-fluid -->
+
 
 
   

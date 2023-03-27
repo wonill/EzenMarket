@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.ezen.ezenmarket.product.dto.PagingVO;
 import com.ezen.ezenmarket.product.dto.Post;
+import com.ezen.ezenmarket.product.dto.Post2;
 import com.ezen.ezenmarket.product.dto.PostImage;
 
 
@@ -20,6 +21,8 @@ public interface ProductMapper {
    public void insertProduct(Post post);
    
    public void insertPostImage(Post post);
+   
+   public void insertPostImage2(Post2 post);
 
    
    
@@ -89,5 +92,9 @@ public interface ProductMapper {
 	public void insertNewPost(Post post);
 	
 	public int getPost_Id(Integer user_number);
+	
+	public Post2 getProductInfo(Integer post_Id);
+	
+	public void updateProduct(Post2 post);
 	
 }

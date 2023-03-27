@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 
@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-<!-- Å×ÀÌºí ÅÛÇÃ¸´ -->
+<!-- í…Œì´ë¸” í…œí”Œë¦¿ -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -38,7 +38,7 @@ table.table td a.check {
 </style>
 
 
-    <title>EzenMarket °ü¸®ÀÚÆäÀÌÁö</title>
+    <title>EzenMarket ê´€ë¦¬ìí˜ì´ì§€</title>
 
     <link href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

@@ -121,6 +121,15 @@ public class WebSocketChat{
 			
 			chatService.insert(Integer.parseInt(jsonObj.get("chattingRoom_id").toString()), Integer.parseInt(jsonObj.get("user_number").toString()), jsonStr);
 			sendData(session, jsonStr, user_number);
+		} else if(type.equals("zzim")){
+			
+			sendData(session, jsonStr, user_number);
+		} else if(type.equals("review")) {
+			
+			sendData(session, jsonStr, user_number);
+		} else if(type.equals("enddeal")) {
+			
+			sendData(session, jsonStr, user_number);
 		} else {
 			System.out.println("그 외....");
 		}

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 
 
@@ -23,14 +23,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="mainpage">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>∏ﬁ¿Œ ∆‰¿Ã¡ˆ</span></a>
+                    <span>Î©îÏù∏ ÌéòÏù¥ÏßÄ</span></a>
             </li>
 
 	<!-- Divider -->
 	<hr class="sidebar-divider">
 
 	<!-- Heading -->
-	<div class="sidebar-heading">∞¸∏Æ ∆‰¿Ã¡ˆ</div>
+	<div class="sidebar-heading">Í¥ÄÎ¶¨ ÌéòÏù¥ÏßÄ</div>
 
 	<!-- Nav Item - Charts -->
 
@@ -39,14 +39,14 @@
 	<li class="nav-item">
                 <a class="nav-link" href="userlist">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>¿Ø¿˙ ∞¸∏Æ</span></a>
+                    <span>Ïú†Ï†Ä Í¥ÄÎ¶¨</span></a>
             </li>
 
             
             <li class="nav-item  active">
                 <a class="nav-link" href="reportlist">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Ω≈∞Ì ∞¸∏Æ</span></a>
+                    <span>Ïã†Í≥† Í¥ÄÎ¶¨</span></a>
             </li>
             
             <!-- Nav Item - Pages Collapse Menu -->
@@ -54,12 +54,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>∞¸∏Æ¿⁄ ±‚¥…</span>
+                    <span>Í¥ÄÎ¶¨Ïûê Í∏∞Îä•</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">∞¸∏Æ¿⁄ ±‚¥…</h6>
-                        <a class="collapse-item" href="modifyBannerPage">πË≥  ∫Ø∞Ê</a>
+                        <h6 class="collapse-header">Í¥ÄÎ¶¨Ïûê Í∏∞Îä•</h6>
+                        <a class="collapse-item" href="modifyBannerPage">Î∞∞ÎÑà Î≥ÄÍ≤Ω</a>
                         
                     </div>
                 </div>
@@ -153,13 +153,13 @@
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
-			<h1 class="h3 mb-2 text-gray-800">Ω≈∞Ì ∏Ò∑œ</h1>
+			<h1 class="h3 mb-2 text-gray-800">Ïã†Í≥† Î™©Î°ù</h1>
 
 
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">Ω≈∞Ì ∏Ò∑œ</h6>
+					<h6 class="m-0 font-weight-bold text-primary">Ïã†Í≥† Î™©Î°ù</h6>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -167,13 +167,13 @@
 							cellspacing="0">
 							<thead>
 								<tr>
-									<th>Ω≈∞Ì π¯»£</th>
-									<th>Ω≈∞Ì ¿Ø«¸</th>
-									<th>π¯»£</th>
-									<th>¿Ø¿˙ π¯»£</th>
-									<th>Ω≈∞Ì ≥ªøÎ</th>
-									<th>√≥∏Æ ø©∫Œ</th>
-									<th>∞¸∏Æ</th>
+									<th>Ïã†Í≥† Î≤àÌò∏</th>
+									<th>Ïã†Í≥† Ïú†Ìòï</th>
+									<th>Î≤àÌò∏</th>
+									<th>Ïú†Ï†Ä Î≤àÌò∏</th>
+									<th>Ïã†Í≥† ÎÇ¥Ïö©</th>
+									<th>Ï≤òÎ¶¨ Ïó¨Î∂Ä</th>
+									<th>Í¥ÄÎ¶¨</th>
 								</tr>
 							</thead>
 
@@ -190,45 +190,45 @@
                                             <td>
                                             <c:choose>
 										        <c:when test="${report.report_status == 0}">
-										          <span class="status text-danger">&bull;</span> ¥Î±‚¡ﬂ
+										          <span class="status text-danger">&bull;</span> ÎåÄÍ∏∞Ï§ë
 										   </td>
 										          <td>
                                              <c:choose>
 											      <c:when test="${report.report_type == 0}">
-											        <a href="../mypage?user_number=${report.report_detail}" class="view" title="∏∂¿Ã∆‰¿Ã¡ˆ∑Œ ¿Ãµø" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+											        <a href="../mypage?user_number=${report.report_detail}" class="view" title="ÎßàÏù¥ÌéòÏù¥ÏßÄÎ°ú Ïù¥Îèô" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 											      </c:when>
 											      
 											      <c:when test="${report.report_type == 1}">
-											        <a href="../post?id=${report.report_detail}" class="view" title="∆˜Ω∫∆Æ∑Œ ¿Ãµø" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+											        <a href="../post?id=${report.report_detail}" class="view" title="Ìè¨Ïä§Ìä∏Î°ú Ïù¥Îèô" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 											        <a href="#" class="delete" onclick="event.preventDefault(); 
 													    postDeleteAndModify('${report.report_detail}', '${report.report_id}');" 
-													    title="ªË¡¶" data-toggle="tooltip">
+													    title="ÏÇ≠Ï†ú" data-toggle="tooltip">
 													    <i class="material-icons">&#xE5C9;</i>
 													</a>
 											      </c:when>
 											      
 											      <c:when test="${report.report_type == 2}">
-											        <a href="../chattingroom?id=${report.report_detail}" class="view" title="√§∆√¿∏∑Œ ¿Ãµø" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+											        <a href="../chattingroom?id=${report.report_detail}" class="view" title="Ï±ÑÌåÖÏúºÎ°ú Ïù¥Îèô" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 											      </c:when>
 											      
 											      <c:when test="${report.report_type == 3}">
-											        <a href="../review?id=${report.report_detail}" class="view" title="∏Æ∫‰∑Œ ¿Ãµø" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+											        <a href="../review?id=${report.report_detail}" class="view" title="Î¶¨Î∑∞Î°ú Ïù¥Îèô" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 													<a href="reportlist/deleteReview?review_id=${report.report_detail }" class="delete" onclick="event.preventDefault(); 
 													    reviewDeleteAndModify('${report.report_detail}', '${report.report_id}');" 
-													    title="ªË¡¶" data-toggle="tooltip">
+													    title="ÏÇ≠Ï†ú" data-toggle="tooltip">
 													    <i class="material-icons">&#xE5C9;</i>
 													</a>		     
 											      </c:when>
 											    </c:choose>
 								
-										<a href="reportlist/modify?report_id=${report.report_id }" class="check" title="√≥∏Æøœ∑·"
+										<a href="reportlist/modify?report_id=${report.report_id }" class="check" title="Ï≤òÎ¶¨ÏôÑÎ£å"
 										data-toggle="tooltip"><i class="material-icons">&#xe86c;</i></a>
 										
 											</td>
 										          
 										        </c:when>
 										        <c:when test="${report.report_status == 1}">
-										          <span class="status text-success">&bull;</span> √≥∏Æøœ∑·
+										          <span class="status text-success">&bull;</span> Ï≤òÎ¶¨ÏôÑÎ£å
 										        </td>
 										          <td></td>
 										    

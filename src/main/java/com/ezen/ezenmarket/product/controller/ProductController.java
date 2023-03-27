@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -25,6 +26,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.ezenmarket.product.dto.PagingVO;
 import com.ezen.ezenmarket.product.dto.Post;
+import com.ezen.ezenmarket.product.dto.Post2;
+import com.ezen.ezenmarket.product.dto.PostImage;
 import com.ezen.ezenmarket.product.mapper.ProductMapper;
 import com.ezen.ezenmarket.product.service.ProductService;
 import com.ezen.ezenmarket.user.dto.User;
@@ -110,27 +113,62 @@ public class ProductController {
 	    }
 	}
    
+   @PostMapping(value="/insert2")
+	public String insert2() {
+		
+		// main을 /로 해놔서 main으로 가게 한다는 의미
+		return  "redirect:/";
+	}
+   
+   
    @PostMapping(value="/insert")
 	@ResponseBody
 	public String insertProduct(HttpServletRequest req, String post_address, String title, 
 			String post_content, Integer category_id, Integer price, MultipartFile[] file) {
+	   System.out.println("여기까진왔음1111111111111111");
+	   System.out.println("여기까진왔음1111111111111111");
+	   System.out.println("여기까진왔음1111111111111111");
+	   System.out.println("여기까진왔음1111111111111111");
+	   System.out.println("여기까진왔음1111111111111111");
+	   System.out.println("여기까진왔음1111111111111111");
+	   System.out.println("여기까진왔음1111111111111111");
+	   System.out.println("여기까진왔음1111111111111111");
 		
 		// post테이블 insert
 		String user_id = userService.getUserId(req);
-		User user = userMapper.getUserInfo(user_id);
-		int user_number = user.getUser_number();
-		Post post = new Post (user_number, post_address, title, post_content, category_id, price);
+		System.out.println("1");
 		
+		User user = userMapper.getUserInfo(user_id);
+		System.out.println("2");
+		int user_number = user.getUser_number();
+		System.out.println("3");
+		Post post = new Post (user_number, post_address, title, post_content, category_id, price);
+		System.out.println("4");
+		System.out.println(user_number);
+		System.out.println(post_address);
+		System.out.println(title);
+		System.out.println(post_content);
+		System.out.println(category_id);
+		System.out.println(price);
 		productMapper.insertNewPost(post);
+		System.out.println("5");
 //		productMapper.insertProduct(post);
 		// postImage테이블 insert
 		int post_id = productMapper.getPost_Id(user_number);
+		System.out.println("6");
 		post.setPost_id(post_id);
 		
+		System.out.println("여기까진왔음22222222222222222");
+		System.out.println("여기까진왔음22222222222222222");
+		System.out.println("여기까진왔음22222222222222222");
+		System.out.println("여기까진왔음22222222222222222");
 		for (int i = 0; i < file.length; ++i) {
 
 			String imgName = generateHash(file[i]) + "." + FilenameUtils.getExtension(file[i].getOriginalFilename());
-
+		System.out.println("여기도옴");
+		System.out.println("여기도옴");
+		System.out.println("여기도옴");
+		System.out.println("여기도옴");
 			if (!file[i].isEmpty()) {
 			    try {
 			        byte[] bytes = file[i].getBytes();
@@ -155,9 +193,93 @@ public class ProductController {
 			        
 			    } catch (Exception e) {
 			        e.printStackTrace();
+			        System.out.println("캐치문들어옴");
+			        System.out.println("캐치문들어옴");
+			        System.out.println("캐치문들어옴");
+			        System.out.println("캐치문들어옴");
 			        return "0";
 			    }
 			} else {
+				System.out.println("파일이없음");
+				System.out.println("파일이없음");
+				System.out.println("파일이없음");
+				System.out.println("파일이없음");
+
+			    return "0"; // 실패
+			}
+		}
+		
+		return "1"; // 성공
+	}
+   
+   
+   @GetMapping(value="/modifyProduct")
+	public String modifyProduct(Integer post_Id, Model model) {
+		Post2 p = productMapper.getProductInfo(post_Id);
+		
+		List<PostImage> f = productMapper.getPostImages(post_Id);
+		List<String> images = new ArrayList<>();
+		
+		for (int i = 0; i < f.size(); ++i) {
+			images.add(f.get(i).getImage_url());
+		}
+		
+		model.addAttribute("post_Id", post_Id);
+		model.addAttribute("images", images);
+		model.addAttribute("p", p);
+		return "product/product_modify";
+	}
+	
+	@PostMapping(value="/modify")
+	@ResponseBody
+	public String modifyProduct(HttpServletRequest req, String post_address, String title, 
+			String post_content, Integer category_id, Integer price, Integer post_Id, MultipartFile[] file) {
+		
+		
+		System.out.println(file[0].isEmpty());
+		
+		// post테이블 insert
+		String user_id = userService.getUserId(req);
+		User user = userMapper.getUserInfo(user_id);
+		int user_number = user.getUser_number();
+		Post2 post = new Post2 (post_Id, user_number, post_address, title, post_content, category_id, price);
+		productMapper.updateProduct(post);
+		
+		System.out.println("파일 이름:" + file[0].getOriginalFilename());
+		for (int i = 0; i < file.length; ++i) {
+
+			String imgName = generateHash(file[i]) + "." + FilenameUtils.getExtension(file[i].getOriginalFilename());
+			
+			if (!file[i].isEmpty()) {
+			    try {
+			        byte[] bytes = file[i].getBytes();
+
+			        // Creating the directory to store file
+			        String rootPath = System.getProperty("catalina.home");
+			        File dir = new File(rootPath + File.separator + "tmpFiles");
+			        if (!dir.exists())
+			            dir.mkdirs();
+			        // Create the file on server
+			        File serverFile = new File(dir.getAbsolutePath()
+			                + File.separator + imgName);
+			        
+			        post.setPost_id(post_Id);
+			        post.setImage_url("http://localhost:8888/ezenmarket/tmpFiles/" + imgName);
+			        
+			        productMapper.insertPostImage2(post);
+			        
+			        BufferedOutputStream stream = new BufferedOutputStream(
+			                new FileOutputStream(serverFile));
+			        stream.write(bytes);
+			        stream.close();
+			        
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			        return "0";
+			    }
+				
+			} else {
+				System.out.println("여기로 나옴");
 			    return "0"; // 실패
 			}
 		}

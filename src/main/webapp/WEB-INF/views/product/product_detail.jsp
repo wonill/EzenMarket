@@ -581,6 +581,9 @@
                    tooltip2.style.display  = "none";
                      cntWishlist.innerText = ' ' + (parseInt(cntWishlist.innerText) + 1)+ ' ';
                      console.log('찜이 등록되었습니다.');
+                     
+                    sendMessage();
+                    
                   } else if(xhttp.responseText == "1"){
                      zzimBtn.style.backgroundColor = '#a0a0a0';   
                    zzimIcon.style.color = 'white';
@@ -624,9 +627,62 @@
          document.querySelector(".background").className = "background";
       }
       document.querySelector("#show").addEventListener("click", show);
-      document.querySelector("#close").addEventListener("click", close);
+      //document.querySelector("#close").addEventListener("click", close);
       
-   
+      
+      
+      
+    		
+    	  var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/" + ${sessionScope.user_number});
+    	        
+    	        webSocket.onopen = function(message) {
+    	              
+    	              
+    	              console.log('오픈');
+    	              console.log('오픈');
+    	              console.log('오픈');
+    	              console.log('오픈');
+    	        }
+    	            
+    	        webSocket.onmessage = function(message) {
+    	          
+    	              
+    	              
+    	            
+    	        }
+    	            
+    	         webSocket.onerror = function(message) {
+    	                
+    	              console.log("error...\n");
+    	         }    
+    	            
+    	        webSocket.onclose = function(message) {
+    	               
+    	              console.log("Server Disconnect...\n");
+    	        }
+    	                
+    	        function sendMessage() {                      
+    	        	   
+    	      	  
+    	         
+
+    	            const info = {
+    	               type:'zzim',
+    	               user_number:${sessionScope.user_number}
+    	               
+    	            }
+    	            
+    	            const json = JSON.stringify(info);
+    	            
+    	            
+    	            console.log("Send to Server => "+json+"\n");
+    	            console.log(webSocket);
+    	            webSocket.send(json);
+    	           
+    	             
+    	          }
+    	 
+   				
    </script>
 
    

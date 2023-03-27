@@ -100,14 +100,10 @@ if(${sessionScope.user_number}){
        }
            
        webSocket.onmessage = function(message) {
-          const info = JSON.parse(message.data);
+         
+             addNewAlarm(message);
              
-           if(info.type == 'message'){
-             alert('메세지 알림이 왔습니다!');
-             addNewAlarm();
-           } else if(info.type == 'zzim'){
-        	   alert('내 상품에 찜 요청이 왔습니다.');
-           }   
+           
        }
            
         webSocket.onerror = function(message) {

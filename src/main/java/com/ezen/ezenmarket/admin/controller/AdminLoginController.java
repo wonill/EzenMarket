@@ -14,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
-public class LoginController {
+public class AdminLoginController {
 
 	@Autowired
 	LoginService loginService;
@@ -40,4 +40,5 @@ public class LoginController {
 		return "redirect:/login";
 	}
 
-}	
+	
+}

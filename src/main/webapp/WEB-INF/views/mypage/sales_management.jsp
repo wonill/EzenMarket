@@ -283,6 +283,8 @@ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+
                if(xhttp.readyState == 4 && xhttp.status == 200){
                   alert('판매완료 처리되었습니다.');
                   
+                  sendMessage();
+                  
                   const post_id = document.querySelector("#hidden_post_id").value;
                      const select_user = document.querySelector("#select_user");
                      
@@ -309,6 +311,60 @@ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+
       }
       
       document.querySelector("#close").addEventListener("click", close);
+      
+      
+     
+    		
+    	  var webSocket = new WebSocket("ws://<%=request.getLocalAddr()%>:8888/ezenmarket/echo/" + ${sessionScope.user_number});
+    	        
+    	        webSocket.onopen = function(message) {
+    	              
+    	              
+    	              console.log('오픈');
+    	              console.log('오픈');
+    	              console.log('오픈');
+    	              console.log('오픈');
+    	        }
+    	            
+    	        webSocket.onmessage = function(message) {
+    	              
+    	            
+    	        }
+    	            
+    	         webSocket.onerror = function(message) {
+    	                
+    	              console.log("error...\n");
+    	         }    
+    	            
+    	        webSocket.onclose = function(message) {
+    	               
+    	              console.log("Server Disconnect...\n");
+    	        }
+    	
+       
+      	function sendMessage() {                      
+    	   
+    	  
+    	 	
+
+    	    const info = {
+    	       type:'enddeal',
+    	      
+    	       user_number:${sessionScope.user_number}
+    	       
+    	    }
+    	    
+    	    const json = JSON.stringify(info);
+    	    
+    	    
+    	    console.log("Send to Server => "+json+"\n");
+    	    
+    	    webSocket.send(json);
+    	   
+    	    
+    	  }
+      
+      
 </script>
 
 

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 
 
@@ -12,7 +12,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="mainpage.html">
                 <img style="height: 50px" src="https://i.ibb.co/bXJWJZL/1233.png"/ >
             </a>
 
@@ -20,7 +20,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="mainpage">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>∏ﬁ¿Œ ∆‰¿Ã¡ˆ</span></a>
+                    <span>Î©îÏù∏ ÌéòÏù¥ÏßÄ</span></a>
             </li>
 
          
@@ -30,7 +30,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                ∞¸∏Æ ∆‰¿Ã¡ˆ
+                Í¥ÄÎ¶¨ ÌéòÏù¥ÏßÄ
             </div>
 
             <!-- Nav Item - Charts -->
@@ -40,13 +40,19 @@
            <li class="nav-item active">
                 <a class="nav-link" href="userlist">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>¿Ø¿˙ ∞¸∏Æ</span></a>
+                    <span>Ïú†Ï†Ä Í¥ÄÎ¶¨</span></a>
             </li>
 
             <li class="nav-item ">
                 <a class="nav-link" href="reportlist">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Ω≈∞Ì ∞¸∏Æ</span></a>
+                    <span>Ïã†Í≥† Í¥ÄÎ¶¨</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="postlist">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Í≤åÏãúÎ¨º Í¥ÄÎ¶¨</span></a>
             </li>
             
             <!-- Nav Item - Pages Collapse Menu -->
@@ -54,12 +60,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>∞¸∏Æ¿⁄ ±‚¥…</span>
+                    <span>Í¥ÄÎ¶¨Ïûê Í∏∞Îä•</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">∞¸∏Æ¿⁄ ±‚¥…</h6>
-                        <a class="collapse-item" href="modifyBannerPage">πË≥  ∫Ø∞Ê</a>
+                        <h6 class="collapse-header">Í¥ÄÎ¶¨Ïûê Í∏∞Îä•</h6>
+                        <a class="collapse-item" href="modifyBannerPage">Î∞∞ÎÑà Î≥ÄÍ≤Ω</a>
                         
                     </div>
                 </div>
@@ -148,33 +154,141 @@
                     </ul>
 
                 </nav>
+                
+                
                 <!-- End of Topbar -->
+                
+                
 
                 <!-- Begin Page Content -->
+                
+                
                 <div class="container-fluid">
 
+				
+
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">¿Ø¿˙ ∏Ò∑œ</h1>
-               
+                    <h1 class="h3 mb-2 text-gray-800">Ïú†Ï†Ä Î™©Î°ù</h1>
+                    
+                    
+               		<div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                               ÏµúÎã§ Í±∞ÎûòÏßÄÏó≠ </div>
+                                                                                
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${userAddresses[0]}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-solid fa-earth-asia fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                               Ï¥ù ÌöåÏõê Ïàò </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${getUserCount}Î™Ö</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-solid fa-users fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Î≤§ ÎãπÌïú Ïú†Ï†Ä Ïàò
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${getBannedUserCount}</div>
+                                                </div>
+                                                <div class="col">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-solid fa-user-minus fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                ÏùºÏùº ÏÇ¨Ïù¥Ìä∏ Ï†ëÏÜçÏûê Ïàò</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${todayVisitor }</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-solid fa-user-group fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bar Chart -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">ÏµúÎåÄ Í±∞Ï£ºÏßÄÏó≠</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-bar">
+                                        <canvas id="myBarChart"></canvas>
+                                    </div>
+                                    <hr>
+                                    ÏÉÅÏúÑ 5Í∞ú ÏßÄÏó≠Îßå ÌëúÏãúÎê©ÎãàÎã§.
+                                </div>
+                            </div>
+
+                
+
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">¿Ø¿˙ ∏Ò∑œ</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Ïú†Ï†Ä Î™©Î°ù</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>¿Ø¿˙ π¯»£</th>
-                                            <th>¿Ã∏ß</th>
+                                            <th>Ïú†Ï†Ä Î≤àÌò∏</th>
+                                            <th>Ïù¥Î¶Ñ</th>
                                             <th>ID</th>
-                                            <th>¥–≥◊¿”</th>
-                                            <th>¿¸»≠π¯»£</th>
-                                            <th>¿Ã∏ﬁ¿œ</th>
-                                            <th>BAN ø©∫Œ</th>
-                                            <th>∞¸∏Æ</th>
+                                            <th>ÎãâÎÑ§ÏûÑ</th>
+                                            <th>Ï†ÑÌôîÎ≤àÌò∏</th>
+                                            <th>Ïù¥Î©îÏùº</th>
+                                            <th>BAN Ïó¨Î∂Ä</th>
+                                            <th>Í¥ÄÎ¶¨</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -191,11 +305,11 @@
 									<a href="../mypage?user_number=${board.user_number }" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
 										 <c:choose >
 							             <c:when test="${board.banned == 0}">
-											<a href="userlist/ban?user_number=${board.user_number}" class="delete" title="πÍ"
+											<a href="userlist/ban?user_number=${board.user_number}" class="delete" title="Î∞¥"
 											data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
 							             </c:when>
 							             <c:otherwise>              
-								              <a href="userlist/unban?user_number=${board.user_number}" class="check" title="πÍ «ÿ¡¶"
+								              <a href="userlist/unban?user_number=${board.user_number}" class="check" title="Î∞¥ Ìï¥Ï†ú"
 										data-toggle="tooltip"><i class="material-icons">&#xe86c;</i></a>
 								               </c:otherwise>
 							             </c:choose>

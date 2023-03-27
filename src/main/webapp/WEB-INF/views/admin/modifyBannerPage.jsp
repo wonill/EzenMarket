@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 
 
@@ -7,12 +7,14 @@
  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="mainpage.html">
                 <img style="height: 50px" src="https://i.ibb.co/bXJWJZL/1233.png"/ >
             </a>
 
@@ -20,7 +22,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="mainpage">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>∏ﬁ¿Œ ∆‰¿Ã¡ˆ</span></a>
+                    <span>Î©îÏù∏ ÌéòÏù¥ÏßÄ</span></a>
             </li>
 
          
@@ -30,7 +32,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                ∞¸∏Æ ∆‰¿Ã¡ˆ
+                Í¥ÄÎ¶¨ ÌéòÏù¥ÏßÄ
             </div>
 
             <!-- Nav Item - Charts -->
@@ -40,13 +42,19 @@
            <li class="nav-item">
                 <a class="nav-link" href="userlist">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>¿Ø¿˙ ∞¸∏Æ</span></a>
+                    <span>Ïú†Ï†Ä Í¥ÄÎ¶¨</span></a>
             </li>
 
             <li class="nav-item ">
                 <a class="nav-link" href="reportlist">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Ω≈∞Ì ∞¸∏Æ</span></a>
+                    <span>Ïã†Í≥† Í¥ÄÎ¶¨</span></a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="postlist">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Í≤åÏãúÎ¨º Í¥ÄÎ¶¨</span></a>
             </li>
             
             <!-- Nav Item - Pages Collapse Menu -->
@@ -54,12 +62,12 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>∞¸∏Æ¿⁄ ±‚¥…</span>
+                    <span>Í¥ÄÎ¶¨Ïûê Í∏∞Îä•</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">∞¸∏Æ¿⁄ ±‚¥…</h6>
-                        <a class="collapse-item active" href="modifyBannerPage">πË≥  ∫Ø∞Ê</a>
+                        <h6 class="collapse-header">Í¥ÄÎ¶¨Ïûê Í∏∞Îä•</h6>
+                        <a class="collapse-item active" href="modifyBannerPage">Î∞∞ÎÑà Î≥ÄÍ≤Ω</a>
                         
                     </div>
                 </div>
@@ -146,29 +154,104 @@
                         </li>
 
                     </ul>
-
+				
                 </nav>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-               <div class="inputArea">
-				   <label for="gdsImg">¿ÃπÃ¡ˆ</label>
-				   <input type="file" id="gdsImg" name="file" />
-				   <div class="select_img"><img src="" /></div>
-				   
-				   <script>
-				    $("#gdsImg").change(function(){
-				     if(this.files &amp;&amp; this.files[0]) {
-				      var reader = new FileReader;
-				      reader.onload = function(data) {
-				       $(".select_img img").attr("src", data.target.result).width(500);          
-				      }
-				      reader.readAsDataURL(this.files[0]);
-				     }
-				    });
-				   </script>
-				</div>
-            <!-- End of Main Content -->
+               <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">1Î≤àÎ∞∞ÎÑà ÌòÑÏû¨ Ïù¥ÎØ∏ÏßÄ</h1>       
+               </div>
+               <div>
+               	<img class="img-fluid mb-4" src="${pageContext.request.contextPath}/resources/img/banner1.jpg" alt="Î∞∞ÎÑà1">
+               </div>
+               
+               <div><img class="img-fluid mb-4" id="myImage1" src="${imageSrc1}" alt=""></div>
+
+		<form class="mb-4" action="upload_banner1" method="post"
+			enctype="multipart/form-data">
+
+			<label class="btn btn-primary btn-file mb-4"> Ïù¥ÎØ∏ÏßÄ Ï∞æÍ∏∞ 
+				<input type="file" name="file" style="display: none;"
+					onchange="displayImage1(event)">
+			</label> 
+				<img class="img-fluid mb-4" id="myImage1" src="" alt=""> 
+			<label class="btn btn-primary btn-file mb-4"> Î≥ÄÍ≤Ω
+				<input type="submit" style="display: none;">
+			</label>
+		</form>
+		<hr>
+		
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">2Î≤àÎ∞∞ÎÑà ÌòÑÏû¨ Ïù¥ÎØ∏ÏßÄ</h1>       
+               </div>
+               <div>
+               	<img class="img-fluid mb-4" src="${pageContext.request.contextPath}/resources/img/banner2.jpg" alt="Î∞∞ÎÑà2">
+               </div>
+               
+               <div><img class="img-fluid mb-4" id="myImage2" src="${imageSrc2}" alt=""></div>
+
+		<form class="mb-4" action="upload_banner2" method="post"
+			enctype="multipart/form-data">
+
+			<label class="btn btn-primary btn-file mb-4"> Ïù¥ÎØ∏ÏßÄ Ï∞æÍ∏∞ 
+				<input type="file" name="file" style="display: none;"
+					onchange="displayImage2(event)">
+			</label> 
+				<img class="img-fluid mb-4" id="myImage2" src="" alt=""> 
+			<label class="btn btn-primary btn-file mb-4"> Î≥ÄÍ≤Ω
+				<input type="submit" style="display: none;">
+			</label>
+		</form>
+		<hr>
+		
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">3Î≤àÎ∞∞ÎÑà ÌòÑÏû¨ Ïù¥ÎØ∏ÏßÄ</h1>       
+               </div>
+               <div>
+               	<img class="img-fluid mb-4" src="${pageContext.request.contextPath}/resources/img/banner3.jpg" alt="Î∞∞ÎÑà3">
+               </div>
+               
+               <div><img class="img-fluid mb-4" id="myImage3" src="${imageSrc3}" alt=""></div>
+
+		<form class="mb-4" action="upload_banner3" method="post"
+			enctype="multipart/form-data">
+
+			<label class="btn btn-primary btn-file mb-4"> Ïù¥ÎØ∏ÏßÄ Ï∞æÍ∏∞ 
+				<input type="file" name="file" style="display: none;"
+					onchange="displayImage3(event)">
+			</label> 
+				<img class="img-fluid mb-4" id="myImage3" src="" alt=""> 
+			<label class="btn btn-primary btn-file mb-4"> Î≥ÄÍ≤Ω
+				<input type="submit" style="display: none;">
+			</label>
+		</form>
+		<hr>
+		
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">4Î≤àÎ∞∞ÎÑà ÌòÑÏû¨ Ïù¥ÎØ∏ÏßÄ</h1>       
+               </div>
+               <div>
+               	<img class="img-fluid mb-4" src="${pageContext.request.contextPath}/resources/img/banner4.jpg" alt="Î∞∞ÎÑà4">
+               </div>
+               
+               <div><img class="img-fluid mb-4" id="myImage4" src="${imageSrc4}" alt=""></div>
+
+		<form class="mb-4" action="upload_banner4" method="post"
+			enctype="multipart/form-data">
+
+			<label class="btn btn-primary btn-file mb-4"> Ïù¥ÎØ∏ÏßÄ Ï∞æÍ∏∞ 
+				<input type="file" name="file" style="display: none;"
+					onchange="displayImage4(event)">
+			</label> 
+				<img class="img-fluid mb-4" id="myImage4" src="" alt=""> 
+			<label class="btn btn-primary btn-file mb-4"> Î≥ÄÍ≤Ω
+				<input type="submit" style="display: none;">
+			</label>
+		</form>
+		<hr>
+
+		<!-- End of Main Content -->
 
           
 

@@ -86,7 +86,7 @@ body {
 
 	<div class="py-5 text-center" id="logo">
   		<a href="<%=request.getContextPath()%>">
-    <img src="resources/images/로고.png" width="250" height="70">
+    <img src="<%=request.getContextPath()%>/resources/images/이젠마켓.png" width="250" height="70">
   		</a>
 	</div>
 
